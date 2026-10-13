@@ -6,7 +6,7 @@ import path from "node:path";
 const temp = await fs.mkdtemp(path.join(os.tmpdir(), "qh-test-"));
 process.env.QH_DATA_DIR = temp;
 process.env.QH_STORAGE = "json";
-const { project } = await import("../server/store.mjs");
+const { project,put } = await import("../server/store.mjs");
 const { checkedSave, generate, quality, prepareGeneration } = await import(
   "../server/service.mjs"
 );
@@ -76,4 +76,11 @@ test("analysis export preserves numeric fields in a self-contained ZIP", async (
   assert.ok(b.includes(Buffer.from("visible-part-ids.u16")));
   assert.ok(b.includes(Buffer.from("qh-analysis/1")));
   assert.ok(b.includes(Buffer.from("authored ordinal z")));
+});
+
+test("invalid generated templates cannot corrupt the saved project",async()=>{
+ const p=structuredClone(project("fox"));p.rig.id="template-probe";p.rig.motionTemplates={broken:{duration:1,tracks:[{part:"missing",property:"rotation",keys:[{time:0,value:0}]}]}};
+ put("project","template-probe",p);
+ await assert.rejects(()=>generate("template-probe","broken",24,1,95),/unknown part/i);
+ assert.equal(project("template-probe").clips.length,p.clips.length);
 });

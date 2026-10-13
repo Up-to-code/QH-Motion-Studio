@@ -46,7 +46,7 @@ export async function generate(
     ],
     selected: best.id,
   };
-  const saved = saveProject(id, next, p.revision);
+  const saved = checkedSave(id, next, p.revision);
   const job = {
     id: randomUUID(),
     character: id,
