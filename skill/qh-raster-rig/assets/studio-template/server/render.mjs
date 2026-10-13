@@ -10,6 +10,7 @@ import {
   drawRig,
   stateAt,
   point,
+  materialPoint,
   validateClip,
   validateRig,
 } from "../core/engine.mjs";
@@ -140,8 +141,8 @@ export async function assess(rig, clip) {
       const p = s.find((p) => p.id === c.part);
       if (!p.visible || p.opacity <= 0) continue;
       const rest = stateAt(rig, clip, c.referenceTime ?? interval[0]).find((p) => p.id === c.part);
-      const target = c.target ?? point(rest.matrix, c.point);
-      const drift = Math.hypot(...point(p.matrix, c.point).map((n, i) => n - target[i]));
+      const target = c.target ?? materialPoint(rest, c.point);
+      const drift = Math.hypot(...materialPoint(p, c.point).map((n, i) => n - target[i]));
       contact = Math.max(contact, drift);
       contactViolations = Math.max(contactViolations, Math.max(0, drift - (c.tolerancePx ?? .5)));
     }
@@ -257,7 +258,7 @@ export async function repair(rig, clip, target = 95, maxAttempts = 3) {
         status: "accepted",
       };
     if (attempt === maxAttempts) break;
-    if (q.metrics?.maxJointVelocityPxPerSecond > q.metrics.maxAllowedVelocityPxPerSecond) {
+    if (q.metrics && q.metrics.maxJointVelocityPxPerSecond > q.metrics.maxAllowedVelocityPxPerSecond) {
       const ratio = Math.min(2, q.metrics.maxJointVelocityPxPerSecond / (q.metrics.maxAllowedVelocityPxPerSecond * .9259259259));
       if (current.duration * ratio <= 30) {
         current.duration *= ratio;

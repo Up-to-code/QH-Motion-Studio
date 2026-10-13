@@ -94,3 +94,7 @@ test('resize migrates per-motion contact image coordinates and restores them',()
  resizePart(rig,'foot',[40,30],[clip]);assert.deepEqual(clip.contacts[0].point,[20,27]);assert.deepEqual(clip.contacts[0].target,[100,200]);
  resizePart(rig,'foot',[20,10],[clip]);assert.deepEqual(clip.contacts[0].point,[10,9]);
 });
+test('raster canvas dimensions reject fractional tensor shapes',()=>{
+ const r={version:1,canvas:[128.5,64],origin:[64,32],assets:['/animations/test/a.png'],parts:[{id:'root',parent:null,position:[0,0],pivot:[8,8],size:[16,16],z:0,asset:'/animations/test/a.png'}]};
+ assert(validateRig(r).some(e=>e.includes('Canvas')));r.canvas=[129,64];assert.deepEqual(validateRig(r),[]);
+});

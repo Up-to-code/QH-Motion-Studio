@@ -143,7 +143,12 @@ server.registerTool("check_skeleton",{description:"Compare saved joint anchors a
 server.registerTool("get_character_context",{description:"Read saved identity, appearance, motion intent, decisions, failures and previous results before continuing work.",inputSchema:{character:z.string()}},wrap(a=>readContext(a.character)));
 server.registerTool("save_character_context",{description:"Persist agent plans and decisions with context revision protection.",inputSchema:{character:z.string(),revision:z.number().int(),context:z.any()}},wrap(a=>saveContext(a.character,a.context,a.revision)));
 server.registerTool("inspect_regions",{description:"Run skeleton, declared attachment overlap, local loop-pixel and technical inspectors; save a resumable workflow. Does not certify anatomy or artistic quality.",inputSchema:{character:z.string(),clip:z.string(),settings:z.any().optional()}},wrap(a=>beginWorkflow(a.character,a.clip,a.settings)));
-server.registerTool("get_inspection_region",{description:"Read a region's core/halo, skeleton, memory and evidence for local inspection. Coordinates remain original canvas pixels.",inputSchema:{workflow:z.string(),tile:z.string(),time:z.number().optional()}},wrap(a=>regionalPacket(a.workflow,a.tile,a.time)));
+server.registerTool("get_inspection_region",{description:"Read a region's core/halo, skeleton, memory and evidence for local inspection. Coordinates remain original canvas pixels.",inputSchema:{workflow:z.string(),tile:z.string(),time:z.number().optional()}},async a=>{
+ try{
+  const packet=await regionalPacket(a.workflow,a.tile,a.time),{image,...metadata}=packet;
+  return {content:[...text(metadata).content,{type:"image",mimeType:"image/png",data:image.split(",")[1]}]};
+ }catch(e){return {...text({error:e.message}),isError:true};}
+});
 server.registerTool("resume_inspection",{description:"Read saved inspector tasks and previous results.",inputSchema:{workflow:z.string()}},wrap(a=>readWorkflow(a.workflow)));
 server.registerTool("test_motion_patch",{description:"Evaluate a numeric candidate against saved regional errors without overwriting the project. Rejects new category regressions and retains candidate/evidence for review.",inputSchema:{workflow:z.string(),candidate:z.any(),options:z.any()}},wrap(a=>evaluatePatch(a.workflow,a.candidate,a.options)));
 server.registerTool("record_inspector_review",{description:"Record local-region visual evidence from a specialist, preserving provenance separately from technical checks.",inputSchema:{workflow:z.string(),role:z.string(),note:z.string(),passed:z.boolean(),regions:z.array(z.string()).default([])}},wrap(a=>recordReview(a.workflow,a)));

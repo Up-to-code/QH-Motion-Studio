@@ -34,6 +34,7 @@ export async function generate(
   for (const candidate of ["a", "b"].slice(0, candidates)) {
     const motion = makeMotion(p.rig, name, fps, candidate);
     motion.id = `${name}-${Date.now().toString(36)}-${candidate}`;
+    const errors=validateClip(p.rig,motion);if(errors.length)throw Error(errors.join("; "));
     results.push(await repair(p.rig, motion, target, 3));
   }
   const candidatesOut = results.map((r) => r.clip);

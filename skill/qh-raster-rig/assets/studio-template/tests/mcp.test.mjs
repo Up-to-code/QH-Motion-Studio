@@ -72,7 +72,7 @@ test('MCP exposes skeleton-first memory and resumable specialist region workflow
  const temp=await fs.mkdtemp(path.join(os.tmpdir(),'qh-mcp-workflow-'));
  const transport=new StdioClientTransport({command:process.execPath,args:[path.resolve('server/mcp.mjs')],env:{...process.env,QH_DATA_DIR:temp,QH_STORAGE:'json'},stderr:'pipe'});
  const client=new Client({name:'qh-workflow-test',version:'1.0.0'});
- const call=async(name,args)=>{const r=await client.callTool({name,arguments:args});assert(!r.isError,JSON.stringify(r));return JSON.parse(r.content[0].text);};
+ const call=async(name,args)=>{const r=await client.callTool({name,arguments:args});assert(!r.isError,JSON.stringify(r));return {...JSON.parse(r.content[0].text),nativeImage:r.content.find(c=>c.type==="image")};};
  try{
   await client.connect(transport);
   const s=await call('get_skeleton',{character:'fox'});assert.equal(s.skeleton.nodes.length,35);
@@ -82,7 +82,7 @@ test('MCP exposes skeleton-first memory and resumable specialist region workflow
   const w=await call('inspect_regions',{character:'fox',clip:p.clips[0].id,settings:{samples:2,tileSize:64,halo:4}});
   const a=await call('claim_inspection_region',{workflow:w.id,agent:'reviewer-a',role:'ownership-review'});
   const b=await call('claim_inspection_region',{workflow:w.id,agent:'reviewer-b',role:'ownership-review'});assert.notEqual(a.tile,b.tile);
-  const region=await call('get_inspection_region',{workflow:w.id,tile:a.tile});assert(region.image.startsWith('data:image/png;base64,'));
+  const region=await call('get_inspection_region',{workflow:w.id,tile:a.tile});assert.equal(region.nativeImage.mimeType,'image/png');assert(region.nativeImage.data.length>0);
   await call('submit_region_review',{workflow:w.id,task:a.id,agent:'reviewer-a',report:{passed:true,note:'Local ownership region reviewed'}});
   const resumed=await call('resume_inspection',{workflow:w.id});assert.equal(resumed.assignments[0].status,'reviewed');
  }finally{await client.close();}

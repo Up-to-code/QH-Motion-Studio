@@ -15,6 +15,10 @@ export function mul(a, b) {
 export function point(m, p) {
   return [m[0] * p[0] + m[2] * p[1] + m[4], m[1] * p[0] + m[3] * p[1] + m[5]];
 }
+// Project an authored image-space material point through the same mesh as the artwork.
+export function materialPoint(part, local) {
+  return point(part.matrix,part.mesh ? deformPoint(part,local,part.bend ?? 0) : local);
+}
 export function inverse(m) {
   if (!Array.isArray(m) || m.length !== 6 || m.some((v) => !Number.isFinite(v)))
     throw Error("Finite affine matrix required");
@@ -190,7 +194,7 @@ export function drawRig(ctx, rig, clip, time, images, options = {}) {
     const states=stateAt(rig,clip,time);
     for(const contact of clip.contacts || rig.contacts || []) {
       const part=states.find(p=>p.id===contact.part);if(!part)continue;
-      const dot=point(part.matrix,contact.point);
+      const dot=materialPoint(part,contact.point);
       ctx.strokeStyle="#16a34a";ctx.lineWidth=1;ctx.beginPath();ctx.arc(...dot,4,0,Math.PI*2);ctx.stroke();
       ctx.beginPath();ctx.moveTo(dot[0]-6,dot[1]);ctx.lineTo(dot[0]+6,dot[1]);ctx.moveTo(dot[0],dot[1]-6);ctx.lineTo(dot[0],dot[1]+6);ctx.stroke();
     }
@@ -203,7 +207,7 @@ export function validateRig(rig) {
   if (
     !Array.isArray(rig?.canvas) ||
     rig.canvas.length !== 2 ||
-    rig.canvas.some((n) => !Number.isFinite(n) || n < 64 || n > 2048)
+    rig.canvas.some((n) => !Number.isInteger(n) || n < 64 || n > 2048)
   )
     errors.push("Canvas must be 64–2048 pixels");
   if (

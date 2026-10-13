@@ -57,3 +57,7 @@ Inspection snapshots hash the actual raster bytes as well as rig and clip data. 
 Agent context keeps the latest100 history entries to stay usable; full inspection evidence and prior context revisions remain separate persistent records. Large frame-level error sets therefore do not overwhelm the working context.
 
 Snapshots also include the loaded engine/inspector source fingerprint. Restart the local backend after editing core/server modules; then reinspect so preview and offline checks use the same implementation.
+
+Contact dots are image-space material points: they follow the actual rendered mesh before the affine part transform. Anatomical/control nodes remain bone-frame anchors. This prevents a bent shoe from reporting a stationary contact merely because its bone did not translate.
+
+MCP region inspection returns a native PNG image content block plus numeric metadata, so a vision-capable agent can inspect the crop directly. The local HTTP API retains a data URL for the React crop viewer.

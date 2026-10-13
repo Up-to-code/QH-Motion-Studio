@@ -62,3 +62,10 @@ test('motions can override rig contacts without locking unrelated actions',async
  assert((await assess(r,c)).metrics.contactViolationPx>0);
  c.contacts=[];c.loop=false;assert.equal((await assess(r,c)).metrics.contactViolationPx,0);
 });
+test('contact dots follow rendered mesh material instead of the undeformed bone frame',async()=>{
+ const r=make(),c=clip();r.parts[0].mesh={columns:2,rows:2,axis:'y'};r.contacts=[{part:'alpha',point:[8,16]}];
+ c.tracks=[{part:'alpha',property:'bend',keys:[{time:0,value:0},{time:.05,value:8},{time:.1,value:0}]}];
+ const q=await assess(r,c);assert(Math.abs(q.metrics.contactDriftPx-8)<1e-8);assert.equal(q.accepted,false);
+ const {buildSkeleton,skeletonPose}=await import('../core/skeleton.mjs');const s=buildSkeleton(r),node=skeletonPose(r,c,.05,s).find(n=>n.id.startsWith('contact-'));
+ assert.deepEqual(node.position,[72,40]);assert.equal(s.nodes.find(n=>n.id===node.id).lengthPolicy,'surface');
+});

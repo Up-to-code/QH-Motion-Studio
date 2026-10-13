@@ -1,4 +1,4 @@
-import { stateAt, point, inverse } from './engine.mjs';
+import { stateAt, point, inverse, materialPoint } from './engine.mjs';
 
 const distance = (a,b) => Math.hypot(a[0]-b[0],a[1]-b[1]);
 const finitePoint = p => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite);
@@ -21,9 +21,9 @@ export function buildSkeleton(rig) {
   };
   for(const contact of rig.contacts || []) {
     const p=byId.get(contact.part);if(!p)continue;
-    const rest=point(p.matrix,contact.point);
+    const rest=materialPoint(p,contact.point);
     skeleton.nodes.push({id:`contact-${p.id}-${skeleton.nodes.length}`,part:p.id,parent:p.id,kind:'control',
-      rest,pivot:[...p.pivot],local:contact.point.map((v,i)=>v-p.pivot[i]),restLength:distance(rest,p.joint),lengthPolicy:'parent-transform',contact:{...contact}});
+      rest,pivot:[...p.pivot],local:contact.point.map((v,i)=>v-p.pivot[i]),restLength:distance(rest,p.joint),lengthPolicy:p.mesh?'surface':'parent-transform',contact:{...contact}});
   }
   return skeleton;
 }
@@ -31,7 +31,7 @@ export function buildSkeleton(rig) {
 export function skeletonPose(rig,clip,time,skeleton) {
  const states=new Map(stateAt(rig,clip,time).map(p=>[p.id,p]));
  return skeleton.nodes.filter(n=>states.has(n.part)).map(n=>{
-  const p=states.get(n.part);return {id:n.id,part:n.part,parent:n.parent,kind:n.kind,rest:n.rest,position:n.local?point(p.frame,n.local):p.joint};
+  const p=states.get(n.part);return {id:n.id,part:n.part,parent:n.parent,kind:n.kind,rest:n.rest,position:n.contact?materialPoint(p,n.contact.point):n.local?point(p.frame,n.local):p.joint};
  });
 }
 
@@ -47,6 +47,7 @@ export function validateSkeleton(skeleton, rig) {
     ids.add(n.id);
     if (!parts.has(n.part) || !finitePoint(n.rest) || !finitePoint(n.pivot) || !Number.isFinite(n.restLength) || n.restLength < 0) throw Error(`Invalid skeleton node ${n.id}`);
     if (!['control','anatomical'].includes(n.kind)) throw Error('Declare control or anatomical node');
+    if(n.contact && !finitePoint(n.contact.point))throw Error('Finite contact image point required');
     if (n.local && !finitePoint(n.local)) throw Error('Finite local anatomical anchor required');
     if (!['parent-transform','surface','free'].includes(n.lengthPolicy)) throw Error('Declare length policy');
   }
@@ -69,7 +70,7 @@ export function inspectSkeleton(rig, clip, skeleton, {samples=25, tolerance=.5}=
   const findings=[];
   const add=(category,n,error,time,position) => findings.push({category,node:n.id,part:n.part,error,time,position,units:category==='parent-contract-drift'?'topology-violations':'canvas-pixels'});
   for(const n of skeleton.nodes) {
-    const p=rest.get(n.part), anchor=n.local ? point(p.frame,n.local):p.joint;
+    const p=rest.get(n.part), anchor=n.contact?materialPoint(p,n.contact.point):n.local ? point(p.frame,n.local):p.joint;
     if (!n.local && (p.parent ?? null) !== n.parent) add('parent-contract-drift',n,1,0,anchor);
     const error=distance(anchor,n.rest);
     if(error>tolerance) add('rest-anchor-drift',n,error,0,anchor);
@@ -81,7 +82,7 @@ export function inspectSkeleton(rig, clip, skeleton, {samples=25, tolerance=.5}=
     const states=new Map(stateAt(rig,clip,time).map(p=>[p.id,p]));
     const nodes=skeleton.nodes.map(n=>{
       const p=states.get(n.part);
-      return {...n,position:n.local?point(p.frame,n.local):p.joint};
+      return {...n,position:n.contact?materialPoint(p,n.contact.point):n.local?point(p.frame,n.local):p.joint};
     });
     const byId=new Map(nodes.map(n=>[n.id,n]));
     for(const n of nodes) {
