@@ -1,5 +1,5 @@
 {
-  "mode": "real API",
+  "mode": "mocked contract",
   "contextSavedAndRestored": true,
   "workflowRestored": true,
   "packetBoundsShown": true,

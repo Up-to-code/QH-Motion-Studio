@@ -1,0 +1,72 @@
+{
+  "importedAssets": true,
+  "importedAllMotions": true,
+  "originalRetained": true,
+  "drawPath": true,
+  "pathTracks": [
+    {
+      "part": "tail",
+      "property": "x",
+      "keys": [
+        {
+          "time": 0,
+          "value": -43,
+          "ease": "linear"
+        },
+        {
+          "time": 0.6,
+          "value": -40.82127659574468,
+          "ease": "linear"
+        },
+        {
+          "time": 1.2,
+          "value": -38.642553191489355,
+          "ease": "linear"
+        },
+        {
+          "time": 1.7999999999999998,
+          "value": -36.46382978723403,
+          "ease": "linear"
+        },
+        {
+          "time": 2.4,
+          "value": -34.28510638297871,
+          "ease": "linear"
+        }
+      ]
+    },
+    {
+      "part": "tail",
+      "property": "y",
+      "keys": [
+        {
+          "time": 0,
+          "value": 87,
+          "ease": "linear"
+        },
+        {
+          "time": 0.6,
+          "value": 85.54751773049645,
+          "ease": "linear"
+        },
+        {
+          "time": 1.2,
+          "value": 84.0950354609929,
+          "ease": "linear"
+        },
+        {
+          "time": 1.7999999999999998,
+          "value": 82.64255319148936,
+          "ease": "linear"
+        },
+        {
+          "time": 2.4,
+          "value": 81.19007092198581,
+          "ease": "linear"
+        }
+      ]
+    }
+  ],
+  "exportEscape": true,
+  "pageErrors": []
+}

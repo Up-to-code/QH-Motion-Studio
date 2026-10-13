@@ -15,7 +15,7 @@ const fs=require('node:fs');
  const selectedLabel=await page.locator('.part-row.selected > button:first-child').innerText();
  const size=page.locator('.xy-field input').nth(4);const oldSize=await size.inputValue();await size.fill(String(Number(oldSize)+1));await page.waitForTimeout(150);
  if(Number(await page.locator('canvas').first().getAttribute('data-zoom'))!==focusedZoom)throw Error('Editing reset camera');
- await size.fill(oldSize);
+ await size.fill(oldSize);await page.getByRole("button",{name:"Close inspector",exact:true}).click();
  await page.getByRole('button',{name:'Fit canvas',exact:true}).click();await page.waitForTimeout(100);
  // Pan must move only presentation; keyboard reset restores the view.
  const canvas=page.locator('canvas').first(), box=await canvas.boundingBox();await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+box.width/2+50,box.y+box.height/2+20);await page.mouse.up();

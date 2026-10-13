@@ -63,6 +63,8 @@ test("MCP host can inspect, prepare images, generate two candidates and export",
       ).content[0].text,
     );
     assert.ok((await fs.stat(exp.file)).size > 0);
+    const bundleExport=await client.callTool({name:"export_qh_bundle",arguments:{character:"fox"}});assert(!bundleExport.isError);const bundle=JSON.parse(await fs.readFile(JSON.parse(bundleExport.content[0].text).file,"utf8"));const importedId="mcp-bundle-"+Date.now();try{const imported=await client.callTool({name:"import_qh_bundle",arguments:{bundle,character:importedId}});assert(!imported.isError,imported.content[0].text.slice(0,200));assert.equal(JSON.parse(imported.content[0].text).rig.id,importedId);}finally{await fs.rm(path.join("public/animations",importedId),{recursive:true,force:true});}
+
   } finally {
     await client.close();
     await fs.rm(temp, { recursive: true, force: true });

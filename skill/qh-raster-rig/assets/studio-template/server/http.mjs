@@ -1,3 +1,4 @@
+import {createBundle,importBundle} from './bundle.mjs';
 import http from "node:http";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -29,7 +30,7 @@ async function body(req) {
   let text = "";
   for await (const chunk of req) {
     text += chunk;
-    if (text.length > 14_000_000) throw Error("Request too large");
+    if (text.length > 90_000_000) throw Error("Request too large");
   }
   return text ? JSON.parse(text) : {};
 }
@@ -39,6 +40,7 @@ const mime = {
   ".gif": "image/gif",
   ".mp4": "video/mp4",
   ".zip": "application/zip",
+  ".qhmotion": "application/vnd.qh.motion+json",
   ".html": "text/html",
   ".js": "text/javascript",
   ".css": "text/css",
@@ -55,6 +57,7 @@ export const server = http.createServer(async (req, res) => {
     const url = new URL(req.url, "http://127.0.0.1:8091");
     const parts = url.pathname.split("/").filter(Boolean);
     if (parts[0] === "api") {
+      if(parts[1]==="bundle"&&req.method==="POST") {const b=await body(req);if(parts[2]==="import")return json(res,await importBundle(b.bundle,b.character));const file=await createBundle(b.character);return json(res,{url:"/api/download?file="+encodeURIComponent(path.relative(LOCAL,file)),filename:path.basename(file)});}
       if (parts[1] === "characters" && req.method === "GET") {
         for (const id of ["fox", "nia", "orbit"]) project(id);
         return json(res, {
@@ -64,6 +67,7 @@ export const server = http.createServer(async (req, res) => {
             mode: p.rig.mode,
           })),
           storage,
+          mcp:{command:process.execPath,args:[path.join(ROOT,"server/mcp.mjs")],cwd:ROOT},
         });
       }
       if (parts[1] === "characters" && req.method === "POST")

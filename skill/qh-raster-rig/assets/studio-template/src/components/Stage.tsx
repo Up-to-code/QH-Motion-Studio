@@ -5,17 +5,21 @@ import { drawMesh, deformPoint } from "../../core/mesh.mjs";
 import { skeletonPose } from "../../core/skeleton.mjs";
 import { drawAnalysis } from "../../core/analysis.mjs";
 /** View transforms only affect the player. Rig coordinates and exported pixels stay unchanged. */
-export default function Stage({ rig, clip, time, grid, joints, mode, selected, hidden, onSelect, viewCommand, skeleton, onInteract }: {
+export default function Stage({ rig, clip, time, grid, joints, mode, selected, hidden, onSelect, viewCommand, skeleton, onInteract, drawMode=false, onPath }: {
   rig: Rig; clip: Clip; time: number; grid: boolean; joints: boolean; mode: string;
   selected: string | null; hidden: string[]; onSelect: (id: string) => void;
   viewCommand: { action: string; serial: number };
   skeleton?: any;
   onInteract?: () => void;
+  drawMode?: boolean;
+  onPath?: (points:number[][])=>void;
 }) {
   const ref = useRef<HTMLCanvasElement>(null), surface = useRef<HTMLDivElement>(null);
   const [images, setImages] = useState<Record<string, HTMLImageElement>>({});
   const [error, setError] = useState("");
   const [view, setView] = useState({ zoom: 1, x: 0, y: 0 });
+  const [path,setPath]=useState<number[][]>([]);
+  const pathRef=useRef<number[][]>([]);
   const assetsKey = rig.assets.join("|");
   const displayed = useRef<any[]>([]);
   const drag = useRef<{x:number;y:number;vx:number;vy:number;moved:boolean;parts:any[]}|null>(null);
@@ -33,6 +37,7 @@ export default function Stage({ rig, clip, time, grid, joints, mode, selected, h
     if(mode==="artwork")drawRig(ctx,rig,clip,time,images,{grid,joints:false,selected,hidden});
     else drawAnalysis(ctx,rig,clip,time,images,mode);
     displayed.current = stateAt(rig,clip,time);
+    if(path.length){ctx.save();ctx.strokeStyle="#7c3aed";ctx.lineWidth=2;ctx.setLineDash([4,3]);ctx.beginPath();path.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.stroke();ctx.restore();}
     if(joints){
       const nodes=skeleton?.character===rig.id ? skeletonPose(rig,clip,time,skeleton) : stateAt(rig,clip,time).map(p=>({id:p.id,part:p.id,parent:p.parent,position:p.joint,kind:"control"}));
       const byId=new Map(nodes.map((n:any)=>[n.id,n]));
@@ -41,7 +46,7 @@ export default function Stage({ rig, clip, time, grid, joints, mode, selected, h
       for(const n of nodes){ctx.fillStyle=n.part===selected?"#ef4444":(n.kind==="contact" || n.id.startsWith("contact-"))?"#16a34a":n.kind==="anatomical"?"#0284c7":"#7c3aed";ctx.beginPath();ctx.arc(n.position[0],n.position[1],n.kind==="control" && !n.id.startsWith("contact-")?2.5:3.5,0,Math.PI*2);ctx.fill();if(n.part===selected)ctx.fillText(`${n.id} (${n.position.map((v:number)=>v.toFixed(1)).join(", ")})`,n.position[0]+7,n.position[1]);}
       ctx.restore();
     }
-  },[rig,clip,time,images,grid,joints,mode,selected,hidden,skeleton]);
+  },[rig,clip,time,images,grid,joints,mode,selected,hidden,skeleton,path]);
   useEffect(() => {
     if(viewCommand.action==="fit")setView({zoom:1,x:0,y:0});
     else if(viewCommand.action==="focus" && selected) {
@@ -54,6 +59,7 @@ export default function Stage({ rig, clip, time, grid, joints, mode, selected, h
       setView({zoom,x:(rig.canvas[0]/2-(Math.max(...xs)+Math.min(...xs))/2)*zoom/rig.canvas[0]*100,y:(rig.canvas[1]/2-(Math.max(...ys)+Math.min(...ys))/2)*zoom/rig.canvas[1]*100});
     } else setView(v=>({...v,zoom:Math.max(0.5,Math.min(8,v.zoom*(viewCommand.action==="in"?1.25:0.8)))}));
   },[viewCommand]);
+  function coordinates(e:React.PointerEvent<HTMLCanvasElement>){const r=e.currentTarget.getBoundingClientRect();return [(e.clientX-r.left)*rig.canvas[0]/r.width,(e.clientY-r.top)*rig.canvas[1]/r.height];}
   function hit(e: React.PointerEvent<HTMLCanvasElement>, parts: any[]) {
     const r=e.currentTarget.getBoundingClientRect();
     const x=(e.clientX-r.left)*rig.canvas[0]/r.width,y=(e.clientY-r.top)*rig.canvas[1]/r.height;
@@ -77,10 +83,10 @@ export default function Stage({ rig, clip, time, grid, joints, mode, selected, h
       data-skeleton-nodes={joints ? (skeleton?.nodes?.length || rig.parts.length) : 0}
       data-zoom={view.zoom.toFixed(3)} style={{transform:`translate(${view.x}%, ${view.y}%) scale(${view.zoom})`}}
       onKeyDown={e=>{if(e.key==="0"){e.preventDefault();setView({zoom:1,x:0,y:0});}if(["+","=","-"].includes(e.key)){e.preventDefault();setView(v=>({...v,zoom:Math.max(.5,Math.min(8,v.zoom*(e.key==="-"?.8:1.25)))}));}}}
-      onPointerDown={e=>{if(e.button!==0)return;onInteract?.();e.currentTarget.setPointerCapture(e.pointerId);drag.current={x:e.clientX,y:e.clientY,vx:view.x,vy:view.y,moved:false,parts:displayed.current};}}
-      onPointerMove={e=>{const d=drag.current,r=surface.current?.getBoundingClientRect();if(!d||!r)return;const dx=e.clientX-d.x,dy=e.clientY-d.y;if(Math.hypot(dx,dy)>4)d.moved=true;if(d.moved)setView(v=>({...v,x:d.vx+dx/r.width*100,y:d.vy+dy/r.height*100}));}}
-      onPointerUp={e=>{const d=drag.current;drag.current=null;if(d&&!d.moved)hit(e,d.parts);}}
-      onPointerCancel={()=>{drag.current=null;}}
+      onPointerDown={e=>{if(e.button!==0)return;onInteract?.();if(drawMode){pathRef.current=[coordinates(e)];setPath(pathRef.current);}e.currentTarget.setPointerCapture(e.pointerId);drag.current={x:e.clientX,y:e.clientY,vx:view.x,vy:view.y,moved:false,parts:displayed.current};}}
+      onPointerMove={e=>{if(drawMode&&drag.current){const p=coordinates(e),last=pathRef.current.at(-1)!;if(Math.hypot(p[0]-last[0],p[1]-last[1])>2&&pathRef.current.length<499){pathRef.current=[...pathRef.current,p];setPath(pathRef.current);}return;}const d=drag.current,r=surface.current?.getBoundingClientRect();if(!d||!r)return;const dx=e.clientX-d.x,dy=e.clientY-d.y;if(Math.hypot(dx,dy)>4)d.moved=true;if(d.moved)setView(v=>({...v,x:d.vx+dx/r.width*100,y:d.vy+dy/r.height*100}));}}
+      onPointerUp={e=>{const d=drag.current;drag.current=null;if(drawMode){if(pathRef.current.length>1)onPath?.(pathRef.current);setPath([]);pathRef.current=[];return;}if(d&&!d.moved)hit(e,d.parts);}}
+      onPointerCancel={()=>{drag.current=null;setPath([]);pathRef.current=[];}}
     />}
     {selectedState && <span className="stage-coordinate" aria-label="Selected joint coordinates">{selectedState.name} · x {selectedState.joint[0].toFixed(1)} · y {selectedState.joint[1].toFixed(1)}</span>}
     <span className="stage-zoom" aria-hidden="true">{Math.round(view.zoom*100)}%</span>

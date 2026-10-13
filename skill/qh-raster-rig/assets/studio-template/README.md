@@ -1,6 +1,6 @@
-# QH Motion Studio
+# QH Motion
 
-Local layered raster animation, reusable agent skill, and an embeddable mathematical engine. The studio has a collapsible character/part library, joint inspector, keyframe timeline, numeric maps, side-by-side candidate previews and deterministic exports.
+Local layered raster animation, reusable agent skill, and an embeddable mathematical engine. Version 0.2 adds a canvas-first workspace, searchable selectors, a collapsible library and inspector, full-screen playback, drawn motion paths and portable .qhmotion import/export. Advanced configuration lives behind the three-dot menu. [Bundle format and workflow](docs/qh-motion-bundle.md).
 
 ## Start
 

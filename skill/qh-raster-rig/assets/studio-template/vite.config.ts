@@ -8,6 +8,6 @@ export default defineConfig({
     port: 8090,
     strictPort: true,
     watch: { ignored: ["**/skill/**", "**/.local/**"] },
-    proxy: { "/api": "http://127.0.0.1:8091" },
+    proxy: { "/api": "http://127.0.0.1:8091", "/animations": "http://127.0.0.1:8091" },
   },
 });

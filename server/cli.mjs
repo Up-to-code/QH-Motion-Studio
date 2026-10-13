@@ -1,3 +1,4 @@
+import{createBundle,importBundle}from'./bundle.mjs';
 #!/usr/bin/env node
 import fs from "node:fs/promises";
 import { project } from "./store.mjs";
@@ -13,6 +14,8 @@ const [cmd, character = "fox", arg = "hello", option = "24"] =
   process.argv.slice(2);
 let result;
 switch (cmd) {
+  case "bundle-export":result={file:await createBundle(character)};break;
+  case "bundle-import":result=await importBundle(JSON.parse(await fs.readFile(arg,"utf8")),character);break;
   case "inspect":
     result = project(character);
     break;
@@ -43,7 +46,7 @@ switch (cmd) {
     break;
   default:
     console.log(
-      "Commands: inspect CHARACTER | generate CHARACTER MOTION FPS | quality CHARACTER CLIP | export CHARACTER CLIP json/gif/mp4/frames | save CHARACTER project.json | prepare CHARACTER ACTION FPS | import-asset CHARACTER NAME file.png",
+      "Commands: bundle-export CHARACTER | bundle-import NEW_CHARACTER file.qhmotion | inspect CHARACTER | generate CHARACTER MOTION FPS | quality CHARACTER CLIP | export CHARACTER CLIP json/gif/mp4/frames | save CHARACTER project.json | prepare CHARACTER ACTION FPS | import-asset CHARACTER NAME file.png",
     );
     process.exit(0);
 }

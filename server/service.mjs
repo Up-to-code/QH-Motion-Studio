@@ -1,3 +1,4 @@
+import{createBundle}from'./bundle.mjs';
 import fs from "node:fs/promises";
 import path from "node:path";
 import { randomUUID,createHash } from "node:crypto";
@@ -140,6 +141,7 @@ export async function quality(character, clipId) {
   return assess(p.rig, c);
 }
 export async function exportClip(character, clipId, format) {
+  if(format==="bundle")return createBundle(character);
   const p = project(character),
     c = p.clips.find((c) => c.id === clipId);
   if (!c) throw Error("Motion not found");

@@ -1,5 +1,6 @@
 export function makeMotion(rig, name = "hello", fps = 24, candidate = "a") {
-  if (rig.id !== "fox" && !["nia","orbit"].includes(rig.id)) {
+  const profile=rig.motionProfile??rig.id;
+  if (profile !== "fox" && !["nia","orbit"].includes(profile)) {
     const template=rig.motionTemplates?.[name];
     if(template) return {...structuredClone(template),id:`${name}-${candidate}`,name:template.name || name,fps,candidate};
     if(name !== "idle") throw Error("This character needs an authored motion template or custom tracks for this action");

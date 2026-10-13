@@ -1,0 +1,20 @@
+{
+  "customSelectors": true,
+  "search": true,
+  "sidebarToggle": true,
+  "inspectorToggle": true,
+  "settings": true,
+  "mcpConfiguration": true,
+  "bundleDownload": true,
+  "bundleAssets": 72,
+  "compiledMotions": 7,
+  "fullScreenCanvas": {
+    "x": 295,
+    "y": -31.5,
+    "width": 850,
+    "height": 850
+  },
+  "playback": true,
+  "mobileOverflow": false,
+  "pageErrors": []
+}

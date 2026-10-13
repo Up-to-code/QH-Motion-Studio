@@ -1,3 +1,4 @@
+import{createBundle,importBundle}from'./bundle.mjs';
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
@@ -14,7 +15,7 @@ import {
 } from "./service.mjs";
 import {readSkeleton,saveSkeleton,checkSkeleton} from "./skeleton.mjs";
 import {readContext,saveContext,beginWorkflow,readWorkflow,regionalPacket,evaluatePatch,recordReview,repairWorkflow,readCandidate,claimRegion,submitRegion} from "./workflow.mjs";
-const server = new McpServer({ name: "qh-motion-studio", version: "0.1.0" });
+const server = new McpServer({ name: "qh-motion-studio", version: "0.2.0" });
 const text = (data) => ({
   content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
 });
@@ -25,6 +26,8 @@ const wrap = (fn) => async (args) => {
     return { ...text({ error: e.message }), isError: true };
   }
 };
+server.registerTool("export_qh_bundle",{description:"Export all motions, compiled frame data and checked PNG assets as a portable .qhmotion bundle.",inputSchema:{character:z.string()}},wrap(async a=>({file:await createBundle(a.character)})));
+server.registerTool("import_qh_bundle",{description:"Validate checksums, dimensions and frame geometry, then import under a new character ID without replacing existing work.",inputSchema:{bundle:z.any(),character:z.string().optional()}},wrap(a=>importBundle(a.bundle,a.character)));
 server.registerTool(
   "get_project",
   {

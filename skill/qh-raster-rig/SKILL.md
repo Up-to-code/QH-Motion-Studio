@@ -37,4 +37,6 @@ Run `check_motion`, inspect the preview, and export the chosen candidate. A tech
 
 Automatic repair is bounded to three attempts and changes only declared constraints or timing. Artwork gaps and identity failures require asset/rig correction. Preserve the previous candidate and report unresolved checks; do not repeatedly spend on image generation without authorization. Save source art, editable rig/timeline JSON, previews, metadata and provenance in `animations/<character>/`.
 
+For portable projects use `export_qh_bundle` / `import_qh_bundle`: .qhmotion packages all timelines, registered PNGs, compiled frames, skeleton and context. Import validates hashes, dimensions and frame/track consistency, then creates a separate character. See [the bundle contract](references/bundle.md). The studio offers searchable selectors, full-screen playback and drawn motion paths compiled to local X/Y keys.
+
 Export via `export_motion` or `node server/cli.mjs export CHARACTER CLIP json|gif|mp4|frames`. PNG/JSON preserve the editable rig; GIF supports transparency with palette limits, MP4 has a white matte. FFmpeg is required for GIF/MP4. The template includes tests for transforms, fps invariance, disconnected parts, bounded repair, revisions and exports; run `pnpm test` and `pnpm build` after engine or UI edits.

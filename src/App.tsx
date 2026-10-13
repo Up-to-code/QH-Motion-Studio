@@ -1,7 +1,7 @@
+import{pathTracks}from"../core/path-motion.mjs";
 import { resizePart } from "../core/edit.mjs";
 import { useEffect, useRef, useState } from "react";
 import {
-  Layers,
   PanelLeftClose,
   PanelLeftOpen,
   ChevronDown,
@@ -27,8 +27,15 @@ import {
   Focus,
   ZoomIn,
   ZoomOut,
+  MoreHorizontal,
+  Maximize,
+  Minimize,
+  Bot,
+  Search,
+  Pencil,
 } from "lucide-react";
-import { Dialog } from "radix-ui";
+import Selector from "./components/Selector";
+import { Dialog,Popover } from "radix-ui";
 import { Button } from "./components/ui/button";
 import Stage from "./components/Stage";
 import type { Project, Clip, Part } from "./types";
@@ -55,7 +62,7 @@ export default function App() {
       { id: string; name: string; mode: string }[]
     >([]),
     [character, setCharacter] = useState("fox"),
-    [sidebar, setSidebar] = useState(true),
+    [sidebar, setSidebar] = useState(()=>window.innerWidth>=700),
     [tab, setTab] = useState("motions"),
     [selected, setSelected] = useState<string | null>(null),
     [time, setTime] = useState(0),
@@ -88,8 +95,10 @@ export default function App() {
     [workflow, setWorkflow] = useState<any>(null),
     [packet, setPacket] = useState<any>(null),
     [tile, setTile] = useState("");
+  const [settingsOpen,setSettingsOpen]=useState(false),[settingsTab,setSettingsTab]=useState("workspace"),[inspectorOpen,setInspectorOpen]=useState(false),[focusMode,setFocusMode]=useState(false),[search,setSearch]=useState(""),[mcpConfig,setMcpConfig]=useState<any>(null),[drawMode,setDrawMode]=useState(false);
   const newMotionButton = useRef<HTMLButtonElement>(null);
   const upload = useRef<HTMLInputElement>(null);
+  const settingsButton=useRef<HTMLButtonElement>(null);
   const packetRequest = useRef(0);
   const current = project?.clips.find((c) => c.id === project.selected),
     part = project?.rig.parts.find((p) => p.id === selected),
@@ -101,12 +110,14 @@ export default function App() {
       .then((d) => {
         setCharacters(d.characters);
         setStorage(d.storage);
+        setMcpConfig(d.mcp);
       })
       .catch((e) => setMessage(e.message));
   }, []);
   useEffect(() => {
     let cancelled = false;
     setPlaying(false);
+    setDrawMode(false);
     setTime(0);
     setHidden([]);
     setSelected(null);
@@ -143,7 +154,9 @@ export default function App() {
     const start = performance.now() - time * 1000;
     let id = 0;
     const loop = (now: number) => {
-      setTime(((now - start) / 1000) % current.duration);
+      const elapsed=(now-start)/1000;
+      if((current as any).loop===false&&elapsed>=current.duration){setTime(current.duration);setPlaying(false);return;}
+      setTime(elapsed % current.duration);
       id = requestAnimationFrame(loop);
     };
     id = requestAnimationFrame(loop);
@@ -207,6 +220,7 @@ export default function App() {
   }
   function view(action: string) { setViewCommand((v) => ({ action, serial: v.serial + 1 })); }
   function change(fn: (p: Project) => void) {
+    if(busy)return;
     setProject((old) => {
       if (!old) return old;
       const p = structuredClone(old);
@@ -217,6 +231,7 @@ export default function App() {
     setAnalysis(null);
   }
   function choose(c: Clip) {
+    if(busy)return;
     setPlaying(false);
     setTime(0);
     setKeySelection(null);
@@ -235,9 +250,11 @@ export default function App() {
         }),
       );
       setDirty(false);
-      setMessage("Saved locally.");
+      setMessage("Saved");
+      return true;
     } catch (e: any) {
       setMessage(e.message);
+      return false;
     } finally {
       setBusy("");
     }
@@ -312,6 +329,7 @@ export default function App() {
     setPlaying(false);
     setExportOpen(false);
     try {
+      if(memoryDirty)await persistContext();
       if (dirty) {
         const p = await api("project/" + character, "PUT", {
           project,
@@ -329,12 +347,16 @@ export default function App() {
       a.href = d.url;
       a.download = d.filename;
       a.click();
-      setMessage(`${format.toUpperCase()} exported.`);
+      setMessage(format==="bundle"?"QH Motion exported":`${format.toUpperCase()} exported`);
     } catch (e: any) {
       setMessage(e.message);
     } finally {
       setBusy("");
     }
+  }
+  function drawPath(points:number[][]){
+    if(!selected||!project||!current)return;
+    try{const tracks=pathTracks(project.rig,current,selected,points);change(p=>{const c=structuredClone(p.clips.find(c=>c.id===p.selected)!);c.id="path-"+crypto.randomUUID().slice(0,8);c.name=c.name+" path";(c as any).loop=false;delete c.score;delete c.quality;delete c.candidate;c.tracks=[...c.tracks.filter(t=>!(t.part===selected&&["x","y"].includes(t.property))),...tracks];p.clips.push(c);p.selected=c.id;});setTime(0);setKeySelection(null);setMessage("Path saved as a new motion");}catch(e:any){setMessage(e.message);}setDrawMode(false);
   }
   function updatePart(field: keyof Part, value: unknown) {
     if (!part) return;
@@ -378,31 +400,23 @@ export default function App() {
         <p>{message || "Opening your local animation workspace…"}</p>
       </main>
     );
+  const motionChoices=(project.rig as any).motionProfile==="fox"||project.rig.id==="fox"?["hello","thinking","success","idle"]:project.rig.mode==="poses"?["thinking","success","idle"]:["idle",...Object.keys((project.rig as any).motionTemplates??{})];
   const activeKey = keySelection
     ? current.tracks[keySelection.track]?.keys[keySelection.key]
     : undefined;
   return (
-    <div className="studio">
+    <div className={`studio ${focusMode?"focus-mode":""}`}>
       <header className="app-header">
-        <div className="brand">
-          <span className="brand-mark">
-            <Layers size={19} />
-          </span>
-          <strong>QH</strong>
-          <span className="brand-label">Motion Studio</span>
-        </div>
-        <div className="header-project">
-          <span>{project.rig.name}</span>
-          <span className="muted">/</span>
-          <h1>{current.name}</h1>
-          <span
-            className="status-dot"
-            title={dirty ? "Unsaved changes" : "Saved locally"}
-          />
+        <span className="qh-mark" aria-label="QH Motion">QH</span>
+        <div className="header-selectors">
+          <Selector label="Character" value={character} options={characters.map(c=>({value:c.id,label:c.name}))} disabled={!!busy} onChange={async id=>{if(dirty && !(await save()))return;setCharacter(id);setSearch("");}}/>
+          <Selector label="Motion" disabled={!!busy} value={current.id} options={project.clips.map(c=>({value:c.id,label:`${c.name}${c.candidate?" · "+c.candidate.toUpperCase():""}`}))} onChange={id=>choose(project.clips.find(c=>c.id===id)!)}/>
+          <span className="status-dot" title={dirty?"Unsaved changes":"Saved"}/>
         </div>
         <nav className="main-view-controls" aria-label="Workspace view">
           <Button variant="ghost" size="icon" aria-label={sidebar ? "Close library" : "Open library"} aria-expanded={sidebar} onClick={() => setSidebar(!sidebar)}>{sidebar ? <PanelLeftClose size={17}/> : <PanelLeftOpen size={17}/>}</Button>
-          <select aria-label="Preview representation" value={mode} onChange={(e) => { setMode(e.target.value); if(e.target.value === "distance") setPlaying(false); }}>{modes.map(([v,n]) => <option key={v} value={v}>{n}</option>)}</select>
+          <Selector label="Preview representation" value={mode} options={modes.map(([value,label])=>({value,label}))} onChange={v=>{setMode(v);if(v==="distance")setPlaying(false);}}/>
+          <Button variant={drawMode?"secondary":"ghost"} size="icon" aria-label="Draw motion path" aria-pressed={drawMode} disabled={!!busy||!part||(part as any).surfaceAttachment} onClick={()=>{setDrawMode(!drawMode);setPlaying(false);setTime(0);setInspectorOpen(false);}}><Pencil size={17}/></Button>
           <Button variant={grid ? "secondary" : "ghost"} size="icon" aria-label="Toggle pixel grid and origin axes" aria-pressed={grid} onClick={() => setGrid(!grid)}><Grid2X2 size={17}/></Button>
           <Button variant={joints ? "secondary" : "ghost"} size="icon" aria-label="Toggle joint coordinates" aria-pressed={joints} onClick={() => setJoints(!joints)}><Move size={17}/></Button>
           <Button variant={compare ? "secondary" : "ghost"} size="icon" aria-label="Compare candidates" aria-pressed={compare} onClick={() => setCompare(!compare)}><Columns2 size={17}/></Button>
@@ -412,14 +426,8 @@ export default function App() {
           <Button variant="ghost" size="icon" aria-label="Zoom in" onClick={() => view("in")}><ZoomIn size={17}/></Button>
         </nav>
         <div className="header-actions">
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Import project JSON"
-            onClick={() => upload.current?.click()}
-          >
-            <Upload size={17} />
-          </Button>
+          <Button variant="ghost" size="icon" aria-label={focusMode?"Exit full-screen movement":"Full-screen movement"} aria-pressed={focusMode} onClick={()=>{setFocusMode(!focusMode);setInspectorOpen(false);view("fit");}}>{focusMode?<Minimize size={17}/>:<Maximize size={17}/>}</Button>
+          <Button ref={settingsButton} variant="ghost" size="icon" aria-label="Workspace settings" aria-expanded={settingsOpen} onClick={()=>setSettingsOpen(true)}><MoreHorizontal size={19}/></Button>
           <Button
             variant="outline"
             size="sm"
@@ -429,70 +437,32 @@ export default function App() {
             <Save size={15} />
             Save
           </Button>
-          <div className="export-wrap">
+          <Popover.Root open={exportOpen} onOpenChange={setExportOpen}><Popover.Trigger asChild>
             <Button
               size="sm"
               disabled={!!busy}
               aria-expanded={exportOpen}
-              onClick={() => setExportOpen(!exportOpen)}
             >
               <Download size={15} />
               Export
               <ChevronDown size={13} />
-            </Button>
-            {exportOpen && (
-              <div className="popover" aria-label="Export formats">
-                {["json", "gif", "mp4", "analysis"].map((f) => (
+            </Button></Popover.Trigger>
+              <Popover.Portal><Popover.Content className="popover export-menu" sideOffset={6} align="end" aria-label="Export formats">
+                {["bundle", "json", "gif", "mp4", "analysis"].map((f) => (
                   <button key={f} onClick={() => exportFile(f)}>
-                    {f.toUpperCase()}
-                    <span>
-                      {f === "json"
-                        ? "Rig + timeline"
-                        : f === "gif"
-                          ? "Looping animation"
-                          : f === "analysis"
-                            ? "Numeric data manifest"
-                            : "Video · white matte"}
-                    </span>
+                    {f === "bundle" ? "QH Motion" : f.toUpperCase()}
+
                   </button>
                 ))}
-              </div>
-            )}
-          </div>
+              </Popover.Content></Popover.Portal>
+          </Popover.Root>
         </div>
       </header>
       <div className={`workspace ${sidebar ? "" : "sidebar-closed"}`}>
         {sidebar && (
           <aside className="library">
-            <div className="sidebar-heading">
-              <span>Library</span>
-
-            </div>
-            <label className="field-label" htmlFor="character">
-              Character
-            </label>
-            <select
-              id="character"
-              disabled={!!busy}
-              value={character}
-              onChange={(e) => {
-                if (
-                  dirty &&
-                  !window.confirm(
-                    "Switch characters and discard unsaved edits?",
-                  )
-                )
-                  return;
-                setCharacter(e.target.value);
-              }}
-            >
-              {characters.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                  {c.mode === "poses" ? " · pose library" : ""}
-                </option>
-              ))}
-            </select>
+            <div className="sidebar-heading"><span/><Button variant="ghost" size="icon" aria-label="Agent tools" onClick={()=>{setInspectorOpen(true);setSelected(null);}}><Bot size={17}/></Button></div>
+            <label className="library-search"><Search size={15}/><input aria-label="Search library" placeholder="Search" value={search} onChange={e=>setSearch(e.target.value)}/></label>
             <div
               className="library-tabs"
               role="tablist"
@@ -503,22 +473,19 @@ export default function App() {
                   role="tab"
                   aria-selected={tab === t}
                   key={t}
-                  onClick={() => setTab(t)}
+                  onClick={() => {setTab(t);setSearch("");}}
                 >
                   {t === "motions" ? "Motions" : "Parts"}
-                  <span>
-                    {t === "motions"
-                      ? project.clips.length
-                      : project.rig.parts.length}
-                  </span>
+
                 </button>
               ))}
             </div>
             {tab === "motions" ? (
               <div className="motion-list">
-                {project.clips.map((c) => (
+                {project.clips.filter(c=>c.name.toLowerCase().includes(search.toLowerCase())).map((c) => (
                   <button
                     key={c.id}
+                    disabled={!!busy}
                     className={`motion-item ${current.id === c.id ? "selected" : ""}`}
                     onClick={() => choose(c)}
                   >
@@ -530,24 +497,17 @@ export default function App() {
                         {c.name}
                         <small>{c.candidate?.toUpperCase()}</small>
                       </strong>
-                      <em>
-                        {c.duration.toFixed(1)}s · {c.fps} fps
-                      </em>
+
                     </span>
-                    {c.score !== undefined && (
-                      <span
-                        className={`score ${c.quality?.accepted ? "pass" : ""}`}
-                      >
-                        {c.score.toFixed(0)}
-                      </span>
-                    )}
+
                   </button>
                 ))}
                 <Button
                   variant="outline"
                   className="new-motion"
+                  disabled={!!busy}
                   ref={newMotionButton}
-                  onClick={() => setGeneration(true)}
+                  onClick={() => {setAction(motionChoices[0]);setGeneration(true);}}
                 >
                   <Plus size={15} />
                   New motion
@@ -555,14 +515,14 @@ export default function App() {
               </div>
             ) : (
               <div className="parts-list">
-                {[...project.rig.parts]
+                {[...project.rig.parts].filter(p=>p.name.toLowerCase().includes(search.toLowerCase()))
                   .sort((a, b) => b.z - a.z)
                   .map((p) => (
                     <div
                       key={p.id}
                       className={`part-row ${selected === p.id ? "selected" : ""}`}
                     >
-                      <button onClick={() => setSelected(p.id)}>
+                      <button onClick={() => {setSelected(p.id);setInspectorOpen(true);}}>
                         <span className="part-indent">
                           {p.parent ? "↳" : ""}
                         </span>
@@ -590,21 +550,12 @@ export default function App() {
                   ))}
               </div>
             )}
-            <div className="library-footer">
-              <span className="local-dot" />
-              {storage} · local workspace
-            </div>
+            <div className="library-footer"><Button variant="ghost" size="sm" onClick={()=>setSettingsOpen(true)}><Settings2 size={14}/>Settings</Button><Button variant="ghost" size="icon" aria-label="Save workspace" disabled={!!busy||!dirty} onClick={save}><Save size={15}/></Button></div>
           </aside>
         )}
         <main className="editor">
           <div className={`preview-area ${compare ? "compare" : ""}`}>
             <div className="preview-pane">
-              <div className="pane-caption">
-                <span>
-                  {project.rig.name} · {current.candidate?.toUpperCase() || "A"}
-                </span>
-                <span>{project.rig.canvas.join(" × ")}</span>
-              </div>
               <Stage
                 rig={project.rig}
                 clip={current}
@@ -614,29 +565,19 @@ export default function App() {
                 mode={mode}
                 selected={selected}
                 hidden={hidden}
-                onSelect={id => { setPlaying(false); setSelected(id); }}
+                onSelect={id => { setPlaying(false); setSelected(id); setInspectorOpen(true); }}
                 onInteract={() => setPlaying(false)}
                 viewCommand={viewCommand}
                 skeleton={skeleton}
+                drawMode={drawMode}
+                onPath={drawPath}
               />
             </div>
             {compare && (
               <div className="preview-pane">
                 <div className="pane-caption">
-                  <select
-                    aria-label="Comparison motion"
-                    value={other?.id || project.clips[0].id}
-                    onChange={(e) => setCompareId(e.target.value)}
-                  >
-                    {project.clips.map((c) => (
-                      <option key={c.id} value={c.id}>
-                        {c.name} · {c.candidate?.toUpperCase()}
-                      </option>
-                    ))}
-                  </select>
-                  {other?.score !== undefined && (
-                    <span>Technical {other.score.toFixed(0)}</span>
-                  )}
+                  <Selector label="Comparison motion" value={other?.id||project.clips[0].id} options={project.clips.map(c=>({value:c.id,label:`${c.name}${c.candidate?" · "+c.candidate.toUpperCase():""}`}))} onChange={setCompareId}/>
+
                 </div>
                 <Stage
                   rig={project.rig}
@@ -650,7 +591,7 @@ export default function App() {
                   mode={mode}
                   selected={selected}
                   hidden={hidden}
-                  onSelect={id => { setPlaying(false); setSelected(id); }}
+                  onSelect={id => { setPlaying(false); setSelected(id); setInspectorOpen(true); }}
                 onInteract={() => setPlaying(false)}
                   viewCommand={viewCommand}
                 skeleton={skeleton}
@@ -661,28 +602,10 @@ export default function App() {
                   onClick={() => choose(other || project.clips[0])}
                 >
                   <Check size={14} />
-                  Use this candidate
+                  Use
                 </Button>
               </div>
             )}
-          </div>
-          <div className="preview-footnote">
-            <span>
-              {mode === "parts"
-                ? "Authored visible part IDs"
-                : mode === "order"
-                  ? "Authored layer order · not physical depth"
-                  : mode === "distance"
-                    ? "Computed boundary distance · canvas pixels"
-                    : project.rig.mode === "poses"
-                      ? "Registered pose library · no independent body rig"
-                      : "Layered raster rig · fixed origin"}
-              {grid ? ` · origin (${project.rig.origin.join(", ")})` : ""}
-            </span>
-            <Button variant="ghost" size="sm" disabled={!!busy} onClick={check}>
-              <Check size={14} />
-              Check motion
-            </Button>
           </div>
           <section className="timeline" aria-label="Animation timeline">
             <div className="timeline-toolbar">
@@ -712,50 +635,7 @@ export default function App() {
                   <span> / {current.duration.toFixed(2)} s</span>
                 </output>
               </div>
-              <div className="timeline-options">
-                <label>
-                  <span>FPS</span>
-                  <select
-                    aria-label="Output frames per second"
-                    value={current.fps}
-                    onChange={(e) =>
-                      change((p) => {
-                        p.clips.find((c) => c.id === p.selected)!.fps = Number(
-                          e.target.value,
-                        );
-                      })
-                    }
-                  >
-                    {[24, 30, 60].map((n) => (
-                      <option key={n}>{n}</option>
-                    ))}
-                  </select>
-                </label>
-                <label>
-                  <span>Duration</span>
-                  <input
-                    type="number"
-                    aria-label="Duration in seconds"
-                    min="0.5"
-                    max="30"
-                    step="0.1"
-                    value={current.duration}
-                    onChange={(e) => {
-                      const n = Number(e.target.value);
-                      if (n < 0.5 || n > 30) return;
-                      change((p) => {
-                        const c = p.clips.find((c) => c.id === p.selected)!;
-                        const factor = n / c.duration;
-                        c.duration = n;
-                        for (const t of c.tracks)
-                          for (const k of t.keys) k.time *= factor;
-                      });
-                      setTime(0);
-                      setPlaying(false);
-                    }}
-                  />
-                </label>
-              </div>
+              <Button variant="ghost" size="icon" aria-label="Motion settings" onClick={()=>setSettingsOpen(true)}><Settings2 size={16}/></Button>
             </div>
             <input
               className="scrubber"
@@ -788,6 +668,7 @@ export default function App() {
                     className="track-name"
                     onClick={() => {
                       setSelected(t.part);
+                      setInspectorOpen(true);
                       setTab("parts");
                     }}
                   >
@@ -806,6 +687,7 @@ export default function App() {
                         aria-label={`${t.part} ${t.property} key at ${k.time.toFixed(2)} seconds`}
                         onClick={() => {
                           setSelected(t.part);
+                          setInspectorOpen(true);
                           setKeySelection({ track: i, key: j });
                           setPlaying(false);
                           setTime(k.time);
@@ -824,10 +706,11 @@ export default function App() {
             </div>
           </section>
         </main>
-        <aside className="inspector">
+        {inspectorOpen && !focusMode && <aside className="inspector">
           <div className="inspector-heading">
             <Settings2 size={16} />
-            <h2>{part ? part.name : "Inspector"}</h2>
+            <h2>{part ? part.name : "Agent"}</h2>
+            <Button variant="ghost" size="icon" aria-label="Close inspector" onClick={()=>setInspectorOpen(false)}><X size={16}/></Button>
           </div>
           {part ? (
             <>
@@ -911,12 +794,7 @@ export default function App() {
               </p>
             </>
           ) : (
-            <div className="empty-inspector">
-              <Move size={26} />
-              <p>
-                Select a part or timeline track to edit its joints and motion.
-              </p>
-            </div>
+            null
           )}
           {activeKey && keySelection && (
             <section className="key-inspector">
@@ -1076,7 +954,7 @@ export default function App() {
               </p>
             </section>
           )}
-        </aside>
+        </aside>}
       </div>
       <footer className="app-status" role="status">
         <span>
@@ -1087,7 +965,7 @@ export default function App() {
             </>
           ) : (
             message ||
-            `${dirty ? "Unsaved changes" : "Saved locally"} · ${project.rig.parts.length} parts`
+            `${dirty ? "Unsaved" : "Saved"}`
           )}
         </span>
         <span>
@@ -1096,6 +974,7 @@ export default function App() {
           {reduced ? " · reduced motion preference" : ""}
         </span>
       </footer>
+      <Dialog.Root open={settingsOpen} onOpenChange={setSettingsOpen}><Dialog.Portal><Dialog.Overlay className="dialog-overlay"/><Dialog.Content className="configuration-dialog" onCloseAutoFocus={e=>{e.preventDefault();settingsButton.current?.focus();}}><div className="configuration-nav"><Dialog.Title>Workspace</Dialog.Title>{["workspace","agents","files"].map(t=><button key={t} aria-pressed={settingsTab===t} onClick={()=>setSettingsTab(t)}>{t==="agents"?"Agents & MCP":t==="files"?"Import & export":"Configuration"}</button>)}<Button variant="outline" disabled={!!busy||!dirty} onClick={save}><Save size={15}/>Save</Button></div><div className="configuration-body"><Dialog.Description className="sr-only">Workspace configuration, local agent connection, and portable motion files.</Dialog.Description>{settingsTab==="workspace"?<div className="configuration-fields"><label>Name<input aria-label="Workspace name" disabled={!!busy} value={project.rig.name} onChange={e=>change(p=>{p.rig.name=e.target.value;})}/></label><label>Frame rate<Selector label="Output frames per second" value={String(current.fps)} options={[24,30,60].map(n=>({value:String(n),label:`${n} FPS`}))} onChange={v=>change(p=>{p.clips.find(c=>c.id===p.selected)!.fps=Number(v)as 24|30|60;})}/></label><label>Duration<input type="number" aria-label="Duration in seconds" min="0.5" max="30" step="0.1" value={current.duration} onChange={e=>{const n=Number(e.target.value);if(n<.5||n>30)return;change(p=>{const c=p.clips.find(c=>c.id===p.selected)!;const factor=n/c.duration;c.duration=n;for(const t of c.tracks)for(const k of t.keys)k.time*=factor;for(const contact of (c as any).contacts??[]){if(contact.referenceTime!==undefined)contact.referenceTime*=factor;if(contact.activeIntervals)contact.activeIntervals=contact.activeIntervals.map((r:number[])=>r.map(v=>v*factor));}});setTime(0);setPlaying(false);}}/></label></div>:settingsTab==="agents"?<div className="connection-settings"><h2>Local MCP</h2><pre>{JSON.stringify(mcpConfig??{command:"node",args:["server/mcp.mjs"]},null,2)}</pre><p>{storage}</p><Button variant="outline" onClick={async()=>{try{await navigator.clipboard.writeText(JSON.stringify(mcpConfig,null,2));setMessage("MCP configuration copied");}catch{setMessage("Clipboard unavailable");}}}>Copy connection</Button><Button variant="outline" onClick={()=>{setSettingsOpen(false);setInspectorOpen(true);setSelected(null);}}>Open agent tools</Button></div>:<div className="file-settings"><h2>QH Motion</h2><p>Rig, motions, frame data and PNG assets in one portable file.</p><Button disabled={!!busy} onClick={()=>exportFile("bundle")}><Download size={15}/>Export bundle</Button><Button variant="outline" disabled={!!busy} onClick={()=>upload.current?.click()}><Upload size={15}/>Import bundle or JSON</Button><Button variant="ghost" disabled={!!busy} onClick={check}><Check size={15}/>Check current motion</Button></div>}</div><Dialog.Close asChild><Button variant="ghost" size="icon" className="dialog-close" aria-label="Close settings"><X size={18}/></Button></Dialog.Close></Dialog.Content></Dialog.Portal></Dialog.Root>
       <Dialog.Root open={generation} onOpenChange={setGeneration}>
         <Dialog.Portal>
           <Dialog.Overlay className="dialog-overlay" />
@@ -1107,37 +986,23 @@ export default function App() {
             }}
           >
             <Dialog.Title>New motion</Dialog.Title>
-            <Dialog.Description>
+            <Dialog.Description className="sr-only">
               Generate two candidates from the local character rig. New artwork
               can be supplied through the MCP asset workflow.
             </Dialog.Description>
             <label className="dialog-field">
               Motion
-              <select
-                value={action}
-                onChange={(e) => setAction(e.target.value)}
-              >
-                {["hello", "thinking", "success", "idle"].map((n) => (
-                  <option key={n} value={n}>
-                    {n[0].toUpperCase() + n.slice(1)}
-                  </option>
-                ))}
-              </select>
+              <Selector label="New motion action" value={action} options={motionChoices.map(n=>({value:n,label:n[0].toUpperCase()+n.slice(1)}))} onChange={setAction}/>
+
             </label>
             <div className="dialog-pair">
               <label>
                 Frame rate
-                <select
-                  value={fps}
-                  onChange={(e) => setFps(Number(e.target.value))}
-                >
-                  {[24, 30, 60].map((n) => (
-                    <option key={n}>{n}</option>
-                  ))}
-                </select>
+                <Selector label="New motion frame rate" value={String(fps)} options={[24,30,60].map(n=>({value:String(n),label:`${n} FPS`}))} onChange={v=>setFps(Number(v))}/>
+
               </label>
               <label>
-                Technical target
+                Target
                 <input
                   type="number"
                   min="95"
@@ -1175,13 +1040,18 @@ export default function App() {
       <input
         ref={upload}
         type="file"
-        accept="application/json,.json"
+        accept="application/json,.json,.qhmotion"
         hidden
         onChange={async (e) => {
           const file = e.target.files?.[0];
           if (!file) return;
+          if(file.size>90_000_000){setMessage("File exceeds the 90 MB import limit");e.target.value="";return;}
           try {
             const data = JSON.parse(await file.text());
+            if(data.schema === "qh-motion-bundle/1"){
+              setBusy("Importing");const imported=await api("bundle/import","POST",{bundle:data});
+              setCharacters(await api("characters").then(d=>d.characters));setCharacter(imported.rig.id);setProject(imported);setDirty(false);setMessage("QH Motion imported");setBusy("");e.target.value="";return;
+            }
             const p = data.project || data;
             if (data.schema === "qh-motion/1") {
               const r = {
@@ -1211,6 +1081,7 @@ export default function App() {
           } catch (err: any) {
             setMessage(err.message);
           }
+          setBusy("");
           e.target.value = "";
         }}
       />
