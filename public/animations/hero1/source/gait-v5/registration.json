@@ -1,0 +1,386 @@
+[
+  {
+    "frame": 0,
+    "asset": "/animations/hero1/parts/run-smooth-01.png",
+    "sha256": "22e8747ea887010133ece413b44c329672dd2a775bb4ca49441b2616606d7039",
+    "sourceSha256": "435dfd4be586f9ece1bab422e0c79db4b222525d52a8d162e5dab58743afdee6",
+    "sourceSheet": "contacts",
+    "sourceCell": 0,
+    "sourceHip": [
+      392.0,
+      415.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      13,
+      47
+    ],
+    "registeredHip": [
+      256.03999999999996,
+      304.3
+    ],
+    "lowestFootY": 420.24,
+    "headY": 71,
+    "holdSamples": 2,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      69,
+      71,
+      353,
+      421
+    ]
+  },
+  {
+    "frame": 1,
+    "asset": "/animations/hero1/parts/run-smooth-02.png",
+    "sha256": "e1ea88a6a5c71da4e4941d66e455c9711133dd5d7ae387512641139b472deb4d",
+    "sourceSha256": "8189aa6c4ec0988c84e32dee7ab2a64dbe92971361e9e4e956d6c888c8638091",
+    "sourceSheet": "inbetweens",
+    "sourceCell": 0,
+    "sourceHip": [
+      401.0,
+      419.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      7,
+      42
+    ],
+    "registeredHip": [
+      255.62,
+      301.78
+    ],
+    "lowestFootY": 420.2,
+    "headY": 64,
+    "holdSamples": 2,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      56,
+      64,
+      352,
+      421
+    ]
+  },
+  {
+    "frame": 2,
+    "asset": "/animations/hero1/parts/run-smooth-03.png",
+    "sha256": "b4817930976681158399b73c82b39eb04bcd81390e6d75bc4fa89c46b9e385bd",
+    "sourceSha256": "435dfd4be586f9ece1bab422e0c79db4b222525d52a8d162e5dab58743afdee6",
+    "sourceSheet": "contacts",
+    "sourceCell": 1,
+    "sourceHip": [
+      337.0,
+      408.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      47,
+      46
+    ],
+    "registeredHip": [
+      255.94,
+      298.96000000000004
+    ],
+    "lowestFootY": 419.86,
+    "headY": 71,
+    "holdSamples": 3,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      85,
+      71,
+      347,
+      421
+    ]
+  },
+  {
+    "frame": 3,
+    "asset": "/animations/hero1/parts/run-smooth-04.png",
+    "sha256": "d8e0cff2c4b44ff86afdfaaa1f4fd493f32caaca3462c722f6be55331ebd474a",
+    "sourceSha256": "b91a7ab82f564f984d08e991d4b38ac6706c8d3a3a3df0ae3919b1ef5ed8ad45",
+    "sourceSheet": "transitions",
+    "sourceCell": 0,
+    "sourceHip": [
+      396.0,
+      415.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      10,
+      47
+    ],
+    "registeredHip": [
+      255.52,
+      304.3
+    ],
+    "lowestFootY": 420.24,
+    "headY": 71,
+    "holdSamples": 2,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      64,
+      71,
+      351,
+      421
+    ]
+  },
+  {
+    "frame": 4,
+    "asset": "/animations/hero1/parts/run-smooth-05.png",
+    "sha256": "79722af2cba2f55b8eed590a86cbae61e407ff8e5237cbb2f276a08ff7e369de",
+    "sourceSha256": "b91a7ab82f564f984d08e991d4b38ac6706c8d3a3a3df0ae3919b1ef5ed8ad45",
+    "sourceSheet": "transitions",
+    "sourceCell": 1,
+    "sourceHip": [
+      339.0,
+      412.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      46,
+      41
+    ],
+    "registeredHip": [
+      256.18,
+      296.44
+    ],
+    "lowestFootY": 414.24,
+    "headY": 65,
+    "holdSamples": 1,
+    "phase": "flight",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      83,
+      65,
+      350,
+      415
+    ]
+  },
+  {
+    "frame": 5,
+    "asset": "/animations/hero1/parts/run-smooth-06.png",
+    "sha256": "8b8a5661d62ace8263f391856ca91c928f1799fa9898f18225967ae3fc04ca47",
+    "sourceSha256": "8189aa6c4ec0988c84e32dee7ab2a64dbe92971361e9e4e956d6c888c8638091",
+    "sourceSheet": "inbetweens",
+    "sourceCell": 1,
+    "sourceHip": [
+      349.5,
+      417.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      39,
+      44
+    ],
+    "registeredHip": [
+      255.69,
+      302.54
+    ],
+    "lowestFootY": 420.34,
+    "headY": 66,
+    "holdSamples": 2,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      82,
+      66,
+      358,
+      421
+    ]
+  },
+  {
+    "frame": 6,
+    "asset": "/animations/hero1/parts/run-smooth-07.png",
+    "sha256": "e8ebe728c55dbb496141a75c72f0de646eeaf51eddbfd43099a0b9c30f51b2f6",
+    "sourceSha256": "435dfd4be586f9ece1bab422e0c79db4b222525d52a8d162e5dab58743afdee6",
+    "sourceSheet": "contacts",
+    "sourceCell": 2,
+    "sourceHip": [
+      399.0,
+      375.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      9,
+      65
+    ],
+    "registeredHip": [
+      256.38,
+      297.5
+    ],
+    "lowestFootY": 420.26,
+    "headY": 73,
+    "holdSamples": 2,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      65,
+      73,
+      347,
+      421
+    ]
+  },
+  {
+    "frame": 7,
+    "asset": "/animations/hero1/parts/run-smooth-08.png",
+    "sha256": "08b9c9c912a0053240ff8f418be353eb60636b629a3768b274ce9c9fc6a73046",
+    "sourceSha256": "8189aa6c4ec0988c84e32dee7ab2a64dbe92971361e9e4e956d6c888c8638091",
+    "sourceSheet": "inbetweens",
+    "sourceCell": 2,
+    "sourceHip": [
+      398.0,
+      377.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      9,
+      63
+    ],
+    "registeredHip": [
+      255.76,
+      296.74
+    ],
+    "lowestFootY": 420.12,
+    "headY": 72,
+    "holdSamples": 2,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      65,
+      72,
+      349,
+      421
+    ]
+  },
+  {
+    "frame": 8,
+    "asset": "/animations/hero1/parts/run-smooth-09.png",
+    "sha256": "31df8ca6b3c5c91d54bf83a9d233ed8f9eedd904dc9d3959eb28d421b8a589e7",
+    "sourceSha256": "435dfd4be586f9ece1bab422e0c79db4b222525d52a8d162e5dab58743afdee6",
+    "sourceSheet": "contacts",
+    "sourceCell": 3,
+    "sourceHip": [
+      347.0,
+      377.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      41,
+      64
+    ],
+    "registeredHip": [
+      256.14,
+      297.74
+    ],
+    "lowestFootY": 420.5,
+    "headY": 75,
+    "holdSamples": 3,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      80,
+      75,
+      342,
+      422
+    ]
+  },
+  {
+    "frame": 9,
+    "asset": "/animations/hero1/parts/run-smooth-10.png",
+    "sha256": "2404a82d8a178eafe7d6d96e909bd2e0bf9844cc16afdb2b51d21b12b2555f24",
+    "sourceSha256": "b91a7ab82f564f984d08e991d4b38ac6706c8d3a3a3df0ae3919b1ef5ed8ad45",
+    "sourceSheet": "transitions",
+    "sourceCell": 2,
+    "sourceHip": [
+      389.0,
+      376.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      15,
+      67
+    ],
+    "registeredHip": [
+      256.18,
+      300.12
+    ],
+    "lowestFootY": 420.4,
+    "headY": 75,
+    "holdSamples": 2,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      69,
+      75,
+      363,
+      421
+    ]
+  },
+  {
+    "frame": 10,
+    "asset": "/animations/hero1/parts/run-smooth-11.png",
+    "sha256": "477801da1d628fa76bd80c361f24aed368ee05e347e832b55f3928a97e51d13c",
+    "sourceSha256": "b91a7ab82f564f984d08e991d4b38ac6706c8d3a3a3df0ae3919b1ef5ed8ad45",
+    "sourceSheet": "transitions",
+    "sourceCell": 3,
+    "sourceHip": [
+      340.0,
+      383.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      45,
+      65
+    ],
+    "registeredHip": [
+      255.8,
+      302.46000000000004
+    ],
+    "lowestFootY": 414.06,
+    "headY": 75,
+    "holdSamples": 1,
+    "phase": "flight",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      82,
+      75,
+      355,
+      415
+    ]
+  },
+  {
+    "frame": 11,
+    "asset": "/animations/hero1/parts/run-smooth-12.png",
+    "sha256": "075551180557ef6e152f0e52f953f359d0636c5abc2d9e8439f0ca0c0ea65d2f",
+    "sourceSha256": "8189aa6c4ec0988c84e32dee7ab2a64dbe92971361e9e4e956d6c888c8638091",
+    "sourceSheet": "inbetweens",
+    "sourceCell": 3,
+    "sourceHip": [
+      363.0,
+      382.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      31,
+      64
+    ],
+    "registeredHip": [
+      256.06,
+      300.84000000000003
+    ],
+    "lowestFootY": 419.88,
+    "headY": 74,
+    "holdSamples": 2,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      80,
+      74,
+      363,
+      421
+    ]
+  }
+]

@@ -1,0 +1,112 @@
+{
+  "gait": {
+    "passed": true,
+    "issues": [],
+    "headTravel": 11,
+    "flightFraction": 0.08333333333333333,
+    "scope": "Measured floor contact, flight clearance and head travel. Alternating leg identity, counter-swing, knee articulation and perceived running still require visual review."
+  },
+  "renderedGait": {
+    "passed": true,
+    "issues": [],
+    "headTravel": 11,
+    "flightFraction": 0.08333333333333333,
+    "scope": "Measured floor contact, flight clearance and head travel. Alternating leg identity, counter-swing, knee articulation and perceived running still require visual review."
+  },
+  "technical": {
+    "score": 100,
+    "accepted": true,
+    "metrics": {
+      "sourceCropRisks": 0,
+      "connectedBodyRatio": 1,
+      "flippedTriangles": 0,
+      "offCanvasSamples": 0,
+      "contactDriftPx": 0,
+      "contactViolationPx": 0,
+      "checkedAttachmentSamples": 0,
+      "clippingInconclusiveSamples": 0,
+      "outsideAlphaPixels": 0,
+      "loopMatrixError": 0,
+      "jointGapSamples": 0,
+      "edgePixels": 0,
+      "maxJointStepPx": 0,
+      "maxJointVelocityPxPerSecond": 0,
+      "maxAllowedVelocityPxPerSecond": 432,
+      "limitOverrunDeg": 0
+    },
+    "sourceFindings": [],
+    "penalties": {
+      "disconnection": 0,
+      "meshFlips": 0,
+      "offCanvas": 0,
+      "clipping": 0,
+      "contact": 0,
+      "limits": 0,
+      "jointGaps": 0,
+      "loop": 0,
+      "speed": 0,
+      "sourceCrop": 0
+    },
+    "sampled": [
+      {
+        "frame": 0,
+        "time": 0
+      },
+      {
+        "frame": 2,
+        "time": 0.08333333333333333
+      },
+      {
+        "frame": 4,
+        "time": 0.16666666666666666
+      },
+      {
+        "frame": 6,
+        "time": 0.25
+      },
+      {
+        "frame": 8,
+        "time": 0.3333333333333333
+      },
+      {
+        "frame": 10,
+        "time": 0.4166666666666667
+      },
+      {
+        "frame": 12,
+        "time": 0.5
+      },
+      {
+        "frame": 14,
+        "time": 0.5833333333333334
+      },
+      {
+        "frame": 16,
+        "time": 0.6666666666666666
+      },
+      {
+        "frame": 18,
+        "time": 0.75
+      },
+      {
+        "frame": 20,
+        "time": 0.8333333333333334
+      },
+      {
+        "frame": 22,
+        "time": 0.9166666666666666
+      },
+      {
+        "frame": 24,
+        "time": 1
+      }
+    ],
+    "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
+  },
+  "sampling": {
+    "fps": 24,
+    "duration": 1,
+    "drawings": 12,
+    "totalSamples": 24
+  }
+}

@@ -1,0 +1,11 @@
+# Slower Hero 1 with additional drawings
+
+The user found the corrected eight-pose cycle too fast at 0.5 seconds. The active revision lasts 1 second at 24 FPS, reducing cycle speed by 50%. It adds four image-generated in-between drawings to the existing eight: 12 distinct PNG poses, 24 rendered samples. Holds are 2, 2, 3, 2, 1, 2 samples per step, repeated for the opposite step. Flight remains brief rather than being stretched to slow the action.
+
+The four new poses bridge contact toward support and low flight toward landing. Built-in imagegen used the accepted contact sheet as reference. Prompt constraints: exact Fox identity and right-facing flat 2D style; new intermediate knee/elbow angles rather than duplicates; complete feet; grounded compact action and constant scale; no jumping, halos, backgrounds, shadows, text or cropping. Raw art is `source/gait-v5/inbetweens.png`. Every registered frame includes its source and output SHA-256, uniform scale, translation, measured sole/head/hem positions, phase and hold count.
+
+Each of the 24 output samples is evaluated using the actual engine's selected asset and saved in `docs/run-smooth-sample-review.json`. Gait checks pass: contact residual <=0.5px, flight clearance about 6px, head travel 11px, flight 2/24 of cycle time. All source bounds stay inside the cell. The wraparound goes from a near-foot landing approach to contact, with a 3px head difference. Source art and naturalness remain visually reviewed; the numeric checks do not prove skeletal side identity or emotion.
+
+`reviewRunGait` now weights flight by frame holds instead of counting distinct poses. Its regression test catches an airborne pose held for most of a cycle even if only one of four drawings is airborne. Reprocessing uses `scripts/register-gait-v5.py` and `scripts/install-gait-v5.mjs`; source, sampled and technical checks precede saving the active project. The previous faster version is archived in this source folder and local history.
+
+Browser playback and mobile player checks pass. The bundle was validated with 12 assets. The app uses the same 24-sample one-second timeline as the GIF export; preview WebP holds approximate the sample durations in integer milliseconds. This is a generated pose library, not a physical simulation or 24 uniquely generated images.

@@ -17,14 +17,18 @@
     256
   ],
   "assets": [
-    "/animations/hero1/parts/run-grounded-01.png",
-    "/animations/hero1/parts/run-grounded-02.png",
-    "/animations/hero1/parts/run-grounded-03.png",
-    "/animations/hero1/parts/run-grounded-04.png",
-    "/animations/hero1/parts/run-grounded-05.png",
-    "/animations/hero1/parts/run-grounded-06.png",
-    "/animations/hero1/parts/run-grounded-07.png",
-    "/animations/hero1/parts/run-grounded-08.png"
+    "/animations/hero1/parts/run-smooth-01.png",
+    "/animations/hero1/parts/run-smooth-02.png",
+    "/animations/hero1/parts/run-smooth-03.png",
+    "/animations/hero1/parts/run-smooth-04.png",
+    "/animations/hero1/parts/run-smooth-05.png",
+    "/animations/hero1/parts/run-smooth-06.png",
+    "/animations/hero1/parts/run-smooth-07.png",
+    "/animations/hero1/parts/run-smooth-08.png",
+    "/animations/hero1/parts/run-smooth-09.png",
+    "/animations/hero1/parts/run-smooth-10.png",
+    "/animations/hero1/parts/run-smooth-11.png",
+    "/animations/hero1/parts/run-smooth-12.png"
   ],
   "parts": [
     {
@@ -44,7 +48,7 @@
         512
       ],
       "z": 0,
-      "asset": "/animations/hero1/parts/run-grounded-01.png",
+      "asset": "/animations/hero1/parts/run-smooth-01.png",
       "limits": [
         0,
         0
@@ -53,10 +57,10 @@
   ],
   "motionTemplates": {
     "run": {
-      "id": "run-grounded-a",
+      "id": "run-smooth-a",
       "name": "Run Hero 1",
       "fps": 24,
-      "duration": 0.5,
+      "duration": 1,
       "loop": true,
       "tracks": [
         {
@@ -65,39 +69,55 @@
           "keys": [
             {
               "time": 0,
-              "value": "/animations/hero1/parts/run-grounded-01.png"
+              "value": "/animations/hero1/parts/run-smooth-01.png"
             },
             {
               "time": 0.08333333333333333,
-              "value": "/animations/hero1/parts/run-grounded-02.png"
+              "value": "/animations/hero1/parts/run-smooth-02.png"
             },
             {
               "time": 0.16666666666666666,
-              "value": "/animations/hero1/parts/run-grounded-03.png"
+              "value": "/animations/hero1/parts/run-smooth-03.png"
             },
             {
-              "time": 0.20833333333333334,
-              "value": "/animations/hero1/parts/run-grounded-04.png"
+              "time": 0.2916666666666667,
+              "value": "/animations/hero1/parts/run-smooth-04.png"
             },
             {
-              "time": 0.25,
-              "value": "/animations/hero1/parts/run-grounded-05.png"
-            },
-            {
-              "time": 0.3333333333333333,
-              "value": "/animations/hero1/parts/run-grounded-06.png"
+              "time": 0.375,
+              "value": "/animations/hero1/parts/run-smooth-05.png"
             },
             {
               "time": 0.4166666666666667,
-              "value": "/animations/hero1/parts/run-grounded-07.png"
-            },
-            {
-              "time": 0.4583333333333333,
-              "value": "/animations/hero1/parts/run-grounded-08.png"
+              "value": "/animations/hero1/parts/run-smooth-06.png"
             },
             {
               "time": 0.5,
-              "value": "/animations/hero1/parts/run-grounded-01.png"
+              "value": "/animations/hero1/parts/run-smooth-07.png"
+            },
+            {
+              "time": 0.5833333333333334,
+              "value": "/animations/hero1/parts/run-smooth-08.png"
+            },
+            {
+              "time": 0.6666666666666666,
+              "value": "/animations/hero1/parts/run-smooth-09.png"
+            },
+            {
+              "time": 0.7916666666666666,
+              "value": "/animations/hero1/parts/run-smooth-10.png"
+            },
+            {
+              "time": 0.875,
+              "value": "/animations/hero1/parts/run-smooth-11.png"
+            },
+            {
+              "time": 0.9166666666666666,
+              "value": "/animations/hero1/parts/run-smooth-12.png"
+            },
+            {
+              "time": 1,
+              "value": "/animations/hero1/parts/run-smooth-01.png"
             }
           ]
         }
@@ -109,17 +129,21 @@
   },
   "semanticReview": {
     "camera": "right-side 2D with near/far limb shading",
-    "authoredPoses": 8,
+    "authoredPoses": 12,
     "samplingFPS": 24,
     "holdsPerPose": [
       2,
       2,
-      1,
+      3,
+      2,
       1,
       2,
       2,
+      2,
+      3,
+      2,
       1,
-      1
+      2
     ],
     "status": "contact-validated draft",
     "limitations": [
@@ -130,12 +154,12 @@
     "gaitFindings": {
       "passed": true,
       "issues": [],
-      "headTravel": 10,
-      "flightFraction": 0.25,
+      "headTravel": 11,
+      "flightFraction": 0.08333333333333333,
       "scope": "Measured floor contact, flight clearance and head travel. Alternating leg identity, counter-swing, knee articulation and perceived running still require visual review."
     },
     "notes": [
-      "Replaces jump-like v0.3 cycle. Short flight; fixed floor, modest body travel.",
+      "Slower 12-drawing cycle with four newly generated in-betweens. Fixed floor and short flight.",
       "Measured hoodie hem is a registration landmark, not an inferred anatomical hip."
     ]
   }
