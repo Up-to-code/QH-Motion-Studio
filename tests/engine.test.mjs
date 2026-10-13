@@ -190,3 +190,11 @@ test("deformed raster triangles have no transparent interior seams", async () =>
   for (let i = 3; i < data.length; i += 4) min = Math.min(min, data[i]);
   assert.equal(min, 255);
 });
+test('wave replacement art covers the registered wrist and points along the hand bone',async()=>{
+ const {createCanvas,loadImage}=await import('@napi-rs/canvas');
+ const image=await loadImage('public/animations/fox/parts/hand_wave_registered.png');
+ const c=createCanvas(35,44),ctx=c.getContext('2d');ctx.drawImage(image,0,0);
+ assert.ok(ctx.getImageData(17,9,1,1).data[3]>200,'Wrist anchor lies on opaque art');
+ assert.ok(ctx.getImageData(17,35,1,1).data[3]>200,'Fingers extend outward from wrist');
+ const clip=makeMotion(rig,'hello');assert.equal(clip.tracks.find(t=>t.part==='hand_right'&&t.property==='asset').keys[1].value,'/animations/fox/parts/hand_wave_registered.png');
+});

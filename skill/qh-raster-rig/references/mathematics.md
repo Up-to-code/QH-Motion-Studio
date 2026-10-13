@@ -10,7 +10,7 @@ Draw the local image with F_i(t) T(-c_i). Children inherit F_i, not the image tr
 
 Keep scale uniform for registration. Fit body-owned correspondences with a similarity transform rather than moving-silhouette centroids. One still image does not identify a unique wrist pivot; author it or fit it using trustworthy multi-frame correspondences and anatomical priors.
 
-Current deformation uses a small local texture mesh. A smooth influence is w=d^2(3-2d) with d measured from the anchored root toward the free end. Vertex offsets are bend*w. A triangle affine transform maps source texture coordinates to the deformed triangle, clipped at that triangle. Signed triangle areas must stay positive. This is a constrained local deformation, not a general ARAP or learned skinning solver.
+Current deformation uses a small local texture mesh. A smooth influence is w=d^2(3-2d) with d measured from the anchored root toward the free end. Vertex offsets are bend*w. The displacement is interpolated linearly between mesh rows or columns. The current axis shear leaves one coordinate unchanged, so its inverse is exact: for horizontal displacement, source x = destination x - bend*w(destination y); for vertical displacement, source y = destination y - bend*w(destination x). Render with one premultiplied-alpha bilinear texture sample per destination pixel at 2x resolution. Do not overlap clipped texture triangles: those seam guards can imprint triangle edges on detailed art even when flat-color opacity tests pass. Signed triangle areas must stay positive. This is a constrained local deformation, not a general ARAP or learned skinning solver.
 
 General bone skinning, for a later solver: v(t)=sum_j w_j(v) F_j(t) inverse(F_j(0)) v(0), weights nonnegative and summing to one. Preserve inverse bind transforms. Bounded biharmonic weights / ARAP are research candidates; do not claim they are installed.
 
@@ -25,3 +25,5 @@ Sleeve and cuff artwork belongs to shoulder/forearm controls, not torso pixels. 
 Secondary response solves theta'' + 2*zeta*omega*theta' + omega^2*theta = -gain*driverAngle'' at 1/240-second steps from zero, with a final partial step. It is bounded and given a terminal envelope for exact loop settling. It is a small controlled oscillator, not a full cloth/XPBD simulator.
 
 `resizePart` scales local pivots, immediate child attachment offsets and contact markers in saved image units. Viewport resizing does not call it. The resize/restore test protects reversibility. Renderer compositing uses an oversampled mesh surface with overlap at adjacent triangle clips to avoid internal antialias seams.
+
+Replacement images must register their anatomical anchor before use. Fox wave art has a wrist near source (124,214); `scripts/register-wave-hand.mjs` maps it to (17.5,9) using a 180-degree rotation and uniform 0.155 scale. It preserves the source and keeps the joint hierarchy unchanged.

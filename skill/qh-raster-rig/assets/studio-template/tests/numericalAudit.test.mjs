@@ -98,3 +98,13 @@ test('raster canvas dimensions reject fractional tensor shapes',()=>{
  const r={version:1,canvas:[128.5,64],origin:[64,32],assets:['/animations/test/a.png'],parts:[{id:'root',parent:null,position:[0,0],pivot:[8,8],size:[16,16],z:0,asset:'/animations/test/a.png'}]};
  assert(validateRig(r).some(e=>e.includes('Canvas')));r.canvas=[129,64];assert.deepEqual(validateRig(r),[]);
 });
+test('detailed mesh texture is independent of diagonal subdivisions',async()=>{
+ const {createCanvas}=await import('@napi-rs/canvas'),{drawMesh}=await import('../core/mesh.mjs');
+ const source=createCanvas(80,80),ctx=source.getContext('2d'),pixels=ctx.createImageData(80,80);
+ for(let y=0;y<80;y++)for(let x=0;x<80;x++){const i=(y*80+x)*4;pixels.data.set([x*3,y*3,(x+y)%2?230:40,x<10?110:255],i)}
+ ctx.putImageData(pixels,0,0);
+ for(const axis of ['x','y']){
+  const render=columns=>{const c=createCanvas(120,120),cx=c.getContext('2d');cx.translate(20,20);drawMesh(cx,source,{size:[80,80],pivot:[40,0],mesh:{axis,columns:axis==='x'?6:columns,rows:axis==='y'?6:columns}},11,createCanvas);return cx.getImageData(0,0,120,120).data};
+  assert.deepEqual(render(1),render(9),'Cross-axis triangles must not imprint seams on textured pixels');
+ }
+});

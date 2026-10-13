@@ -34,7 +34,7 @@ Current gaps: no automatic semantic segmentation, learned pose detector, trained
 
 [Bounded Biharmonic Weights (Jacobson et al.,2011)](https://homes.cs.washington.edu/~jovan/papers/jacobson-2011-bbw.pdf) explains constrained smooth influence weights for handles/bones. It supports the direction of explicit skeleton controls with bounded weights. Our implementation uses bounded analytic mesh weights; it does **not** claim to solve that paper's biharmonic optimization.
 
-[As-Rigid-As-Possible Shape Manipulation (Igarashi et al.,2005)](https://cs.brown.edu/people/jhughes/papers/Igarashi-ASM-2005/main.htm) uses triangle handles and distortion minimization. It is a useful next candidate for protecting limb/clothing shape under large movement. The implemented triangle renderer and consistency tests are not an ARAP solver. Compare an adapter against the accepted raster reference, joint anchors, overlap, alpha, mesh orientation and temporal tests before adopting it.
+[As-Rigid-As-Possible Shape Manipulation (Igarashi et al.,2005)](https://cs.brown.edu/people/jhughes/papers/Igarashi-ASM-2005/main.htm) uses triangle handles and distortion minimization. It is a useful next candidate for protecting limb/clothing shape under large movement. The implemented axis-shear renderer and mesh consistency tests are not an ARAP solver. Compare an adapter against the accepted raster reference, joint anchors, overlap, alpha, mesh orientation and temporal tests before adopting it.
 
 ## Verified evidence
 

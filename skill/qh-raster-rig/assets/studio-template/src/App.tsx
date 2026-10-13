@@ -614,7 +614,8 @@ export default function App() {
                 mode={mode}
                 selected={selected}
                 hidden={hidden}
-                onSelect={setSelected}
+                onSelect={id => { setPlaying(false); setSelected(id); }}
+                onInteract={() => setPlaying(false)}
                 viewCommand={viewCommand}
                 skeleton={skeleton}
               />
@@ -649,7 +650,8 @@ export default function App() {
                   mode={mode}
                   selected={selected}
                   hidden={hidden}
-                  onSelect={setSelected}
+                  onSelect={id => { setPlaying(false); setSelected(id); }}
+                onInteract={() => setPlaying(false)}
                   viewCommand={viewCommand}
                 skeleton={skeleton}
                 />

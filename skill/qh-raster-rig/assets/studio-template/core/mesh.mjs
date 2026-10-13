@@ -94,64 +94,61 @@ export function meshMetrics(part, bend) {
     maxAreaRatio: maxRatio,
   };
 }
+// Inverse sampling gives every destination pixel exactly one texture sample.
+// Expanded triangle clips corrupt detailed art at their shared edges in browsers.
+const rasterSources = new WeakMap();
 export function drawMesh(ctx, img, part, bend, createSurface) {
   if (Math.abs(bend) < 1e-8) {
     ctx.drawImage(img, 0, 0, ...part.size);
     return;
   }
-  const factory =
-    createSurface ||
-    (typeof OffscreenCanvas !== "undefined"
-      ? (w, h) => new OffscreenCanvas(w, h)
-      : null);
-  const padding = Math.ceil(Math.abs(bend)) + 2,
-    quality = 2;
-  let surface,
-    paint = ctx;
-  if (factory) {
-    surface = factory(
-      Math.ceil((part.size[0] + 2 * padding) * quality),
-      Math.ceil((part.size[1] + 2 * padding) * quality),
-    );
-    paint = surface.getContext("2d");
-    paint.scale(quality, quality);
-    paint.translate(padding, padding);
+  const factory = createSurface ||
+    (typeof OffscreenCanvas !== "undefined" ? (w, h) => new OffscreenCanvas(w, h) :
+      ctx.canvas.ownerDocument ? (w, h) => {
+        const c = ctx.canvas.ownerDocument.createElement("canvas"); c.width = w; c.height = h; return c;
+      } : null);
+  if (!factory) throw Error("Mesh rendering requires a canvas surface factory");
+  const quality = 2, padding = Math.ceil(Math.abs(bend)) + 2;
+  const sw = Math.ceil(part.size[0] * quality), sh = Math.ceil(part.size[1] * quality);
+  const sourceKey = `${sw}:${sh}`;
+  // Loaded images are immutable. Canvas sources may be painted between calls.
+  let source = rasterSources.get(img);
+  if (!source || source.key !== sourceKey || typeof img.getContext === "function") {
+    const c = factory(sw, sh), paint = c.getContext("2d");
+    paint.drawImage(img, 0, 0, sw, sh);
+    source = { key: sourceKey, data: paint.getImageData(0, 0, sw, sh).data };
+    rasterSources.set(img, source);
   }
-  const v = vertices(part, bend);
-  for (const tri of triangles(part)) {
-    const src = tri.map((i) => v[i].source),
-      dst = tri.map((i) => v[i].target),
-      center = [
-        dst.reduce((s, p) => s + p[0], 0) / 3,
-        dst.reduce((s, p) => s + p[1], 0) / 3,
-      ],
-      clip = dst.map((p) => {
-        const d = Math.hypot(p[0] - center[0], p[1] - center[1]);
-        return [
-          p[0] + (1.25 * (p[0] - center[0])) / d,
-          p[1] + (1.25 * (p[1] - center[1])) / d,
-        ];
-      });
-    paint.save();
-    // Replace shared triangle pixels on the isolated layer surface. Source-over
-    // counts translucent texture pixels twice along expanded seam guards.
-    if (surface) paint.globalCompositeOperation = "copy";
-    paint.beginPath();
-    paint.moveTo(...clip[0]);
-    paint.lineTo(...clip[1]);
-    paint.lineTo(...clip[2]);
-    paint.closePath();
-    paint.clip();
-    paint.transform(...triangleMatrix(src, dst));
-    paint.drawImage(img, 0, 0, ...part.size);
-    paint.restore();
+  const width = Math.ceil((part.size[0] + 2 * padding) * quality);
+  const height = Math.ceil((part.size[1] + 2 * padding) * quality);
+  const surface = factory(width, height), paint = surface.getContext("2d");
+  const output = paint.createImageData(width, height), data = source.data;
+  const axisY = (part.mesh?.axis ?? "y") === "y";
+  const offsets = Array.from({ length: axisY ? height : width }, (_, i) => {
+    const coordinate = (i + .5) / quality - padding;
+    const p = axisY ? [0, coordinate] : [coordinate, 0];
+    return deformPoint(part, p, bend)[axisY ? 0 : 1];
+  });
+  for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
+    // The unchanged axis makes this shear analytically invertible, even at bends.
+    const localX = (x + .5) / quality - padding - (axisY ? offsets[y] : 0);
+    const localY = (y + .5) / quality - padding - (axisY ? 0 : offsets[x]);
+    const sx = localX * sw / part.size[0] - .5, sy = localY * sh / part.size[1] - .5;
+    const ix = Math.floor(sx), iy = Math.floor(sy), u = sx - ix, v = sy - iy;
+    let alpha = 0, red = 0, green = 0, blue = 0;
+    for (let dy = 0; dy < 2; dy++) for (let dx = 0; dx < 2; dx++) {
+      const px = ix + dx, py = iy + dy;
+      if (px < 0 || py < 0 || px >= sw || py >= sh) continue;
+      const index = (py * sw + px) * 4;
+      const a = data[index + 3] * (dx ? u : 1-u) * (dy ? v : 1-v);
+      alpha += a; red += data[index] * a; green += data[index+1] * a; blue += data[index+2] * a;
+    }
+    if (alpha > 0) {
+      const index = (y * width + x) * 4;
+      output.data[index] = red / alpha; output.data[index+1] = green / alpha;
+      output.data[index+2] = blue / alpha; output.data[index+3] = alpha;
+    }
   }
-  if (surface)
-    ctx.drawImage(
-      surface,
-      -padding,
-      -padding,
-      part.size[0] + 2 * padding,
-      part.size[1] + 2 * padding,
-    );
+  paint.putImageData(output, 0, 0);
+  ctx.drawImage(surface, -padding, -padding, width / quality, height / quality);
 }

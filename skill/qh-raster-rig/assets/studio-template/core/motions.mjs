@@ -73,7 +73,7 @@ export function makeMotion(rig, name = "hello", fps = 24, candidate = "a") {
     ]);
     add("hand_right", "asset", [
       [0, "/animations/fox/parts/hand_rest.png"],
-      [0.1, "/animations/fox/parts/hand_wave.png"],
+      [0.1, "/animations/fox/parts/hand_wave_registered.png"],
       [0.86, "/animations/fox/parts/hand_rest.png"],
     ]);
     add("tail", "bend", [
