@@ -1,6 +1,29 @@
 # QH Motion
 
-Local layered raster animation, reusable agent skill, and an embeddable mathematical engine. Version 0.2 adds a canvas-first workspace, searchable selectors, a collapsible library and inspector, full-screen playback, drawn motion paths and portable .qhmotion import/export. Advanced configuration lives behind the three-dot menu. [Bundle format and workflow](docs/qh-motion-bundle.md).
+Local layered raster animation, reusable agent skill, and an embeddable mathematical engine. The studio provides a canvas-first workspace, searchable selectors, a collapsible library and inspector, full-screen playback, drawn motion paths and portable .qhmotion import/export. Advanced configuration lives behind the three-dot menu. [Bundle format and workflow](docs/qh-motion-bundle.md).
+
+## See it in motion
+
+Hero 1 rendered by the animation engine. The cycle uses 12 distinct drawings across 24 rendered frames and lasts one second.
+
+![Hero 1 running animation](docs/media/hero1-run.gif)
+
+[Watch or download the MP4 video](docs/media/hero1-run.mp4) · [Frame-by-frame review](docs/run-smooth-sample-review.json)
+
+The video repeats the current cycle for six seconds. The GIF loops directly in this README.
+
+### Workspace
+
+![QH Motion desktop workspace and timeline](docs/workspace-v3-desktop.png)
+
+<details>
+<summary>Mobile workspace and all twelve poses</summary>
+
+![Mobile workspace](docs/workspace-v3-mobile.png)
+
+![All twelve registered running poses](docs/run-smooth-contact-sheet.png)
+
+</details>
 
 ## Start
 
@@ -18,12 +41,13 @@ Open http://127.0.0.1:8090. The local API uses 8091. Production: `pnpm build && 
 ```sh
 pnpm mcp
 node server/cli.mjs inspect fox
-node server/cli.mjs generate fox hello 24
-node server/cli.mjs quality fox hello-a
-node server/cli.mjs export fox hello-a gif
+node server/cli.mjs generate hero1 run 24
+# Use the motion ID returned by generation:
+node server/cli.mjs quality hero1 MOTION_ID
+node server/cli.mjs export hero1 MOTION_ID gif
 ```
 
-Generation creates unique saved candidate IDs. Read the response or project before exporting a generated candidate. Motion actions: hello/hi, thinking, success, idle. Arbitrary actions need custom tracks or generated art supplied by the agent. `prepare_image_job` prepares the prompt/contract; `import_png` stores generated artwork. No image model is bundled and no remote image service is called silently.
+Generation creates unique saved candidate IDs. Read the response or project before exporting a generated candidate. Approved actions are character-specific: Hero 1 provides run; the active front-view Fox provides ready. Arbitrary actions need custom tracks or generated art supplied by the agent. `prepare_image_job` prepares the prompt/contract; `import_png` stores generated artwork. No image model is bundled and no remote image service is called silently.
 
 SQLite persists projects, revision snapshots and generation jobs in `.local/studio.sqlite`. `QH_STORAGE=json` uses JSON files instead. `QH_DATA_DIR=/path` selects another metadata/export folder. Raster assets live under `public/animations`.
 
@@ -65,10 +89,8 @@ See [skeleton mathematics and regional workflow](docs/skeleton-and-regional-work
 
 [Source](https://github.com/Up-to-code/QH-Motion-Studio) · [Issues](https://github.com/Up-to-code/QH-Motion-Studio/issues) · [Public project directory](https://github.com/qentrah/.github/blob/main/profile/PROJECTS.md)
 
-## Version 0.3
+## Current character revision
 
-Hero 1 opens with a right-facing generated run pose sequence. The timeline is movable and resizable; sidebar visibility and agent tools are in settings. Fox has registered complete feet and a corrected smaller mouth; its older presets are archived. See [the revision and mathematical registration notes](docs/run-hero1.md). The run contains eight original drawings sampled at 24 FPS, not a 3D rig. Reprocessing the saved source sheets with `scripts/register-run-v3.py` requires Pillow, NumPy and SciPy; these are not required for playback.
+Hero 1 opens with the slower right-facing run shown above. Fox has registered complete feet and a smaller, correctly positioned mouth; earlier presets are archived. See [the pacing and frame review](docs/run-pacing-fix.md) and [the foot-contact correction](docs/run-gait-fix.md).
 
-The jump-like v0.3 run is superseded by the [grounded gait correction](docs/run-gait-fix.md), with a separate foot-contact and body-bounce gate.
-
-The active run now lasts one second and includes [four additional in-between poses](docs/run-pacing-fix.md). Source drawings, rendered samples and FPS are reported separately.
+The run uses generated 2D pose artwork with drawn depth. The front-view Fox is a layered rig. Reprocessing source sheets requires Pillow, NumPy and SciPy; playback does not.
