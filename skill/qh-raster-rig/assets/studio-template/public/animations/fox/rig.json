@@ -78,7 +78,12 @@
         "#9364f5",
         "#49305f",
         "#ffcc27"
-      ]
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "leg_right",
@@ -109,7 +114,12 @@
         "#9364f5",
         "#49305f",
         "#ffcc27"
-      ]
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "pelvis",
@@ -171,7 +181,12 @@
         "#9364f5",
         "#49305f",
         "#ffcc27"
-      ]
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "shoe_right",
@@ -202,7 +217,12 @@
         "#9364f5",
         "#49305f",
         "#ffcc27"
-      ]
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "upper_arm_left",
@@ -234,7 +254,12 @@
         "#49305f",
         "#ffcc27"
       ],
-      "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso"
+      "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso",
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "upper_arm_right",
@@ -266,7 +291,12 @@
         "#49305f",
         "#ffcc27"
       ],
-      "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso"
+      "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso",
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "forearm_left",
@@ -297,7 +327,12 @@
         "#9364f5",
         "#49305f",
         "#ffcc27"
-      ]
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "forearm_right",
@@ -328,7 +363,12 @@
         "#9364f5",
         "#49305f",
         "#ffcc27"
-      ]
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "hand_left",
@@ -359,7 +399,12 @@
         "#9364f5",
         "#49305f",
         "#ffcc27"
-      ]
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "hand_right",
@@ -390,7 +435,12 @@
         "#9364f5",
         "#49305f",
         "#ffcc27"
-      ]
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "cuff_left",
@@ -401,11 +451,11 @@
         34.31304347826087
       ],
       "pivot": [
-        13.0,
+        13,
         1
       ],
       "size": [
-        26.0,
+        26,
         8.68695652173913
       ],
       "z": 9.2,
@@ -424,11 +474,11 @@
         34.31304347826087
       ],
       "pivot": [
-        13.0,
+        13,
         1
       ],
       "size": [
-        26.0,
+        26,
         8.68695652173913
       ],
       "z": 9.2,
@@ -485,7 +535,7 @@
       ],
       "pivot": [
         51.36842105263156,
-        2.0
+        2
       ],
       "size": [
         102.73684210526315,
@@ -509,7 +559,7 @@
       ],
       "pivot": [
         35.92982456140351,
-        2.0
+        2
       ],
       "size": [
         71.85964912280701,
@@ -528,12 +578,12 @@
       "name": "Drawstring Left",
       "parent": "hoodie",
       "position": [
-        -16.0,
+        -16,
         -21.772833723653378
       ],
       "pivot": [
         4.350877192982466,
-        2.0
+        2
       ],
       "size": [
         8.701754385964911,
@@ -565,7 +615,7 @@
       ],
       "pivot": [
         4.350877192982466,
-        2.0
+        2
       ],
       "size": [
         8.701754385964911,
@@ -647,7 +697,12 @@
         "#9364f5",
         "#49305f",
         "#ffcc27"
-      ]
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "ear_right",
@@ -678,7 +733,12 @@
         "#9364f5",
         "#49305f",
         "#ffcc27"
-      ]
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      }
     },
     {
       "id": "head",

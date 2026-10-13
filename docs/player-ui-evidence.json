@@ -1,0 +1,13 @@
+{
+  "headerOnly": true,
+  "fit": true,
+  "pan": true,
+  "focus": true,
+  "focusedZoom": 8,
+  "editPreservesView": true,
+  "compare": true,
+  "mobileOverflow": false,
+  "pageErrors": [],
+  "skeletonNodes": 35,
+  "selection": "Rendered opaque pixel selects topmost part; empty pixel preserves selection; keyboard selection through Parts library"
+}

@@ -79,7 +79,12 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "leg_right",
@@ -110,7 +115,12 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "pelvis",
@@ -172,7 +182,12 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "shoe_right",
@@ -203,7 +218,12 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "upper_arm_left",
@@ -235,7 +255,12 @@
           "#49305f",
           "#ffcc27"
         ],
-        "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso"
+        "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso",
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "upper_arm_right",
@@ -267,7 +292,12 @@
           "#49305f",
           "#ffcc27"
         ],
-        "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso"
+        "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso",
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "forearm_left",
@@ -298,7 +328,12 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "forearm_right",
@@ -329,7 +364,12 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "hand_left",
@@ -360,7 +400,12 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "hand_right",
@@ -391,7 +436,12 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "cuff_left",
@@ -546,6 +596,7 @@
           -20,
           20
         ],
+        "surfaceAttachment": true,
         "secondary": {
           "driver": "upper_arm_right",
           "property": "rotation",
@@ -553,8 +604,7 @@
           "frequencyHz": 2.7,
           "damping": 0.72,
           "maxDegrees": 9
-        },
-        "surfaceAttachment": true
+        }
       },
       {
         "id": "drawstring_right",
@@ -578,6 +628,7 @@
           -20,
           20
         ],
+        "surfaceAttachment": true,
         "secondary": {
           "driver": "upper_arm_right",
           "property": "rotation",
@@ -585,8 +636,7 @@
           "frequencyHz": 2.7,
           "damping": 0.72,
           "maxDegrees": 9
-        },
-        "surfaceAttachment": true
+        }
       },
       {
         "id": "neck",
@@ -648,7 +698,12 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "ear_right",
@@ -679,7 +734,12 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        }
       },
       {
         "id": "head",
@@ -1461,11 +1521,16 @@
         "flippedTriangles": 0,
         "offCanvasSamples": 0,
         "contactDriftPx": 0,
+        "contactViolationPx": 0,
+        "checkedAttachmentSamples": 1092,
+        "clippingInconclusiveSamples": 0,
+        "outsideAlphaPixels": 0,
         "loopMatrixError": 0,
         "jointGapSamples": 0,
         "edgePixels": 0,
-        "maxJointStepPx": 17.796052655561738,
-        "maxJointVelocityPxPerSecond": 421.1732461816278,
+        "maxJointStepPx": 17.58138534347262,
+        "maxJointVelocityPxPerSecond": 421.95324824334267,
+        "maxAllowedVelocityPxPerSecond": 432,
         "limitOverrunDeg": 0
       },
       "penalties": {
@@ -1486,50 +1551,66 @@
         },
         {
           "frame": 6,
-          "time": 0.2535211267605634
+          "time": 0.25
         },
         {
           "frame": 12,
-          "time": 0.5070422535211268
+          "time": 0.4583333333333333
         },
         {
           "frame": 18,
-          "time": 0.7605633802816901
+          "time": 0.66
         },
         {
           "frame": 24,
-          "time": 1.0140845070422535
+          "time": 0.7916666666666666
         },
         {
           "frame": 30,
-          "time": 1.267605633802817
+          "time": 1
         },
         {
           "frame": 36,
-          "time": 1.5211267605633803
+          "time": 1.2083333333333333
         },
         {
           "frame": 42,
-          "time": 1.7746478873239435
+          "time": 1.375
         },
         {
           "frame": 48,
-          "time": 2.028169014084507
+          "time": 1.5833333333333333
         },
         {
           "frame": 54,
-          "time": 2.2816901408450705
+          "time": 1.7999999999999998
         },
         {
           "frame": 60,
-          "time": 2.535211267605634
+          "time": 2
         },
         {
           "frame": 66,
-          "time": 2.788732394366197
+          "time": 2.1666666666666665
+        },
+        {
+          "frame": 72,
+          "time": 2.375
+        },
+        {
+          "frame": 78,
+          "time": 2.5416666666666665
+        },
+        {
+          "frame": 84,
+          "time": 2.75
+        },
+        {
+          "frame": 90,
+          "time": 3
         }
       ],
-      "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+      "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
     },
     "score": 100
   }

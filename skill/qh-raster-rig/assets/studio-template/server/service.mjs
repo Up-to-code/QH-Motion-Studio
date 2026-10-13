@@ -1,11 +1,13 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { randomUUID } from "node:crypto";
+import { randomUUID,createHash } from "node:crypto";
 import { loadImage } from "@napi-rs/canvas";
 import { project, saveProject, put, get, list } from "./store.mjs";
 import { makeMotion } from "../core/motions.mjs";
 import { validateRig, validateClip } from "../core/engine.mjs";
 import { repair, exportMotion, assess } from "./render.mjs";
+import {readSkeleton} from "./skeleton.mjs";
+import {readContext} from "./workflow.mjs";
 import { PUBLIC, safeId } from "./paths.mjs";
 export function checkedSave(id, body, revision) {
   const errors = validateRig(body.rig);
@@ -74,6 +76,7 @@ export function prepareGeneration(character, motion, fps = 24) {
     status: "awaiting-generated-art",
     prompt: `Create transparent raster replacement parts for ${p.rig.name}, action ${motion}. Preserve the source identity and palette. Supply clean overlap art at joints, no labels or backgrounds. Use the existing rig's declared canvas, local pivots and body scale; do not normalize by full alpha bounds. Return PNG assets and the qh-rig/1 manifest. Frames at ${fps} fps are rendered locally after import.`,
     contract: {
+      skeleton:readSkeleton(character),
       canvas: p.rig.canvas,
       origin: p.rig.origin,
       parts: p.rig.parts.map(({ id, pivot, position, size, parent }) => ({
@@ -98,17 +101,20 @@ export async function importAsset(character, assetName, base64) {
   const image = await loadImage(data);
   if (image.width > 4096 || image.height > 4096)
     throw Error("PNG dimensions exceed 4096");
+  const digest=createHash("sha256").update(data).digest("hex");
+  const filename=`${assetName}-${digest}.png`;
   const file = path.join(
     PUBLIC,
     "animations",
     character,
     "parts",
-    assetName + ".png",
+    filename,
   );
   await fs.mkdir(path.dirname(file), { recursive: true });
   await fs.writeFile(file, data);
   return {
-    asset: `/animations/${character}/parts/${assetName}.png`,
+    asset: `/animations/${character}/parts/${filename}`,
+    sha256:digest,
     width: image.width,
     height: image.height,
   };
@@ -136,5 +142,15 @@ export async function exportClip(character, clipId, format) {
   const p = project(character),
     c = p.clips.find((c) => c.id === clipId);
   if (!c) throw Error("Motion not found");
-  return exportMotion(p.rig, c, format);
+  return exportMotion(p.rig, c, format,{skeleton:readSkeleton(character),context:readContext(character)});
+}
+
+export async function createCustomMotion(character,clip,revision) {
+ const p=project(character);if(p.revision!==revision)throw Error("Project revision changed");
+ const errors=validateClip(p.rig,clip);if(errors.length)throw Error(errors.join("; "));
+ const candidate={...structuredClone(clip),id:`custom-${randomUUID()}`};
+ const report=await assess(p.rig,candidate);
+ candidate.quality=report;candidate.score=report.score;
+ return {project:checkedSave(character,{...p,clips:[...p.clips,candidate],selected:candidate.id},revision),report,
+ scope:"Agent-authored motion tracks; technical validation does not prove gesture or identity quality."};
 }

@@ -23,6 +23,10 @@ import {
   Settings2,
   Diamond,
   Film,
+  Scan,
+  Focus,
+  ZoomIn,
+  ZoomOut,
 } from "lucide-react";
 import { Dialog } from "radix-ui";
 import { Button } from "./components/ui/button";
@@ -59,6 +63,7 @@ export default function App() {
     [grid, setGrid] = useState(false),
     [joints, setJoints] = useState(false),
     [mode, setMode] = useState("artwork"),
+    [viewCommand, setViewCommand] = useState({ action: "fit", serial: 0 }),
     [compare, setCompare] = useState(false),
     [compareId, setCompareId] = useState("hello-b"),
     [hidden, setHidden] = useState<string[]>([]),
@@ -75,9 +80,17 @@ export default function App() {
     } | null>(null),
     [exportOpen, setExportOpen] = useState(false),
     [storage, setStorage] = useState(""),
-    [analysis, setAnalysis] = useState<any>(null);
+    [analysis, setAnalysis] = useState<any>(null),
+    [skeleton, setSkeleton] = useState<any>(null),
+    [skeletonCheck, setSkeletonCheck] = useState<any>(null),
+    [memory, setMemory] = useState<any>(null),
+    [memoryDirty, setMemoryDirty] = useState(false),
+    [workflow, setWorkflow] = useState<any>(null),
+    [packet, setPacket] = useState<any>(null),
+    [tile, setTile] = useState("");
   const newMotionButton = useRef<HTMLButtonElement>(null);
   const upload = useRef<HTMLInputElement>(null);
+  const packetRequest = useRef(0);
   const current = project?.clips.find((c) => c.id === project.selected),
     part = project?.rig.parts.find((p) => p.id === selected),
     other = project?.clips.find((c) => c.id === compareId);
@@ -143,6 +156,56 @@ export default function App() {
     document.addEventListener("visibilitychange", handle);
     return () => document.removeEventListener("visibilitychange", handle);
   }, []);
+  useEffect(() => {
+    let cancelled = false;
+    setSkeleton(null); setSkeletonCheck(null);
+    api("skeleton/" + character).then(d => { if(!cancelled) setSkeleton(d.skeleton); }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [character, project?.revision, current?.id]);
+  useEffect(() => {
+    let cancelled=false; packetRequest.current++; setMemory(null);setMemoryDirty(false);setWorkflow(null);setPacket(null);setTile("");
+    api("context/"+character).then(d=>{if(!cancelled)setMemory(d);}).catch(e=>{if(!cancelled)setMessage(e.message);});
+    let id:string|null=null;try{id=localStorage.getItem("qh-workflow-"+character);}catch{}
+    if(id)api("workflow/"+id).then(d=>{if(!cancelled && d.character===character)setWorkflow(d);}).catch(()=>{});
+    return()=>{cancelled=true;};
+  },[character]);
+  async function persistContext() {
+    if(!memory)return;
+    const saved=await api("context/"+character,"PUT",{revision:memory.revision,context:{appearance:memory.appearance,plan:memory.plan,motionIntent:memory.motionIntent}});
+    setMemory(saved);setMemoryDirty(false);return saved;
+  }
+  async function saveMemory() {
+    setBusy("Saving context");try{await persistContext();setMessage("Character context saved locally.");}catch(e:any){setMessage(e.message);}finally{setBusy("");}
+  }
+  async function inspectRegional() {
+    if(!project||!current)return;
+    setBusy("Inspecting regions");setPlaying(false);setPacket(null);setTile("");
+    try{
+      if(memoryDirty)await persistContext();
+      if(dirty){const saved=await api("project/"+character,"PUT",{project,revision:project.revision});setProject(saved);setDirty(false);}
+      const report=await api("workflow","POST",{character,clip:current.id,settings:{tileSize:32,halo:4,samples:12}});
+      setWorkflow(report);try{localStorage.setItem("qh-workflow-"+character,report.id);}catch{}
+      setMemory(await api("context/"+character));setMessage("Regional inspection saved. Review the artwork tasks before accepting motion.");
+    }catch(e:any){setMessage(e.message);}finally{setBusy("");}
+  }
+  async function chooseTile(id:string) {
+    const request=++packetRequest.current;setTile(id);setPacket(null);if(!workflow||!id)return;
+    try{const response=await api("workflow/"+workflow.id+"/"+id);if(request===packetRequest.current)setPacket(response);}catch(e:any){if(request===packetRequest.current)setMessage(e.message);}
+  }
+  async function checkSkeleton() {
+    if(!project || !current) return;
+    setBusy("Checking skeleton"); setPlaying(false);
+    try {
+      if(dirty) {
+        const saved = await api("project/" + character,"PUT",{project,revision:project.revision});
+        setProject(saved); setDirty(false);
+      }
+      const result = await api("skeleton/" + character,"POST",{clip:current.id});
+      setSkeletonCheck(result); setJoints(true);
+      setMessage(result.passed ? "Skeleton calculations passed. Anatomy confirmation remains separate." : "Skeleton needs review. See drift measurements.");
+    } catch(e:any) { setMessage(e.message); } finally { setBusy(""); }
+  }
+  function view(action: string) { setViewCommand((v) => ({ action, serial: v.serial + 1 })); }
   function change(fn: (p: Project) => void) {
     setProject((old) => {
       if (!old) return old;
@@ -277,7 +340,7 @@ export default function App() {
     if (!part) return;
     change((p) => {
       const item = p.rig.parts.find((x) => x.id === part.id)!;
-      if (field === "size") resizePart(p.rig, part.id, value as number[]);
+      if (field === "size") resizePart(p.rig, part.id, value as number[], p.clips);
       else (item as any)[field] = value;
     });
   }
@@ -331,12 +394,23 @@ export default function App() {
         <div className="header-project">
           <span>{project.rig.name}</span>
           <span className="muted">/</span>
-          <span>{current.name}</span>
+          <h1>{current.name}</h1>
           <span
             className="status-dot"
             title={dirty ? "Unsaved changes" : "Saved locally"}
           />
         </div>
+        <nav className="main-view-controls" aria-label="Workspace view">
+          <Button variant="ghost" size="icon" aria-label={sidebar ? "Close library" : "Open library"} aria-expanded={sidebar} onClick={() => setSidebar(!sidebar)}>{sidebar ? <PanelLeftClose size={17}/> : <PanelLeftOpen size={17}/>}</Button>
+          <select aria-label="Preview representation" value={mode} onChange={(e) => { setMode(e.target.value); if(e.target.value === "distance") setPlaying(false); }}>{modes.map(([v,n]) => <option key={v} value={v}>{n}</option>)}</select>
+          <Button variant={grid ? "secondary" : "ghost"} size="icon" aria-label="Toggle pixel grid and origin axes" aria-pressed={grid} onClick={() => setGrid(!grid)}><Grid2X2 size={17}/></Button>
+          <Button variant={joints ? "secondary" : "ghost"} size="icon" aria-label="Toggle joint coordinates" aria-pressed={joints} onClick={() => setJoints(!joints)}><Move size={17}/></Button>
+          <Button variant={compare ? "secondary" : "ghost"} size="icon" aria-label="Compare candidates" aria-pressed={compare} onClick={() => setCompare(!compare)}><Columns2 size={17}/></Button>
+          <Button variant="ghost" size="icon" aria-label="Fit canvas" onClick={() => view("fit")}><Scan size={17}/></Button>
+          <Button variant="ghost" size="icon" aria-label="Focus selected part" disabled={!selected} onClick={() => view("focus")}><Focus size={17}/></Button>
+          <Button variant="ghost" size="icon" aria-label="Zoom out" onClick={() => view("out")}><ZoomOut size={17}/></Button>
+          <Button variant="ghost" size="icon" aria-label="Zoom in" onClick={() => view("in")}><ZoomIn size={17}/></Button>
+        </nav>
         <div className="header-actions">
           <Button
             variant="ghost"
@@ -392,20 +466,14 @@ export default function App() {
           <aside className="library">
             <div className="sidebar-heading">
               <span>Library</span>
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Close library"
-                onClick={() => setSidebar(false)}
-              >
-                <PanelLeftClose size={17} />
-              </Button>
+
             </div>
             <label className="field-label" htmlFor="character">
               Character
             </label>
             <select
               id="character"
+              disabled={!!busy}
               value={character}
               onChange={(e) => {
                 if (
@@ -529,67 +597,6 @@ export default function App() {
           </aside>
         )}
         <main className="editor">
-          <div className="preview-toolbar">
-            <div className="preview-title">
-              {!sidebar && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  aria-label="Open library"
-                  onClick={() => setSidebar(true)}
-                >
-                  <PanelLeftOpen size={17} />
-                </Button>
-              )}
-              <h1>{current.name}</h1>
-              <span className="candidate-label">
-                Candidate {current.candidate?.toUpperCase() || "A"}
-              </span>
-            </div>
-            <div className="view-actions">
-              <select
-                aria-label="Preview representation"
-                value={mode}
-                onChange={(e) => {
-                  setMode(e.target.value);
-                  if (e.target.value === "distance") setPlaying(false);
-                }}
-              >
-                {modes.map(([v, n]) => (
-                  <option key={v} value={v}>
-                    {n}
-                  </option>
-                ))}
-              </select>
-              <Button
-                variant={grid ? "secondary" : "ghost"}
-                size="icon"
-                aria-label="Toggle pixel grid and origin axes"
-                aria-pressed={grid}
-                onClick={() => setGrid(!grid)}
-              >
-                <Grid2X2 size={17} />
-              </Button>
-              <Button
-                variant={joints ? "secondary" : "ghost"}
-                size="icon"
-                aria-label="Toggle joint coordinates"
-                aria-pressed={joints}
-                onClick={() => setJoints(!joints)}
-              >
-                <Move size={17} />
-              </Button>
-              <Button
-                variant={compare ? "secondary" : "ghost"}
-                size="icon"
-                aria-label="Compare candidates"
-                aria-pressed={compare}
-                onClick={() => setCompare(!compare)}
-              >
-                <Columns2 size={17} />
-              </Button>
-            </div>
-          </div>
           <div className={`preview-area ${compare ? "compare" : ""}`}>
             <div className="preview-pane">
               <div className="pane-caption">
@@ -608,6 +615,8 @@ export default function App() {
                 selected={selected}
                 hidden={hidden}
                 onSelect={setSelected}
+                viewCommand={viewCommand}
+                skeleton={skeleton}
               />
             </div>
             {compare && (
@@ -641,6 +650,8 @@ export default function App() {
                   selected={selected}
                   hidden={hidden}
                   onSelect={setSelected}
+                  viewCommand={viewCommand}
+                skeleton={skeleton}
                 />
                 <Button
                   variant="outline"
@@ -664,7 +675,7 @@ export default function App() {
                     : project.rig.mode === "poses"
                       ? "Registered pose library · no independent body rig"
                       : "Layered raster rig · fixed origin"}
-              {grid ? " · origin (256, 256)" : ""}
+              {grid ? ` · origin (${project.rig.origin.join(", ")})` : ""}
             </span>
             <Button variant="ghost" size="sm" disabled={!!busy} onClick={check}>
               <Check size={14} />
@@ -985,6 +996,33 @@ export default function App() {
               </Button>
             </section>
           )}
+          <section className="context-panel" aria-label="Character context">
+            <details><summary>Character context {memoryDirty ? "· edited" : ""}</summary>
+              {memory ? <><div className="context-fields">{[["appearance","Appearance"],["motionIntent","Motion intent"],["plan","Plan"]].map(([key,label])=><label key={key}>{label}<textarea aria-label={label} rows={2} value={memory[key] || ""} onChange={e=>{setMemory({...memory,[key]:e.target.value});setMemoryDirty(true);}}/></label>)}</div>
+              <Button variant="outline" size="sm" disabled={!!busy||!memoryDirty} onClick={saveMemory}><Save size={14}/>Save context</Button>
+              <p className="hint">{memory.decisions?.length || 0} decisions · {memory.failures?.length || 0} findings · {memory.results?.length || 0} saved results</p></>:<p className="hint">Loading saved context…</p>}
+            </details>
+          </section>
+          <section className="regional-panel" aria-label="Regional inspection">
+            <h3>Regional review</h3>
+            <Button variant="outline" size="sm" disabled={!!busy} onClick={inspectRegional}><Grid2X2 size={14}/>Inspect regions</Button>
+            {workflow && <div className="regional-summary">
+              <p>{workflow.status.replaceAll("-"," ")} · {workflow.findings?.length || 0} findings</p>
+              {workflow.clip!==current.id && <p className="hint">Saved report for {workflow.clip}. Inspect this motion for current results.</p>}
+              <ul>{workflow.tasks?.map((task:any)=><li key={task.role}><span>{task.role.replaceAll("-"," ")}</span><strong>{task.status}</strong></li>)}</ul>
+              <label>Region<select aria-label="Inspection region" value={tile} onChange={e=>chooseTile(e.target.value)}><option value="">Select a region</option>{workflow.regional?.tiles?.map((r:any)=><option key={r.id} value={r.id}>{r.id} · {r.core[2]} × {r.core[3]}</option>)}</select></label>
+              {packet && <div className="region-packet">{packet.image && <img className="region-crop" src={packet.image} width={packet.tile.bounds[2]*4} height={packet.tile.bounds[3]*4} alt={`Region ${packet.tile.id}, original ${packet.tile.bounds[2]} by ${packet.tile.bounds[3]} pixel crop at ${Number(packet.time || 0).toFixed(2)} seconds, shown enlarged without smoothing`}/>}<p>Core [{packet.tile.core.join(", ")}]</p><p>With halo [{packet.tile.bounds.join(", ")}]</p><p>{packet.findings?.length || 0} regional findings</p><p className="hint">{packet.instruction}</p></div>}
+            </div>}
+          </section>
+          <section className="skeleton-panel" aria-label="Skeleton check">
+            <div className="skeleton-heading"><h3>Skeleton</h3><span>{skeleton?.status === "confirmed" ? "Confirmed" : "Draft"}</span></div>
+            <Button variant="outline" size="sm" disabled={!!busy} onClick={checkSkeleton}><Check size={14}/>Check skeleton</Button>
+            {skeletonCheck && <div className="skeleton-result" role="status">
+              <p className={skeletonCheck.passed ? "quality-pass" : "quality-review"}>{skeletonCheck.passed ? "Calculations passed" : "Review needed"}</p>
+              <p>{(skeletonCheck.findings || []).filter((f:any)=>["rest-anchor-drift","pivot-contract-drift"].includes(f.category)).length} anchor drifts · {skeletonCheck.findings?.length || 0} findings · max error {Math.max(0,...(skeletonCheck.findings || []).filter((f:any)=>!f.units || f.units === "canvas-pixels").map((f:any)=>Number.isFinite(f.error)?f.error:0)).toFixed(2)} px</p>
+              <p className="hint">{skeletonCheck.confirmed ? "Anatomy confirmed." : "Control graph remains a draft until anatomical joints are reviewed."}</p>
+            </div>}
+          </section>
           {analysis && (
             <section className="quality-panel">
               <h3>

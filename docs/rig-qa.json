@@ -13,11 +13,16 @@
           "flippedTriangles": 0,
           "offCanvasSamples": 0,
           "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 1092,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
           "loopMatrixError": 0,
           "jointGapSamples": 0,
           "edgePixels": 0,
-          "maxJointStepPx": 17.796052655561738,
-          "maxJointVelocityPxPerSecond": 421.1732461816278,
+          "maxJointStepPx": 17.58138534347262,
+          "maxJointVelocityPxPerSecond": 421.95324824334267,
+          "maxAllowedVelocityPxPerSecond": 432,
           "limitOverrunDeg": 0
         },
         "penalties": {
@@ -38,50 +43,66 @@
           },
           {
             "frame": 6,
-            "time": 0.2535211267605634
+            "time": 0.25
           },
           {
             "frame": 12,
-            "time": 0.5070422535211268
+            "time": 0.4583333333333333
           },
           {
             "frame": 18,
-            "time": 0.7605633802816901
+            "time": 0.66
           },
           {
             "frame": 24,
-            "time": 1.0140845070422535
+            "time": 0.7916666666666666
           },
           {
             "frame": 30,
-            "time": 1.267605633802817
+            "time": 1
           },
           {
             "frame": 36,
-            "time": 1.5211267605633803
+            "time": 1.2083333333333333
           },
           {
             "frame": 42,
-            "time": 1.7746478873239435
+            "time": 1.375
           },
           {
             "frame": 48,
-            "time": 2.028169014084507
+            "time": 1.5833333333333333
           },
           {
             "frame": 54,
-            "time": 2.2816901408450705
+            "time": 1.7999999999999998
           },
           {
             "frame": 60,
-            "time": 2.535211267605634
+            "time": 2
           },
           {
             "frame": 66,
-            "time": 2.788732394366197
+            "time": 2.1666666666666665
+          },
+          {
+            "frame": 72,
+            "time": 2.375
+          },
+          {
+            "frame": 78,
+            "time": 2.5416666666666665
+          },
+          {
+            "frame": 84,
+            "time": 2.75
+          },
+          {
+            "frame": 90,
+            "time": 3
           }
         ],
-        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
       },
       "history": [
         {
@@ -101,11 +122,16 @@
           "flippedTriangles": 0,
           "offCanvasSamples": 0,
           "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 780,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
           "loopMatrixError": 0,
           "jointGapSamples": 0,
           "edgePixels": 0,
-          "maxJointStepPx": 1.3220564613418893,
-          "maxJointVelocityPxPerSecond": 31.398840956869872,
+          "maxJointStepPx": 1.3035249418413433,
+          "maxJointVelocityPxPerSecond": 31.501852761165818,
+          "maxAllowedVelocityPxPerSecond": 432,
           "limitOverrunDeg": 0
         },
         "penalties": {
@@ -126,62 +152,70 @@
           },
           {
             "frame": 4,
-            "time": 0.16842105263157894
+            "time": 0.16551724137931034
           },
           {
             "frame": 8,
-            "time": 0.3368421052631579
+            "time": 0.3310344827586207
           },
           {
             "frame": 12,
-            "time": 0.5052631578947367
+            "time": 0.48
           },
           {
             "frame": 16,
-            "time": 0.6736842105263158
+            "time": 0.6
           },
           {
             "frame": 20,
-            "time": 0.8421052631578947
+            "time": 0.72
           },
           {
             "frame": 24,
-            "time": 1.0105263157894735
+            "time": 0.8689655172413793
           },
           {
             "frame": 28,
-            "time": 1.1789473684210525
+            "time": 1.0344827586206897
           },
           {
             "frame": 32,
-            "time": 1.3473684210526315
+            "time": 1.2
           },
           {
             "frame": 36,
-            "time": 1.5157894736842104
+            "time": 1.3655172413793104
           },
           {
             "frame": 40,
-            "time": 1.6842105263157894
+            "time": 1.5310344827586206
           },
           {
             "frame": 44,
-            "time": 1.8526315789473682
+            "time": 1.6965517241379309
           },
           {
             "frame": 48,
-            "time": 2.021052631578947
+            "time": 1.8206896551724137
           },
           {
             "frame": 52,
-            "time": 2.189473684210526
+            "time": 1.9448275862068964
           },
           {
             "frame": 56,
-            "time": 2.357894736842105
+            "time": 2.0689655172413794
+          },
+          {
+            "frame": 60,
+            "time": 2.2344827586206897
+          },
+          {
+            "frame": 64,
+            "time": 2.4
           }
         ],
-        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
       },
       "history": [
         {
@@ -201,11 +235,16 @@
           "flippedTriangles": 0,
           "offCanvasSamples": 0,
           "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 1200,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
           "loopMatrixError": 0,
           "jointGapSamples": 0,
           "edgePixels": 0,
-          "maxJointStepPx": 16.785212606613246,
-          "maxJointVelocityPxPerSecond": 399.21586740053124,
+          "maxJointStepPx": 16.56975003073771,
+          "maxJointVelocityPxPerSecond": 398.56966290152843,
+          "maxAllowedVelocityPxPerSecond": 432,
           "limitOverrunDeg": 0
         },
         "penalties": {
@@ -226,54 +265,62 @@
           },
           {
             "frame": 7,
-            "time": 0.2943181818181818
+            "time": 0.2910112359550562
           },
           {
             "frame": 14,
-            "time": 0.5886363636363636
+            "time": 0.5820224719101124
           },
           {
             "frame": 21,
-            "time": 0.8829545454545455
+            "time": 0.7483146067415731
           },
           {
             "frame": 28,
-            "time": 1.1772727272727272
+            "time": 1.0393258426966292
           },
           {
             "frame": 35,
-            "time": 1.4715909090909092
+            "time": 1.3303370786516855
           },
           {
             "frame": 42,
-            "time": 1.765909090909091
+            "time": 1.5797752808988763
           },
           {
             "frame": 49,
-            "time": 2.0602272727272726
+            "time": 1.8707865168539326
           },
           {
             "frame": 56,
-            "time": 2.3545454545454545
+            "time": 2.161797752808989
           },
           {
             "frame": 63,
-            "time": 2.6488636363636364
+            "time": 2.41123595505618
           },
           {
             "frame": 70,
-            "time": 2.9431818181818183
+            "time": 2.660674157303371
           },
           {
             "frame": 77,
-            "time": 3.2375000000000003
+            "time": 2.9230000000000005
           },
           {
             "frame": 84,
-            "time": 3.531818181818182
+            "time": 3.1179775280898876
+          },
+          {
+            "frame": 91,
+            "time": 3.3674157303370786
+          },
+          {
+            "frame": 98,
+            "time": 3.658426966292135
           }
         ],
-        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
       },
       "history": [
         {
@@ -293,11 +340,16 @@
           "flippedTriangles": 0,
           "offCanvasSamples": 0,
           "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 780,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
           "loopMatrixError": 0,
           "jointGapSamples": 0,
           "edgePixels": 0,
           "maxJointStepPx": 0,
           "maxJointVelocityPxPerSecond": 0,
+          "maxAllowedVelocityPxPerSecond": 432,
           "limitOverrunDeg": 0
         },
         "penalties": {
@@ -318,62 +370,70 @@
           },
           {
             "frame": 4,
-            "time": 0.16842105263157894
+            "time": 0.16551724137931034
           },
           {
             "frame": 8,
-            "time": 0.3368421052631579
+            "time": 0.3310344827586207
           },
           {
             "frame": 12,
-            "time": 0.5052631578947367
+            "time": 0.49655172413793097
           },
           {
             "frame": 16,
-            "time": 0.6736842105263158
+            "time": 0.6620689655172414
           },
           {
             "frame": 20,
-            "time": 0.8421052631578947
+            "time": 0.8275862068965517
           },
           {
             "frame": 24,
-            "time": 1.0105263157894735
+            "time": 0.9517241379310344
           },
           {
             "frame": 28,
-            "time": 1.1789473684210525
+            "time": 1.0758620689655172
           },
           {
             "frame": 32,
-            "time": 1.3473684210526315
+            "time": 1.2413793103448276
           },
           {
             "frame": 36,
-            "time": 1.5157894736842104
+            "time": 1.3655172413793104
           },
           {
             "frame": 40,
-            "time": 1.6842105263157894
+            "time": 1.5310344827586206
           },
           {
             "frame": 44,
-            "time": 1.8526315789473682
+            "time": 1.6965517241379309
           },
           {
             "frame": 48,
-            "time": 2.021052631578947
+            "time": 1.8206896551724137
           },
           {
             "frame": 52,
-            "time": 2.189473684210526
+            "time": 1.9448275862068964
           },
           {
             "frame": 56,
-            "time": 2.357894736842105
+            "time": 2.0689655172413794
+          },
+          {
+            "frame": 60,
+            "time": 2.2344827586206897
+          },
+          {
+            "frame": 64,
+            "time": 2.4
           }
         ],
-        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
       },
       "history": [
         {
@@ -392,11 +452,16 @@
           "flippedTriangles": 0,
           "offCanvasSamples": 0,
           "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 1008,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
           "loopMatrixError": 0,
           "jointGapSamples": 0,
           "edgePixels": 0,
-          "maxJointStepPx": 4.935931877719759,
-          "maxJointVelocityPxPerSecond": 116.81705443936762,
+          "maxJointStepPx": 4.869503656970079,
+          "maxJointVelocityPxPerSecond": 116.86808776728232,
+          "maxAllowedVelocityPxPerSecond": 432,
           "limitOverrunDeg": 0
         },
         "penalties": {
@@ -417,50 +482,58 @@
           },
           {
             "frame": 6,
-            "time": 0.2535211267605634
+            "time": 0.25
           },
           {
             "frame": 12,
-            "time": 0.5070422535211268
+            "time": 0.4583333333333333
           },
           {
             "frame": 18,
-            "time": 0.7605633802816901
+            "time": 0.6666666666666666
           },
           {
             "frame": 24,
-            "time": 1.0140845070422535
+            "time": 0.875
           },
           {
             "frame": 30,
-            "time": 1.267605633802817
+            "time": 1.125
           },
           {
             "frame": 36,
-            "time": 1.5211267605633803
+            "time": 1.3333333333333333
           },
           {
             "frame": 42,
-            "time": 1.7746478873239435
+            "time": 1.5416666666666667
           },
           {
             "frame": 48,
-            "time": 2.028169014084507
+            "time": 1.7916666666666667
           },
           {
             "frame": 54,
-            "time": 2.2816901408450705
+            "time": 2
           },
           {
             "frame": 60,
-            "time": 2.535211267605634
+            "time": 2.2083333333333335
           },
           {
             "frame": 66,
-            "time": 2.788732394366197
+            "time": 2.4000000000000004
+          },
+          {
+            "frame": 72,
+            "time": 2.58
+          },
+          {
+            "frame": 78,
+            "time": 2.7916666666666665
           }
         ],
-        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
       }
     }
   ],
@@ -659,23 +732,23 @@
           {
             "id": "drawstring_left",
             "matrix": [
-              0.9999999975190654,
-              0.00007044053550338302,
-              -0.00007044053550338302,
-              0.9999999975190654,
-              235.64926369888278,
-              256.2268598031891
+              0.9999999962296329,
+              0.00008683740134617462,
+              -0.00008683740134617462,
+              0.9999999962296329,
+              235.64929649822463,
+              256.22678846501833
             ]
           },
           {
             "id": "drawstring_right",
             "matrix": [
-              0.9999999953094831,
-              0.00009685573624581484,
-              -0.00009685573624581484,
-              0.9999999953094831,
-              267.3686147845119,
-              256.2267448783138
+              0.9999999928716496,
+              0.00011940142671734094,
+              -0.00011940142671734094,
+              0.9999999928716496,
+              267.3686598864996,
+              256.226646789659
             ]
           },
           {
@@ -1027,23 +1100,23 @@
           {
             "id": "drawstring_left",
             "matrix": [
-              0.9999999975190654,
-              0.00007044053550338302,
-              -0.00007044053550338302,
-              0.9999999975190654,
-              235.64926369888278,
-              256.2268598031891
+              0.9999999962296329,
+              0.00008683740134617462,
+              -0.00008683740134617462,
+              0.9999999962296329,
+              235.64929649822463,
+              256.22678846501833
             ]
           },
           {
             "id": "drawstring_right",
             "matrix": [
-              0.9999999953094831,
-              0.00009685573624581484,
-              -0.00009685573624581484,
-              0.9999999953094831,
-              267.3686147845119,
-              256.2267448783138
+              0.9999999928716496,
+              0.00011940142671734094,
+              -0.00011940142671734094,
+              0.9999999928716496,
+              267.3686598864996,
+              256.226646789659
             ]
           },
           {
@@ -1395,23 +1468,23 @@
           {
             "id": "drawstring_left",
             "matrix": [
-              0.9999999975190654,
-              0.00007044053550338302,
-              -0.00007044053550338302,
-              0.9999999975190654,
-              235.64926369888278,
-              256.2268598031891
+              0.9999999962296329,
+              0.00008683740134617462,
+              -0.00008683740134617462,
+              0.9999999962296329,
+              235.64929649822463,
+              256.22678846501833
             ]
           },
           {
             "id": "drawstring_right",
             "matrix": [
-              0.9999999953094831,
-              0.00009685573624581484,
-              -0.00009685573624581484,
-              0.9999999953094831,
-              267.3686147845119,
-              256.2267448783138
+              0.9999999928716496,
+              0.00011940142671734094,
+              -0.00011940142671734094,
+              0.9999999928716496,
+              267.3686598864996,
+              256.226646789659
             ]
           },
           {

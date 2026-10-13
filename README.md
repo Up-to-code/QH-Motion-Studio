@@ -52,3 +52,11 @@ Generated Fox artwork was produced with the built-in image tool from the accepte
 Analysis export includes a self-contained ZIP with row-major visible IDs (uint16), ordinal draw order and signed chamfer distance (float32), per-layer RGBA PNGs, joints, transforms and provenance. The React export menu, CLI and MCP support `analysis` alongside media formats. Project saves retain revision snapshots; `list_revisions` exposes them to an agent.
 
 Optional source-asset reconstruction: install `scripts/requirements-assets.txt`, then run `python scripts/rebuild_assets.py`. This reconstructs the authored Fox masks from the retained generated sheets; it does not perform new image generation. Mobile atlas export: `node scripts/export_mobile.mjs /absolute/destination-app` writes only that app's `assets/animations/fox` folder.
+
+## Skeleton-first inspection
+
+The main navbar owns library, camera, comparison and view controls. Fit/focus/pan/zoom affect only the camera; selection follows rendered alpha. The inspector saves character context and regional reports locally.
+
+`get_skeleton` reads a persistent draft/confirmed graph of authored joint anchors and contact dots. `inspect_regions` saves numerical checks and halo crops. Named specialists claim regions with `claim_inspection_region`, submit evidence with `submit_region_review`, and resume with `resume_inspection`. `repair_inspection` and `test_motion_patch` preserve prior candidates and reject measured regressions. Arbitrary rigs can use `create_custom_motion`; Fox presets are not silently applied to unrelated anatomy.
+
+See [skeleton mathematics and regional workflow](docs/skeleton-and-regional-workflow.md). Technical checks do not automatically certify anatomical labels, artwork or acting.

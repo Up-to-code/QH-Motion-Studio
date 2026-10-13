@@ -62,12 +62,13 @@ export function project(id = "fox") {
   const filename = path.join(PUBLIC, "animations", id, "rig.json");
   if (!fs.existsSync(filename)) throw Error("Character not found");
   const rig = JSON.parse(fs.readFileSync(filename));
-  const clips = ["hello", "thinking", "success", "idle"].flatMap((name) =>
+  const actions=rig.id === "fox" ? ["hello","thinking","success","idle"] : ["nia","orbit"].includes(rig.id) && rig.mode === "poses" ? ["idle","thinking","success"] : ["idle",...Object.keys(rig.motionTemplates || {}).filter(n=>n!=="idle")];
+  const clips = actions.flatMap((name) =>
     name === "hello"
       ? [makeMotion(rig, name, 24, "a"), makeMotion(rig, name, 24, "b")]
       : [makeMotion(rig, name)],
   );
-  return put("project", id, { rig, clips, selected: "hello-a", revision: 0 });
+  return put("project", id, { rig, clips, selected: clips[0].id, revision: 0 });
 }
 export function saveProject(id, body, expected) {
   safeId(id);
@@ -101,3 +102,27 @@ export function saveProject(id, body, expected) {
   }
 }
 export const storage = jsonMode ? "JSON files" : "SQLite";
+
+// Synchronous record mutation, serialized across local MCP/server processes.
+let recordTransactionDepth = 0;
+const heldJsonLocks = new Set();
+export function withRecordLock(kind,id,fn) {
+ safeId(kind);safeId(id);
+ if(db && recordTransactionDepth) return fn();
+ const lockPath=path.join(LOCAL,`${kind}-${id}.lock`);
+ if(!db&&heldJsonLocks.has(lockPath))return fn();
+ let lock=null,started=false;
+ try {
+  if(db){db.exec('BEGIN IMMEDIATE');recordTransactionDepth++;started=true;}
+  else {lock=fs.openSync(lockPath,'wx');heldJsonLocks.add(lockPath);}
+  const result=fn();if(result?.then)throw Error('Record lock callback must be synchronous');
+  if(db)db.exec('COMMIT');return result;
+ } catch(e) {
+  if(db&&started)db.exec('ROLLBACK');
+  if(e.code==='EEXIST'){e.status=409;e.message='Record is being edited elsewhere; reload and retry';}
+  throw e;
+ } finally {
+  if(db&&started)recordTransactionDepth--;
+  if(lock!==null){fs.closeSync(lock);fs.unlinkSync(lockPath);heldJsonLocks.delete(lockPath);}
+ }
+}

@@ -17,11 +17,17 @@ Preserve the accepted reference and its source hash. Use the agent's available i
 
 Follow [the rig mathematics](references/mathematics.md) for root units, hierarchy, pivots, bind transforms, mesh weights and time. Every part has an ID, parent, attachment offset, local image pivot, size, draw order, and declared limits. Import PNGs through the MCP, register assets in the rig, then save the validated project at its last-read revision. Do not label a full-body pose image as an independently rigged body.
 
+## Skeleton first and resumable inspection
+
+Before changing cuts or authoring a new action, read `get_skeleton` and `get_character_context`. Store the identity, intended acting, plan and known failures. Confirm explicit shoulder/elbow/wrist and foot-contact anchors; draft control nodes derived from rig pivots are not automatically anatomical joints. Do not derive a joint from the silhouette centre.
+
+Use `inspect_regions` to save local findings, then `get_inspection_region` for original-pixel crops with overlapping halos. Use `claim_inspection_region` and `submit_region_review` to assign named specialist reviews to those regions without converting the artwork to pixel art. Use `repair_inspection` for a bounded declared-constraint repair batch. Test proposed numeric candidates with `test_motion_patch`; retain the previous candidate and reject measured regressions. Record visual evidence with `record_inspector_review`, and resume with `resume_inspection`. Reinspect after project edits. Technical checks do not certify identity, anatomy or acting. See [skeleton and regional workflow](references/skeleton-workflow.md) for coordinates, memory and contracts.
+
 ## Analyze and animate
 
 The studio's part IDs and draw order are authored from the rig. Boundary distance is computed from alpha. Grayscale is a display transform. None is inferred physical depth or automatic semantic segmentation. Record provenance before adding a model-backed adapter. Research and optional adapters are described in [analysis and validation](references/analysis.md).
 
-Read the project with `get_project`, then edit its part properties or time-addressable tracks using `save_project`. For supported local actions use `generate_motion` (hello/hi, thinking, success, idle) to produce two saved candidates. Other actions require supplied custom tracks or new assets, not a misleading generic action result. Compare motion and identity at both original resolution and delivery size.
+Read the project with `get_project`, then edit its part properties or time-addressable tracks using `save_project`. For supported local actions use `generate_motion` (hello/hi, thinking, success, idle) to produce two saved candidates. For arbitrary characters use `create_custom_motion` with supplied custom tracks. Other actions require supplied custom tracks or new assets, not a misleading generic action result. Compare motion and identity at both original resolution and delivery size.
 
 `fps` can be 24, 30 or 60; sampling does not change duration. Expression switches are explicit replacement/visibility keys. Keep contacts stable, use authored pauses and arcs, and constrain deformation locally. The same `stateAt(rig, clip, time)` drives preview and export. Use a fixed root and body-owned anchors; moving hands or tails must not redefine scale or recenter the character.
 

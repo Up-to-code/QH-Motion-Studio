@@ -1,5 +1,5 @@
 import { secondaryAngle } from "./secondary.mjs";
-import { drawMesh, deformPoint } from "./mesh.mjs";
+import { drawMesh, deformPoint, deformationJacobian } from "./mesh.mjs";
 // Renderer-independent numeric rig engine. Screen coordinates: +x right, +y down.
 export const identity = () => [1, 0, 0, 1, 0, 0];
 export function mul(a, b) {
@@ -14,6 +14,14 @@ export function mul(a, b) {
 }
 export function point(m, p) {
   return [m[0] * p[0] + m[2] * p[1] + m[4], m[1] * p[0] + m[3] * p[1] + m[5]];
+}
+export function inverse(m) {
+  if (!Array.isArray(m) || m.length !== 6 || m.some((v) => !Number.isFinite(v)))
+    throw Error("Finite affine matrix required");
+  const det = m[0] * m[3] - m[1] * m[2];
+  if (Math.abs(det) < 1e-12) throw Error("Singular affine matrix");
+  return [m[3] / det, -m[1] / det, -m[2] / det, m[0] / det,
+    (m[2] * m[5] - m[3] * m[4]) / det, (m[1] * m[4] - m[0] * m[5]) / det];
 }
 export const translate = (x, y) => [1, 0, 0, 1, x, y];
 export const rotate = (d) => {
@@ -42,21 +50,26 @@ export function sample(keys, t, discrete = false) {
   return keys.at(-1).value;
 }
 export function stateAt(rig, clip, time) {
+  if (!Number.isFinite(time)) throw Error("Finite sample time required");
+  const active = new Set(), byId = new Map(rig.parts.map((p) => [p.id, p]));
   const t = Math.max(0, Math.min(clip.duration, time)),
     frames = {},
     draw = [];
   const visit = (p) => {
+    if (!p) throw Error("Missing rig parent");
     if (frames[p.id]) return frames[p.id];
+    if (active.has(p.id)) throw Error(`Hierarchy cycle at ${p.id}`);
+    active.add(p.id);
     const parent = p.parent
-      ? visit(rig.parts.find((x) => x.id === p.parent))
+      ? visit(byId.get(p.parent))
       : translate(...rig.origin);
     const props = {
-      rotation: p.rotation || 0,
+      rotation: p.rotation ?? 0,
       x: p.position[0],
       y: p.position[1],
-      scaleX: 1,
-      scaleY: 1,
-      opacity: 1,
+      scaleX: p.scaleX ?? 1,
+      scaleY: p.scaleY ?? 1,
+      opacity: p.opacity ?? 1,
       asset: p.asset,
       bend: 0,
       visible: p.visible !== false,
@@ -69,26 +82,29 @@ export function stateAt(rig, clip, time) {
       );
       if (value !== undefined) props[track.property] = value;
     }
+    let surfaceFrame = identity();
     if (p.surfaceAttachment && p.parent) {
       const parentPart = rig.parts.find((x) => x.id === p.parent),
         parentState = draw.find((x) => x.id === p.parent);
       if (parentPart?.mesh && parentState) {
         const bind = [
-            p.position[0] + parentPart.pivot[0],
-            p.position[1] + parentPart.pivot[1],
+            props.x + parentPart.pivot[0],
+            props.y + parentPart.pivot[1],
           ],
           moved = deformPoint(parentPart, bind, parentState.bend);
         props.x += moved[0] - bind[0];
         props.y += moved[1] - bind[1];
+        surfaceFrame = deformationJacobian(parentPart, bind, parentState.bend);
       }
     }
     if (p.secondary)
       props.rotation += secondaryAngle(p.secondary, clip, t, sample);
     const frame = mul(
-      mul(mul(parent, translate(props.x, props.y)), rotate(props.rotation)),
+      mul(mul(mul(parent, translate(props.x, props.y)), surfaceFrame), rotate(props.rotation)),
       scale(props.scaleX, props.scaleY),
     );
     frames[p.id] = frame;
+    active.delete(p.id);
     draw.push({
       ...p,
       ...props,
@@ -171,6 +187,13 @@ export function drawRig(ctx, rig, clip, time, images, options = {}) {
           p.joint[1],
         );
     }
+    const states=stateAt(rig,clip,time);
+    for(const contact of clip.contacts || rig.contacts || []) {
+      const part=states.find(p=>p.id===contact.part);if(!part)continue;
+      const dot=point(part.matrix,contact.point);
+      ctx.strokeStyle="#16a34a";ctx.lineWidth=1;ctx.beginPath();ctx.arc(...dot,4,0,Math.PI*2);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(dot[0]-6,dot[1]);ctx.lineTo(dot[0]+6,dot[1]);ctx.moveTo(dot[0],dot[1]-6);ctx.lineTo(dot[0],dot[1]+6);ctx.stroke();
+    }
     ctx.restore();
   }
 }
@@ -226,6 +249,16 @@ export function validateRig(rig) {
         Math.abs(p.secondary.gain) > 1)
     )
       errors.push(`${p.id}: invalid secondary response`);
+    for (const field of ["rotation", "scaleX", "scaleY", "opacity"])
+      if (p[field] !== undefined && !Number.isFinite(p[field])) errors.push(`${p.id}: invalid ${field}`);
+    for (const field of ["scaleX", "scaleY"])
+      if (p[field] !== undefined && (p[field] < 0.2 || p[field] > 3)) errors.push(`${p.id}: invalid ${field} range`);
+    if (p.opacity !== undefined && (p.opacity < 0 || p.opacity > 1)) errors.push(`${p.id}: invalid opacity range`);
+    if (p.mesh && (!["x", "y"].includes(p.mesh.axis ?? "y") ||
+      [p.mesh.columns ?? 4, p.mesh.rows ?? 6].some((n) => !Number.isInteger(n) || n < 1 || n > 64)))
+      errors.push(`${p.id}: invalid mesh`);
+    if (p.secondary && (!rig.parts.some((x) => x.id === p.secondary.driver) ||
+      !["rotation", "x", "y", "bend"].includes(p.secondary.property))) errors.push(`${p.id}: invalid secondary driver`);
     if (!Number.isFinite(p.z)) errors.push(`${p.id}: invalid draw order`);
     if (
       typeof p.asset !== "string" ||
@@ -267,7 +300,11 @@ export function validateClip(rig, c) {
     errors.push("Clip id/name required");
   if (!Array.isArray(c.tracks) || c.tracks.length > 512)
     return [...errors, "Tracks required"];
+  const trackIds = new Set();
   for (const t of c.tracks) {
+    const trackId = `${t.part}:${t.property}`;
+    if (trackIds.has(trackId)) errors.push(`Duplicate track ${trackId}`);
+    trackIds.add(trackId);
     if (!rig.parts.some((p) => p.id === t.part))
       errors.push(`Unknown part ${t.part}`);
     if (
@@ -290,6 +327,7 @@ export function validateClip(rig, c) {
     }
     let last = -1;
     for (const k of t.keys) {
+      if (k.ease !== undefined && !["linear", "smooth"].includes(k.ease)) errors.push("Unsupported easing");
       if (
         !Number.isFinite(k.time) ||
         k.time < 0 ||

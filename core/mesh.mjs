@@ -1,43 +1,51 @@
+// Vertices and attachments share the same piecewise-linear displacement field.
+// A renderer triangle cannot reproduce the continuous easing curve between rows.
+function meshShape(part) {
+  const columns = part.mesh?.columns ?? 4, rows = part.mesh?.rows ?? 6;
+  if (!Number.isInteger(columns) || columns < 1 || columns > 64 ||
+      !Number.isInteger(rows) || rows < 1 || rows > 64)
+    throw Error("Mesh subdivisions must be integers from 1 to 64");
+  return { columns, rows };
+}
+function weightAt(part, coordinate) {
+  const axis = part.mesh?.axis ?? "y";
+  const pivot = part.pivot[axis === "y" ? 1 : 0];
+  const length = axis === "y" ? part.size[1] - pivot : pivot;
+  if (length <= 0) return 0;
+  const d = Math.max(0, Math.min(1, (axis === "y" ? coordinate - pivot : pivot - coordinate) / length));
+  return d * d * (3 - 2 * d);
+}
+export function deformationJacobian(part, p, bend = 0) {
+  const axis = part.mesh?.axis ?? "y", { columns, rows } = meshShape(part);
+  const length = part.size[axis === "y" ? 1 : 0];
+  const count = axis === "y" ? rows : columns;
+  const coordinate = p[axis === "y" ? 1 : 0];
+  if (coordinate < 0 || coordinate > length) return [1, 0, 0, 1, 0, 0];
+  const step = length / count, cell = Math.min(count - 1, Math.floor(coordinate / step));
+  const slope = bend * (weightAt(part, (cell + 1) * step) - weightAt(part, cell * step)) / step;
+  return axis === "y" ? [1, 0, slope, 1, 0, 0] : [1, slope, 0, 1, 0, 0];
+}
 export function deformPoint(part, p, bend = 0) {
-  const axis = part.mesh?.axis || "y";
-  const d =
-    axis === "y"
-      ? Math.max(
-          0,
-          (p[1] - part.pivot[1]) / Math.max(1, part.size[1] - part.pivot[1]),
-        )
-      : Math.max(0, (part.pivot[0] - p[0]) / Math.max(1, part.pivot[0]));
-  const w = d * d * (3 - 2 * d);
-  return axis === "y" ? [p[0] + bend * w, p[1]] : [p[0], p[1] + bend * w];
+  const axis = part.mesh?.axis ?? "y", { columns, rows } = meshShape(part);
+  const length = part.size[axis === "y" ? 1 : 0], count = axis === "y" ? rows : columns;
+  const coordinate = Math.max(0, Math.min(length, p[axis === "y" ? 1 : 0]));
+  const step = length / count, cell = Math.min(count - 1, Math.floor(coordinate / step));
+  const u = (coordinate - cell * step) / step;
+  const weight = weightAt(part, cell * step) * (1 - u) + weightAt(part, (cell + 1) * step) * u;
+  return axis === "y" ? [p[0] + bend * weight, p[1]] : [p[0], p[1] + bend * weight];
 }
 // Small texture mesh; deformation is in local asset pixels, independent of viewport.
 export function vertices(part, bend = 0) {
-  const columns = part.mesh?.columns || 4,
-    rows = part.mesh?.rows || 6;
-  const [w, h] = part.size,
-    verts = [];
+  const { columns, rows } = meshShape(part), [w, h] = part.size, verts = [];
   for (let y = 0; y <= rows; y++)
     for (let x = 0; x <= columns; x++) {
-      const px = (x * w) / columns,
-        py = (y * h) / rows;
-      const axis = part.mesh?.axis || "y";
-      const distance =
-        axis === "y"
-          ? Math.max(0, (py - part.pivot[1]) / Math.max(1, h - part.pivot[1]))
-          : Math.max(0, (part.pivot[0] - px) / Math.max(1, part.pivot[0]));
-      const weight = distance * distance * (3 - 2 * distance);
-      verts.push({
-        source: [px, py],
-        target:
-          axis === "y" ? [px + bend * weight, py] : [px, py + bend * weight],
-        weight,
-      });
+      const source = [(x * w) / columns, (y * h) / rows];
+      verts.push({ source, target: deformPoint(part, source, bend), weight: weightAt(part, source[(part.mesh?.axis ?? "y") === "y" ? 1 : 0]) });
     }
   return verts;
 }
 export function triangles(part) {
-  const c = part.mesh?.columns || 4,
-    r = part.mesh?.rows || 6,
+  const { columns: c, rows: r } = meshShape(part),
     out = [];
   for (let y = 0; y < r; y++)
     for (let x = 0; x < c; x++) {
@@ -125,6 +133,9 @@ export function drawMesh(ctx, img, part, bend, createSurface) {
         ];
       });
     paint.save();
+    // Replace shared triangle pixels on the isolated layer surface. Source-over
+    // counts translucent texture pixels twice along expanded seam guards.
+    if (surface) paint.globalCompositeOperation = "copy";
     paint.beginPath();
     paint.moveTo(...clip[0]);
     paint.lineTo(...clip[1]);

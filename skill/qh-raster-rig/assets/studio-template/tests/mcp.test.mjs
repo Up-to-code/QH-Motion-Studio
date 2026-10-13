@@ -68,3 +68,22 @@ test("MCP host can inspect, prepare images, generate two candidates and export",
     await fs.rm(temp, { recursive: true, force: true });
   }
 });
+test('MCP exposes skeleton-first memory and resumable specialist region workflow',async()=>{
+ const temp=await fs.mkdtemp(path.join(os.tmpdir(),'qh-mcp-workflow-'));
+ const transport=new StdioClientTransport({command:process.execPath,args:[path.resolve('server/mcp.mjs')],env:{...process.env,QH_DATA_DIR:temp,QH_STORAGE:'json'},stderr:'pipe'});
+ const client=new Client({name:'qh-workflow-test',version:'1.0.0'});
+ const call=async(name,args)=>{const r=await client.callTool({name,arguments:args});assert(!r.isError,JSON.stringify(r));return JSON.parse(r.content[0].text);};
+ try{
+  await client.connect(transport);
+  const s=await call('get_skeleton',{character:'fox'});assert.equal(s.skeleton.nodes.length,35);
+  const c=await call('get_character_context',{character:'fox'});
+  await call('save_character_context',{character:'fox',revision:c.revision,context:{plan:'Skeleton and local sleeve review first'}});
+  const p=await call('get_project',{character:'fox'});
+  const w=await call('inspect_regions',{character:'fox',clip:p.clips[0].id,settings:{samples:2,tileSize:64,halo:4}});
+  const a=await call('claim_inspection_region',{workflow:w.id,agent:'reviewer-a',role:'ownership-review'});
+  const b=await call('claim_inspection_region',{workflow:w.id,agent:'reviewer-b',role:'ownership-review'});assert.notEqual(a.tile,b.tile);
+  const region=await call('get_inspection_region',{workflow:w.id,tile:a.tile});assert(region.image.startsWith('data:image/png;base64,'));
+  await call('submit_region_review',{workflow:w.id,task:a.id,agent:'reviewer-a',report:{passed:true,note:'Local ownership region reviewed'}});
+  const resumed=await call('resume_inspection',{workflow:w.id});assert.equal(resumed.assignments[0].status,'reviewed');
+ }finally{await client.close();}
+});

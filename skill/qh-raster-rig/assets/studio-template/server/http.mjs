@@ -13,6 +13,8 @@ import {
   quality,
   exportClip,
 } from "./service.mjs";
+import {readSkeleton,saveSkeleton,checkSkeleton} from "./skeleton.mjs";
+import {readContext,saveContext,beginWorkflow,readWorkflow,regionalPacket,evaluatePatch,recordReview,repairWorkflow,readCandidate} from "./workflow.mjs";
 const origins = new Set([
   "http://127.0.0.1:8090",
   "http://localhost:8090",
@@ -66,6 +68,31 @@ export const server = http.createServer(async (req, res) => {
       }
       if (parts[1] === "characters" && req.method === "POST")
         return json(res, await saveNewCharacter(await body(req)));
+      if(parts[1] === "candidate" && req.method === "GET")return json(res,readCandidate(parts[2]));
+      if(parts[1] === "context") {
+        const id=safeId(parts[2]);
+        if(req.method === "GET")return json(res,readContext(id));
+        if(req.method === "PUT"){const b=await body(req);return json(res,saveContext(id,b.context,b.revision));}
+        return json(res,{error:"GET or PUT required"},405);
+      }
+      if(parts[1] === "workflow") {
+        if(req.method === "POST"){
+          const b=await body(req);
+          if(parts[3]==="repair")return json(res,await repairWorkflow(parts[2],b.attempts));
+          if(parts[3]==="patch")return json(res,await evaluatePatch(parts[2],b.candidate,b.options));
+          if(parts[3]==="review")return json(res,recordReview(parts[2],b));
+          return json(res,await beginWorkflow(b.character,b.clip,b.settings));
+        }
+        if(req.method === "GET")return json(res,parts[3]?await regionalPacket(parts[2],parts[3],url.searchParams.has("time")?Number(url.searchParams.get("time")):undefined):readWorkflow(parts[2]));
+        return json(res,{error:"GET or POST required"},405);
+      }
+      if (parts[1] === "skeleton") {
+        const id=safeId(parts[2]);
+        if(req.method === "GET") return json(res,readSkeleton(id));
+        if(req.method === "PUT") {const b=await body(req);return json(res,saveSkeleton(id,b.skeleton,b.revision));}
+        if(req.method === "POST") {const b=await body(req);return json(res,checkSkeleton(id,b.clip));}
+        return json(res,{error:"GET, PUT or POST required"},405);
+      }
       if (parts[1] === "jobs") return json(res, list("job"));
       if (parts[1] === "project") {
         const id = safeId(parts[2]);

@@ -1,4 +1,10 @@
 export function makeMotion(rig, name = "hello", fps = 24, candidate = "a") {
+  if (rig.id !== "fox" && !["nia","orbit"].includes(rig.id)) {
+    const template=rig.motionTemplates?.[name];
+    if(template) return {...structuredClone(template),id:`${name}-${candidate}`,name:template.name || name,fps,candidate};
+    if(name !== "idle") throw Error("This character needs an authored motion template or custom tracks for this action");
+    return {id:`idle-${candidate}`,name:"Rest pose",duration:2.4,fps,candidate,tracks:[]};
+  }
   const duration = name === "hello" ? 3 : name === "success" ? 3.7 : 2.4;
   const tracks = [];
   const add = (part, property, values) => {
@@ -13,7 +19,9 @@ export function makeMotion(rig, name = "hello", fps = 24, candidate = "a") {
         })),
       });
   };
-  if (rig.mode === "poses")
+  if (rig.mode === "poses") {
+    if(name === "hello")throw Error("This pose library has no hello action; supply authored frames or custom tracks");
+    if(rig.parts.length!==1 && !rig.posePart)throw Error("Declare the part controlled by this pose library");
     return {
       id: `${name}-${candidate}`,
       name: name[0].toUpperCase() + name.slice(1),
@@ -22,7 +30,7 @@ export function makeMotion(rig, name = "hello", fps = 24, candidate = "a") {
       candidate,
       tracks: [
         {
-          part: "body",
+          part: rig.posePart ?? rig.parts[0].id,
           property: "asset",
           keys: [
             { time: 0, value: rig.assets[0] },
@@ -38,6 +46,7 @@ export function makeMotion(rig, name = "hello", fps = 24, candidate = "a") {
         },
       ],
     };
+  }
   const strength = candidate === "b" ? 1.12 : 1;
   if (name === "hello") {
     add("upper_arm_right", "rotation", [

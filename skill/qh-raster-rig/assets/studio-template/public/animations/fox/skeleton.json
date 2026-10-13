@@ -1,0 +1,659 @@
+{
+  "version": 1,
+  "character": "fox",
+  "coordinateSystem": "canvas-x-right-y-down",
+  "origin": [
+    256,
+    256
+  ],
+  "canvas": [
+    512,
+    512
+  ],
+  "provenance": "authored-rig-pivots",
+  "status": "draft",
+  "nodes": [
+    {
+      "id": "tail",
+      "part": "tail",
+      "parent": null,
+      "kind": "control",
+      "rest": [
+        213,
+        343
+      ],
+      "pivot": [
+        104,
+        65
+      ],
+      "restLength": 97.04638066409278,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "leg_left",
+      "part": "leg_left",
+      "parent": "pelvis",
+      "kind": "control",
+      "rest": [
+        233,
+        350
+      ],
+      "pivot": [
+        20,
+        13
+      ],
+      "restLength": 23.769728648009423,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "leg_right",
+      "part": "leg_right",
+      "parent": "pelvis",
+      "kind": "control",
+      "rest": [
+        280,
+        350
+      ],
+      "pivot": [
+        19,
+        13
+      ],
+      "restLength": 24.73863375370596,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "pelvis",
+      "part": "pelvis",
+      "parent": null,
+      "kind": "control",
+      "rest": [
+        256,
+        344
+      ],
+      "pivot": [
+        46.5,
+        25.5
+      ],
+      "restLength": 88,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "shoe_left",
+      "part": "shoe_left",
+      "parent": "leg_left",
+      "kind": "control",
+      "rest": [
+        225,
+        421
+      ],
+      "pivot": [
+        32,
+        18
+      ],
+      "restLength": 71.449282711585,
+      "lengthPolicy": "parent-transform",
+      "contacts": [
+        {
+          "part": "shoe_left",
+          "point": [
+            32,
+            35
+          ],
+          "rest": [
+            225,
+            438
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shoe_right",
+      "part": "shoe_right",
+      "parent": "leg_right",
+      "kind": "control",
+      "rest": [
+        286,
+        421
+      ],
+      "pivot": [
+        32,
+        18
+      ],
+      "restLength": 71.25307010929423,
+      "lengthPolicy": "parent-transform",
+      "contacts": [
+        {
+          "part": "shoe_right",
+          "point": [
+            32,
+            35
+          ],
+          "rest": [
+            286,
+            438
+          ]
+        }
+      ]
+    },
+    {
+      "id": "upper_arm_left",
+      "part": "upper_arm_left",
+      "parent": "hoodie",
+      "kind": "control",
+      "rest": [
+        210,
+        258
+      ],
+      "pivot": [
+        22.5,
+        14
+      ],
+      "restLength": 50.99019513592785,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "upper_arm_right",
+      "part": "upper_arm_right",
+      "parent": "hoodie",
+      "kind": "control",
+      "rest": [
+        302,
+        258
+      ],
+      "pivot": [
+        22.5,
+        14
+      ],
+      "restLength": 50.99019513592785,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "forearm_left",
+      "part": "forearm_left",
+      "parent": "upper_arm_left",
+      "kind": "control",
+      "rest": [
+        210,
+        300
+      ],
+      "pivot": [
+        19,
+        12
+      ],
+      "restLength": 42,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "forearm_right",
+      "part": "forearm_right",
+      "parent": "upper_arm_right",
+      "kind": "control",
+      "rest": [
+        302,
+        300
+      ],
+      "pivot": [
+        19,
+        12
+      ],
+      "restLength": 42,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "hand_left",
+      "part": "hand_left",
+      "parent": "forearm_left",
+      "kind": "control",
+      "rest": [
+        210,
+        337
+      ],
+      "pivot": [
+        17.5,
+        9
+      ],
+      "restLength": 37,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "hand_right",
+      "part": "hand_right",
+      "parent": "forearm_right",
+      "kind": "control",
+      "rest": [
+        302,
+        337
+      ],
+      "pivot": [
+        17.5,
+        9
+      ],
+      "restLength": 37,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "cuff_left",
+      "part": "cuff_left",
+      "parent": "forearm_left",
+      "kind": "control",
+      "rest": [
+        211.66666666666666,
+        334.31304347826085
+      ],
+      "pivot": [
+        13,
+        1
+      ],
+      "restLength": 34.35349662725466,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "cuff_right",
+      "part": "cuff_right",
+      "parent": "forearm_right",
+      "kind": "control",
+      "rest": [
+        303.6666666666667,
+        334.31304347826085
+      ],
+      "pivot": [
+        13,
+        1
+      ],
+      "restLength": 34.353496627254664,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "hoodie",
+      "part": "hoodie",
+      "parent": null,
+      "kind": "control",
+      "rest": [
+        256,
+        280
+      ],
+      "pivot": [
+        72,
+        53
+      ],
+      "restLength": 24,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "hem",
+      "part": "hem",
+      "parent": "hoodie",
+      "kind": "control",
+      "rest": [
+        255.859649122807,
+        332.70023419203744
+      ],
+      "pivot": [
+        51.36842105263156,
+        2
+      ],
+      "restLength": 52.70042108241945,
+      "lengthPolicy": "surface",
+      "contacts": []
+    },
+    {
+      "id": "pocket",
+      "part": "pocket",
+      "parent": "hoodie",
+      "kind": "control",
+      "rest": [
+        256.42105263157896,
+        298.69555035128803
+      ],
+      "pivot": [
+        35.92982456140351,
+        2
+      ],
+      "restLength": 18.700291127576218,
+      "lengthPolicy": "surface",
+      "contacts": []
+    },
+    {
+      "id": "drawstring_left",
+      "part": "drawstring_left",
+      "parent": "hoodie",
+      "kind": "control",
+      "rest": [
+        240,
+        258.2271662763466
+      ],
+      "pivot": [
+        4.350877192982466,
+        2
+      ],
+      "restLength": 27.01955381492925,
+      "lengthPolicy": "surface",
+      "contacts": []
+    },
+    {
+      "id": "drawstring_right",
+      "part": "drawstring_right",
+      "parent": "hoodie",
+      "kind": "control",
+      "rest": [
+        271.719298245614,
+        258.2271662763466
+      ],
+      "pivot": [
+        4.350877192982466,
+        2
+      ],
+      "restLength": 26.854285052714065,
+      "lengthPolicy": "surface",
+      "contacts": []
+    },
+    {
+      "id": "neck",
+      "part": "neck",
+      "parent": "hoodie",
+      "kind": "control",
+      "rest": [
+        256,
+        242
+      ],
+      "pivot": [
+        18,
+        14
+      ],
+      "restLength": 38,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "ear_left",
+      "part": "ear_left",
+      "parent": "head",
+      "kind": "control",
+      "rest": [
+        203,
+        157
+      ],
+      "pivot": [
+        35,
+        92
+      ],
+      "restLength": 93.47726996441435,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "ear_right",
+      "part": "ear_right",
+      "parent": "head",
+      "kind": "control",
+      "rest": [
+        309,
+        153
+      ],
+      "pivot": [
+        35,
+        92
+      ],
+      "restLength": 96.7987603226405,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "head",
+      "part": "head",
+      "parent": "hoodie",
+      "kind": "control",
+      "rest": [
+        256,
+        234
+      ],
+      "pivot": [
+        93.5,
+        130
+      ],
+      "restLength": 46,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "eye_left",
+      "part": "eye_left",
+      "parent": "head",
+      "kind": "control",
+      "rest": [
+        230,
+        180
+      ],
+      "pivot": [
+        14.5,
+        19.5
+      ],
+      "restLength": 59.93329625508679,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "eye_right",
+      "part": "eye_right",
+      "parent": "head",
+      "kind": "control",
+      "rest": [
+        281,
+        180
+      ],
+      "pivot": [
+        14.5,
+        19.5
+      ],
+      "restLength": 59.50630218724736,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "pupil_left",
+      "part": "pupil_left",
+      "parent": "eye_left",
+      "kind": "control",
+      "rest": [
+        232,
+        182
+      ],
+      "pivot": [
+        7,
+        13
+      ],
+      "restLength": 2.8284271247461903,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "pupil_right",
+      "part": "pupil_right",
+      "parent": "eye_right",
+      "kind": "control",
+      "rest": [
+        283,
+        182
+      ],
+      "pivot": [
+        7,
+        13
+      ],
+      "restLength": 2.8284271247461903,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "brow_left",
+      "part": "brow_left",
+      "parent": "head",
+      "kind": "control",
+      "rest": [
+        230,
+        151
+      ],
+      "pivot": [
+        12,
+        5
+      ],
+      "restLength": 86.97700845625815,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "brow_right",
+      "part": "brow_right",
+      "parent": "head",
+      "kind": "control",
+      "rest": [
+        281,
+        151
+      ],
+      "pivot": [
+        12,
+        5
+      ],
+      "restLength": 86.68333173107735,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "nose",
+      "part": "nose",
+      "parent": "head",
+      "kind": "control",
+      "rest": [
+        255,
+        201
+      ],
+      "pivot": [
+        11,
+        6
+      ],
+      "restLength": 33.015148038438355,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "mouth",
+      "part": "mouth",
+      "parent": "head",
+      "kind": "control",
+      "rest": [
+        255,
+        219
+      ],
+      "pivot": [
+        15.5,
+        7
+      ],
+      "restLength": 15.03329637837291,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "lid_left",
+      "part": "lid_left",
+      "parent": "head",
+      "kind": "control",
+      "rest": [
+        230,
+        181
+      ],
+      "pivot": [
+        15,
+        5
+      ],
+      "restLength": 59.03388857258176,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "lid_right",
+      "part": "lid_right",
+      "parent": "head",
+      "kind": "control",
+      "rest": [
+        281,
+        181
+      ],
+      "pivot": [
+        15,
+        5
+      ],
+      "restLength": 58.60034129593444,
+      "lengthPolicy": "parent-transform",
+      "contacts": []
+    },
+    {
+      "id": "contact-shoe_left-33",
+      "part": "shoe_left",
+      "parent": "shoe_left",
+      "kind": "control",
+      "rest": [
+        225,
+        438
+      ],
+      "pivot": [
+        32,
+        18
+      ],
+      "local": [
+        0,
+        17
+      ],
+      "restLength": 17,
+      "lengthPolicy": "parent-transform",
+      "contact": {
+        "part": "shoe_left",
+        "point": [
+          32,
+          35
+        ]
+      }
+    },
+    {
+      "id": "contact-shoe_right-34",
+      "part": "shoe_right",
+      "parent": "shoe_right",
+      "kind": "control",
+      "rest": [
+        286,
+        438
+      ],
+      "pivot": [
+        32,
+        18
+      ],
+      "local": [
+        0,
+        17
+      ],
+      "restLength": 17,
+      "lengthPolicy": "parent-transform",
+      "contact": {
+        "part": "shoe_right",
+        "point": [
+          32,
+          35
+        ]
+      }
+    }
+  ],
+  "notes": [
+    "Confirm anatomical joints and contact intervals before authoring a new action. Control nodes include clothing and facial layers; they are not automatically anatomical bones."
+  ]
+}
