@@ -60,3 +60,7 @@ The main navbar owns library, camera, comparison and view controls. Fit/focus/pa
 `get_skeleton` reads a persistent draft/confirmed graph of authored joint anchors and contact dots. `inspect_regions` saves numerical checks and halo crops. Named specialists claim regions with `claim_inspection_region`, submit evidence with `submit_region_review`, and resume with `resume_inspection`. `repair_inspection` and `test_motion_patch` preserve prior candidates and reject measured regressions. Arbitrary rigs can use `create_custom_motion`; Fox presets are not silently applied to unrelated anatomy.
 
 See [skeleton mathematics and regional workflow](docs/skeleton-and-regional-workflow.md). Technical checks do not automatically certify anatomical labels, artwork or acting.
+
+## Project links
+
+[Source](https://github.com/Up-to-code/QH-Motion-Studio) · [Issues](https://github.com/Up-to-code/QH-Motion-Studio/issues) · [Public project directory](https://github.com/qentrah/.github/blob/main/profile/PROJECTS.md)
