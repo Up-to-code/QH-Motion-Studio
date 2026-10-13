@@ -69,3 +69,7 @@ test('contact dots follow rendered mesh material instead of the undeformed bone 
  const {buildSkeleton,skeletonPose}=await import('../core/skeleton.mjs');const s=buildSkeleton(r),node=skeletonPose(r,c,.05,s).find(n=>n.id.startsWith('contact-'));
  assert.deepEqual(node.position,[72,40]);assert.equal(s.nodes.find(n=>n.id===node.id).lengthPolicy,'surface');
 });
+test('declared source margins reject cropped artwork even inside the canvas',async()=>{
+ const r=make();r.parts=[r.parts[0]];r.parts[0].sourcePolicy={minMarginPx:2};const q=await assess(r,clip());assert.equal(q.metrics.outsideAlphaPixels,0);assert.equal(q.accepted,false);assert.equal(q.sourceFindings[0].part,'alpha');assert.ok(q.metrics.sourceCropRisks>0);
+ r.parts[0].asset=padded;assert.equal((await assess(r,clip())).metrics.sourceCropRisks,0);
+});

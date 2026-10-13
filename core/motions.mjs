@@ -72,9 +72,9 @@ export function makeMotion(rig, name = "hello", fps = 24, candidate = "a") {
       [1, 0],
     ]);
     add("hand_right", "asset", [
-      [0, "/animations/fox/parts/hand_rest.png"],
-      [0.1, "/animations/fox/parts/hand_wave_registered.png"],
-      [0.86, "/animations/fox/parts/hand_rest.png"],
+      [0, rig.parts.find(p=>p.id==="hand_right").asset],
+      [0.1, rig.parts.find(p=>p.id==="hand_right").replacementAssets?.wave ?? "/animations/fox/parts/hand_wave_registered.png"],
+      [0.86, rig.parts.find(p=>p.id==="hand_right").asset],
     ]);
     add("tail", "bend", [
       [0, 0],
@@ -129,9 +129,9 @@ export function makeMotion(rig, name = "hello", fps = 24, candidate = "a") {
       [1, 2],
     ]);
     add("mouth", "asset", [
-      [0, "/animations/fox/parts/mouth_smile.png"],
-      [0.2, "/animations/fox/parts/mouth_concerned.png"],
-      [duration / duration, "/animations/fox/parts/mouth_smile.png"],
+      [0, rig.parts.find(p=>p.id==="mouth").asset],
+      [0.2, (rig.parts.find(p=>p.id==="mouth").replacementAssets?.concerned ?? "/animations/fox/parts/mouth_concerned.png")],
+      [duration / duration, rig.parts.find(p=>p.id==="mouth").asset],
     ]);
   } else if (name === "success") {
     add("upper_arm_right", "rotation", [
@@ -147,9 +147,9 @@ export function makeMotion(rig, name = "hello", fps = 24, candidate = "a") {
       [1, 0],
     ]);
     add("mouth", "asset", [
-      [0, "/animations/fox/parts/mouth_smile.png"],
-      [0.16, "/animations/fox/parts/mouth_happy.png"],
-      [0.9, "/animations/fox/parts/mouth_smile.png"],
+      [0, rig.parts.find(p=>p.id==="mouth").asset],
+      [0.16, (rig.parts.find(p=>p.id==="mouth").replacementAssets?.happy ?? "/animations/fox/parts/mouth_happy.png")],
+      [0.9, rig.parts.find(p=>p.id==="mouth").asset],
     ]);
     add("tail", "rotation", [
       [0, 0],

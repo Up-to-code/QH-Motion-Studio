@@ -1,0 +1,758 @@
+[
+  {
+    "part": "tail",
+    "original": "/animations/fox/parts/tail.png",
+    "replacement": "public/animations/fox/source/regenerated-v2/tail-full.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        33,
+        62,
+        461,
+        383
+      ],
+      "margins": [
+        33,
+        62,
+        66,
+        119
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "leg_left",
+    "original": "/animations/fox/parts/leg_left.png",
+    "replacement": "public/animations/fox/source/regenerated-v2/leg-full.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        156,
+        304
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "leg_right",
+    "original": "/animations/fox/parts/leg_right.png",
+    "replacement": "public/animations/fox/source/regenerated-v2/leg-full.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        156,
+        304
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "pelvis",
+    "original": "/animations/fox/parts/pelvis.png",
+    "replacement": "public/animations/fox/source/regenerated-v2/hips-flat.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        372,
+        160
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        76
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "shoe_left",
+    "original": "/animations/fox/parts/shoe_left.png",
+    "replacement": "public/animations/fox/parts/shoe_left.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        33,
+        33,
+        259,
+        138
+      ],
+      "margins": [
+        33,
+        33,
+        32,
+        33
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "shoe_right",
+    "original": "/animations/fox/parts/shoe_right.png",
+    "replacement": "public/animations/fox/parts/shoe_right.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        33,
+        33,
+        259,
+        139
+      ],
+      "margins": [
+        33,
+        33,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "upper_arm_left",
+    "original": "/animations/fox/parts/upper_arm.png",
+    "replacement": "public/animations/fox/parts/upper_arm.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        33,
+        180,
+        259
+      ],
+      "margins": [
+        32,
+        33,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "upper_arm_right",
+    "original": "/animations/fox/parts/upper_arm.png",
+    "replacement": "public/animations/fox/parts/upper_arm.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        33,
+        180,
+        259
+      ],
+      "margins": [
+        32,
+        33,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "forearm_left",
+    "original": "/animations/fox/parts/forearm.png",
+    "replacement": "public/animations/fox/parts/forearm.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        33,
+        33,
+        151,
+        181
+      ],
+      "margins": [
+        33,
+        33,
+        32,
+        66
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "forearm_right",
+    "original": "/animations/fox/parts/forearm.png",
+    "replacement": "public/animations/fox/parts/forearm.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        33,
+        33,
+        151,
+        181
+      ],
+      "margins": [
+        33,
+        33,
+        32,
+        66
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "hand_left",
+    "original": "/animations/fox/parts/hand_rest.png",
+    "replacement": "public/animations/fox/parts/hand_rest.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        140,
+        176
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "hand_right",
+    "original": "/animations/fox/parts/hand_rest.png",
+    "replacement": "public/animations/fox/parts/hand_rest.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        140,
+        176
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "hand_right",
+    "original": "/animations/fox/parts/hand_wave_registered.png",
+    "replacement": "public/animations/fox/source/regenerated-v2/wrist-full.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        12,
+        140,
+        196
+      ],
+      "margins": [
+        32,
+        12,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "cuff_left",
+    "original": "/animations/fox/parts/cuff_left.png",
+    "replacement": "public/animations/fox/parts/cuff_left.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        33,
+        32,
+        102,
+        35
+      ],
+      "margins": [
+        33,
+        32,
+        33,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "cuff_right",
+    "original": "/animations/fox/parts/cuff_right.png",
+    "replacement": "public/animations/fox/parts/cuff_right.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        33,
+        32,
+        102,
+        35
+      ],
+      "margins": [
+        33,
+        32,
+        33,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "hoodie",
+    "original": "/animations/fox/parts/hoodie.png",
+    "replacement": "public/animations/fox/parts/hoodie.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        91,
+        32,
+        457,
+        479
+      ],
+      "margins": [
+        91,
+        32,
+        92,
+        33
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "hem",
+    "original": "/animations/fox/parts/hem.png",
+    "replacement": "public/animations/fox/parts/hem.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        411,
+        63
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "pocket",
+    "original": "/animations/fox/parts/pocket.png",
+    "replacement": "public/animations/fox/parts/pocket.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        288,
+        113
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "drawstring_left",
+    "original": "/animations/fox/parts/drawstring_left.png",
+    "replacement": "public/animations/fox/parts/drawstring_left.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        35,
+        129
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "drawstring_right",
+    "original": "/animations/fox/parts/drawstring_right.png",
+    "replacement": "public/animations/fox/parts/drawstring_right.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        35,
+        129
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "neck",
+    "original": "/animations/fox/parts/neck.png",
+    "replacement": "public/animations/fox/parts/neck.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        144,
+        159
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        33
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "ear_left",
+    "original": "/animations/fox/parts/ear_left.png",
+    "replacement": "public/animations/fox/parts/ear_left.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        115,
+        32,
+        189,
+        464
+      ],
+      "margins": [
+        115,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "ear_right",
+    "original": "/animations/fox/parts/ear_right.png",
+    "replacement": "public/animations/fox/parts/ear_right.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        272,
+        464
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "head",
+    "original": "/animations/fox/parts/head.png",
+    "replacement": "public/animations/fox/parts/head.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        746,
+        587
+      ],
+      "margins": [
+        32,
+        32,
+        34,
+        33
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "eye_left",
+    "original": "/animations/fox/parts/eye_left.png",
+    "replacement": "public/animations/fox/parts/eye_left.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        116,
+        156
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "eye_right",
+    "original": "/animations/fox/parts/eye_right.png",
+    "replacement": "public/animations/fox/parts/eye_right.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        116,
+        156
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "pupil_left",
+    "original": "/animations/fox/parts/pupil_left.png",
+    "replacement": "public/animations/fox/parts/pupil_left.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        56,
+        104
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "pupil_right",
+    "original": "/animations/fox/parts/pupil_right.png",
+    "replacement": "public/animations/fox/parts/pupil_right.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        56,
+        104
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "brow_left",
+    "original": "/animations/fox/parts/brow_left.png",
+    "replacement": "public/animations/fox/parts/brow_left.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        96,
+        40
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "brow_right",
+    "original": "/animations/fox/parts/brow_right.png",
+    "replacement": "public/animations/fox/parts/brow_right.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        96,
+        40
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "nose",
+    "original": "/animations/fox/parts/nose.png",
+    "replacement": "public/animations/fox/parts/nose.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        88,
+        48
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "mouth",
+    "original": "/animations/fox/parts/mouth_smile.png",
+    "replacement": "public/animations/fox/parts/mouth_smile.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        124,
+        56
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "mouth",
+    "original": "/animations/fox/parts/mouth_concerned.png",
+    "replacement": "public/animations/fox/parts/mouth_concerned.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        124,
+        56
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "mouth",
+    "original": "/animations/fox/parts/mouth_happy.png",
+    "replacement": "public/animations/fox/parts/mouth_happy.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        124,
+        56
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "lid_left",
+    "original": "/animations/fox/parts/lid_left.png",
+    "replacement": "public/animations/fox/parts/lid_left.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        120,
+        40
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  },
+  {
+    "part": "lid_right",
+    "original": "/animations/fox/parts/lid_right.png",
+    "replacement": "public/animations/fox/parts/lid_right.png",
+    "result": {
+      "empty": false,
+      "bounds": [
+        32,
+        32,
+        120,
+        40
+      ],
+      "margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "edgePixels": 0
+    }
+  }
+]

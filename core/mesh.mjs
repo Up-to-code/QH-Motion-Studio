@@ -9,17 +9,17 @@ function meshShape(part) {
 }
 function weightAt(part, coordinate) {
   const axis = part.mesh?.axis ?? "y";
-  const pivot = part.pivot[axis === "y" ? 1 : 0];
-  const length = axis === "y" ? part.size[1] - pivot : pivot;
+  const pivot = (part.mesh?.domain?.pivot ?? part.pivot)[axis === "y" ? 1 : 0];
+  const length = axis === "y" ? (part.mesh?.domain?.size ?? part.size)[1] - pivot : pivot;
   if (length <= 0) return 0;
   const d = Math.max(0, Math.min(1, (axis === "y" ? coordinate - pivot : pivot - coordinate) / length));
   return d * d * (3 - 2 * d);
 }
 export function deformationJacobian(part, p, bend = 0) {
   const axis = part.mesh?.axis ?? "y", { columns, rows } = meshShape(part);
-  const length = part.size[axis === "y" ? 1 : 0];
+  const length = (part.mesh?.domain?.size ?? part.size)[axis === "y" ? 1 : 0];
   const count = axis === "y" ? rows : columns;
-  const coordinate = p[axis === "y" ? 1 : 0];
+  const coordinate = p[axis === "y" ? 1 : 0] - (part.mesh?.domain?.offset?.[axis === "y" ? 1 : 0] ?? 0);
   if (coordinate < 0 || coordinate > length) return [1, 0, 0, 1, 0, 0];
   const step = length / count, cell = Math.min(count - 1, Math.floor(coordinate / step));
   const slope = bend * (weightAt(part, (cell + 1) * step) - weightAt(part, cell * step)) / step;
@@ -27,8 +27,8 @@ export function deformationJacobian(part, p, bend = 0) {
 }
 export function deformPoint(part, p, bend = 0) {
   const axis = part.mesh?.axis ?? "y", { columns, rows } = meshShape(part);
-  const length = part.size[axis === "y" ? 1 : 0], count = axis === "y" ? rows : columns;
-  const coordinate = Math.max(0, Math.min(length, p[axis === "y" ? 1 : 0]));
+  const length = (part.mesh?.domain?.size ?? part.size)[axis === "y" ? 1 : 0], count = axis === "y" ? rows : columns;
+  const coordinate = Math.max(0, Math.min(length, p[axis === "y" ? 1 : 0] - (part.mesh?.domain?.offset?.[axis === "y" ? 1 : 0] ?? 0)));
   const step = length / count, cell = Math.min(count - 1, Math.floor(coordinate / step));
   const u = (coordinate - cell * step) / step;
   const weight = weightAt(part, cell * step) * (1 - u) + weightAt(part, (cell + 1) * step) * u;

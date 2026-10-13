@@ -1,0 +1,31 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "../accepted-reference.png",
+  "approved": [
+    "tail-full.png",
+    "hips-flat.png",
+    "leg-full.png",
+    "wrist-full.png"
+  ],
+  "rejected": [
+    {
+      "file": "hips-full.png",
+      "reason": "Purple glow/halo outside the silhouette"
+    }
+  ],
+  "registrationScript": "scripts/rebuild-complete-parts.mjs",
+  "rigPadding": 8,
+  "sourceRenderScale": 4,
+  "prompts": {
+    "tail-full.png": "Create ONE complete isolated tail replacement asset for the orange fox in the reference. This is a layered 2D animation asset, NOT a whole character and NOT an atlas. Match the reference's exact warm orange, pale cream tip, clean flat cartoon shading and thin orange edge. Tail extends to the LEFT from a rounded narrow attachment root at the RIGHT, broad fluffy upright cream tip at upper left, rounded belly below. Reconstruct the FULL hidden tail behind the body: continuous rounded lower silhouette, no straight cut-off bottom, no missing chunk, no hand or clothes. Rounded orange root with generous solid overlap for joining to body. Tail approximately square proportions. Keep ALL artwork entirely inside the image with at least 10% transparent padding on every edge. Genuine transparent background. No shadows outside asset, labels, guides, text, other parts or props. Save the image for use in the project.",
+    "hips-flat.png": "A SINGLE flat opaque cartoon game sprite: the upper hip section of dark purple trousers, solid hex #49305f. Shape like an upside-down rounded U with a broad top waistband, two wide short rounded leg sockets below, and a shallow central crotch arch. Wide and shallow, width twice height. ONLY this one isolated part. The entire shape is opaque, one uniform fill color, sharp clean edge. Absolutely no glow, no gradient, no blurred shadow, no lighting, no surface texture, no rim light, no haze, no translucent fabric, no outline. Empty transparent background, 20% clear margin around the complete shape. This will connect with separate long pant legs for a 2D cartoon fox rig. No whole character, face, shoes, hands, text, other shapes or decorations.",
+    "leg-full.png": "ONE isolated complete trouser leg asset for the reference orange fox animation rig. Only a dark purple pant leg, no animal, foot, shoe, hand or other objects. Match reference pants exact #49305f dark purple simple flat shading. Straight upright leg shaped as a subtly tapered rounded capsule, approximately width one third of height. Entire hidden upper thigh behind the hips is fully painted and smoothly rounded; entire lower end behind shoe is fully painted and smoothly rounded too. No chopped flat ends, no cuff line, no open hole, no outline or colored cap at either joint, no seams across this part. Very subtle tonal shading, mainly uniform dark purple so it blends with hip overlap. Genuine transparent background with 15% margin on every side; silhouette fully within image. Clean reusable layered 2D game animation part, not a sprite sheet.",
+    "wrist-full.png": "Generate ONE complete orange fox waving hand animation asset, isolated. Match reference orange flat cartoon style, rounded paw-like fingers and subtle orange finger lines. Orientation IMPORTANT: wrist at TOP CENTER, palm below it, four friendly short fingers fanning DOWNWARD (sprite rotates with the arm). Extend the orange wrist stalk FULLY upward: long rounded orange wrist extension at top center, with at least one palm-width worth of solid hidden wrist painted, so it overlaps well behind a purple sleeve. No sleeve, clothes, face, other body parts. Entire hand and full rounded wrist extension visible with no cut-off ends, all inside canvas with 15% transparent margin. Crisp edges, no halos, no shadows, no blur. Real transparent background. One part only."
+  },
+  "sha256": {
+    "tail-full.png": "f5efc60849f4eac0d66cae76f2e8aa0ea6a0960c0bd3983d117cd06234259592",
+    "hips-flat.png": "07ab746705d398a91c16ad28ace751a47d81f772e2438a7935b1b38f024d9519",
+    "leg-full.png": "f5517a5fe3a596852fc2a198f0e46679b8f2aef14ea2e3cf4ef55e9e5a326a1b",
+    "wrist-full.png": "a059c893974f73a0a5389abf95ec7a50cd12e64031cbb5e71d412063e1a716bb"
+  }
+}

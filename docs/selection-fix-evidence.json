@@ -5,8 +5,8 @@
   "pointerDownPausesPlayback": true,
   "frameStableDuringClick": true,
   "target": {
-    "x": 367,
-    "y": 178,
+    "x": 360,
+    "y": 175,
     "t": 1.29166666666667
   },
   "pageErrors": []

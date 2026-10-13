@@ -13,7 +13,7 @@ Use the existing studio and rig contract rather than rebuilding a preview UI for
 
 ## Prepare the character
 
-Preserve the accepted reference and its source hash. Use the agent's available image-generation tool for missing or hidden artwork; local motion rendering does not generate new artwork. Ask for transparent, independently usable parts with overlap behind joints. Split by motion responsibility, not merely by color. Keep left/right convention explicit. Facial features, hands and optional accessories can use registered replacement PNGs.
+Preserve the accepted reference and its source hash. Use the agent's available image-generation tool for missing or hidden artwork; local motion rendering does not generate new artwork. Ask for transparent, independently usable parts with overlap behind joints. Split by motion responsibility, not merely by color. Generate the complete hidden extent of each moving part; a crop of the visible reference is insufficient. See [complete parts and crop safety](references/complete-parts.md) for alpha margins, joint overlap and padding invariants. Keep left/right convention explicit. Facial features, hands and optional accessories can use registered replacement PNGs.
 
 Follow [the rig mathematics](references/mathematics.md) for root units, hierarchy, pivots, bind transforms, mesh weights and time. Every part has an ID, parent, attachment offset, local image pivot, size, draw order, and declared limits. Import PNGs through the MCP, register assets in the rig, then save the validated project at its last-read revision. Do not label a full-body pose image as an independently rigged body.
 

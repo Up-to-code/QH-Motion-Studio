@@ -10,7 +10,7 @@ import {loadAssets,assess,repair} from './render.mjs';
 import {drawRig,stateAt,validateClip,validateRig} from '../core/engine.mjs';
 import {regions,overlapCount,pixelDifference} from '../core/regions.mjs';
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
-const engineFingerprint=createHash('sha256').update(['core/engine.mjs','core/mesh.mjs','core/secondary.mjs','core/analysis.mjs','core/regions.mjs','core/skeleton.mjs','server/render.mjs','server/workflow.mjs'].map(file=>fs.readFileSync(path.join(ROOT,file),'utf8')).join('\n')).digest('hex');
+const engineFingerprint=createHash('sha256').update(['core/engine.mjs','core/mesh.mjs','core/secondary.mjs','core/analysis.mjs','core/regions.mjs','core/source-integrity.mjs','core/skeleton.mjs','server/render.mjs','server/workflow.mjs'].map(file=>fs.readFileSync(path.join(ROOT,file),'utf8')).join('\n')).digest('hex');
 const motionHash=({rig,clip})=>hash({rig,clip,engineFingerprint,assetHashes:rig.assets.map(a=>[a,createHash('sha256').update(fs.readFileSync(assetPath(a))).digest('hex')])});
 export function readContext(character) {
  const p=project(character);
@@ -62,7 +62,7 @@ export async function inspectRegions(rig,clip,{tileSize=32,halo=4,samples=12}={}
  return {tiles,findings,loopTiles:loopTiles.filter(t=>t.changed),scope:'Rendered alpha overlap for declared attachments; tile-level loop RGBA differences. Semantic artwork review remains separate.'};
 }
 function technicalFindings(report) {
- return Object.entries(report.penalties || {}).filter(([,n])=>n>0).map(([key,n])=>({category:`technical-${key}`,severity:'error',error:n,evidence:report.metrics}));
+ return [...Object.entries(report.penalties || {}).filter(([,n])=>n>0).map(([key,n])=>({category:`technical-${key}`,severity:'error',error:n,evidence:report.metrics})),...(report.sourceFindings??[]).map(f=>({category:'source-crop-risk',severity:'error',part:f.part,asset:f.asset,error:1,evidence:f,scope:'source-image'}))];
 }
 export async function beginWorkflow(character,clipId,settings={}) {
  const p=project(character),clip=p.clips.find(c=>c.id===clipId);if(!clip)throw Error('Motion not found');

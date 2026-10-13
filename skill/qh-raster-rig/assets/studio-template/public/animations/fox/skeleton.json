@@ -23,8 +23,8 @@
         343
       ],
       "pivot": [
-        104,
-        65
+        112,
+        73
       ],
       "restLength": 97.04638066409278,
       "lengthPolicy": "parent-transform",
@@ -40,8 +40,8 @@
         350
       ],
       "pivot": [
-        20,
-        13
+        28,
+        21
       ],
       "restLength": 23.769728648009423,
       "lengthPolicy": "parent-transform",
@@ -57,8 +57,8 @@
         350
       ],
       "pivot": [
-        19,
-        13
+        27,
+        21
       ],
       "restLength": 24.73863375370596,
       "lengthPolicy": "parent-transform",
@@ -74,8 +74,8 @@
         344
       ],
       "pivot": [
-        46.5,
-        25.5
+        54.5,
+        33.5
       ],
       "restLength": 88,
       "lengthPolicy": "parent-transform",
@@ -91,8 +91,8 @@
         421
       ],
       "pivot": [
-        32,
-        18
+        40,
+        26
       ],
       "restLength": 71.449282711585,
       "lengthPolicy": "parent-transform",
@@ -100,8 +100,8 @@
         {
           "part": "shoe_left",
           "point": [
-            32,
-            35
+            40,
+            43
           ],
           "rest": [
             225,
@@ -120,8 +120,8 @@
         421
       ],
       "pivot": [
-        32,
-        18
+        40,
+        26
       ],
       "restLength": 71.25307010929423,
       "lengthPolicy": "parent-transform",
@@ -129,8 +129,8 @@
         {
           "part": "shoe_right",
           "point": [
-            32,
-            35
+            40,
+            43
           ],
           "rest": [
             286,
@@ -149,8 +149,8 @@
         258
       ],
       "pivot": [
-        22.5,
-        14
+        30.5,
+        22
       ],
       "restLength": 50.99019513592785,
       "lengthPolicy": "parent-transform",
@@ -166,8 +166,8 @@
         258
       ],
       "pivot": [
-        22.5,
-        14
+        30.5,
+        22
       ],
       "restLength": 50.99019513592785,
       "lengthPolicy": "parent-transform",
@@ -183,8 +183,8 @@
         300
       ],
       "pivot": [
-        19,
-        12
+        27,
+        20
       ],
       "restLength": 42,
       "lengthPolicy": "parent-transform",
@@ -200,8 +200,8 @@
         300
       ],
       "pivot": [
-        19,
-        12
+        27,
+        20
       ],
       "restLength": 42,
       "lengthPolicy": "parent-transform",
@@ -217,8 +217,8 @@
         337
       ],
       "pivot": [
-        17.5,
-        9
+        25.5,
+        17
       ],
       "restLength": 37,
       "lengthPolicy": "parent-transform",
@@ -234,8 +234,8 @@
         337
       ],
       "pivot": [
-        17.5,
-        9
+        25.5,
+        17
       ],
       "restLength": 37,
       "lengthPolicy": "parent-transform",
@@ -251,8 +251,8 @@
         334.31304347826085
       ],
       "pivot": [
-        13,
-        1
+        21,
+        9
       ],
       "restLength": 34.35349662725466,
       "lengthPolicy": "parent-transform",
@@ -268,8 +268,8 @@
         334.31304347826085
       ],
       "pivot": [
-        13,
-        1
+        21,
+        9
       ],
       "restLength": 34.353496627254664,
       "lengthPolicy": "parent-transform",
@@ -285,8 +285,8 @@
         280
       ],
       "pivot": [
-        72,
-        53
+        80,
+        61
       ],
       "restLength": 24,
       "lengthPolicy": "parent-transform",
@@ -302,8 +302,8 @@
         332.70023419203744
       ],
       "pivot": [
-        51.36842105263156,
-        2
+        59.36842105263156,
+        10
       ],
       "restLength": 52.70042108241945,
       "lengthPolicy": "surface",
@@ -319,8 +319,8 @@
         298.69555035128803
       ],
       "pivot": [
-        35.92982456140351,
-        2
+        43.92982456140351,
+        10
       ],
       "restLength": 18.700291127576218,
       "lengthPolicy": "surface",
@@ -336,8 +336,8 @@
         258.2271662763466
       ],
       "pivot": [
-        4.350877192982466,
-        2
+        12.350877192982466,
+        10
       ],
       "restLength": 27.01955381492925,
       "lengthPolicy": "surface",
@@ -353,8 +353,8 @@
         258.2271662763466
       ],
       "pivot": [
-        4.350877192982466,
-        2
+        12.350877192982466,
+        10
       ],
       "restLength": 26.854285052714065,
       "lengthPolicy": "surface",
@@ -370,8 +370,8 @@
         242
       ],
       "pivot": [
-        18,
-        14
+        26,
+        22
       ],
       "restLength": 38,
       "lengthPolicy": "parent-transform",
@@ -387,8 +387,8 @@
         157
       ],
       "pivot": [
-        35,
-        92
+        43,
+        100
       ],
       "restLength": 93.47726996441435,
       "lengthPolicy": "parent-transform",
@@ -404,8 +404,8 @@
         153
       ],
       "pivot": [
-        35,
-        92
+        43,
+        100
       ],
       "restLength": 96.7987603226405,
       "lengthPolicy": "parent-transform",
@@ -421,8 +421,8 @@
         234
       ],
       "pivot": [
-        93.5,
-        130
+        101.5,
+        138
       ],
       "restLength": 46,
       "lengthPolicy": "parent-transform",
@@ -438,8 +438,8 @@
         180
       ],
       "pivot": [
-        14.5,
-        19.5
+        22.5,
+        27.5
       ],
       "restLength": 59.93329625508679,
       "lengthPolicy": "parent-transform",
@@ -455,8 +455,8 @@
         180
       ],
       "pivot": [
-        14.5,
-        19.5
+        22.5,
+        27.5
       ],
       "restLength": 59.50630218724736,
       "lengthPolicy": "parent-transform",
@@ -472,8 +472,8 @@
         182
       ],
       "pivot": [
-        7,
-        13
+        15,
+        21
       ],
       "restLength": 2.8284271247461903,
       "lengthPolicy": "parent-transform",
@@ -489,8 +489,8 @@
         182
       ],
       "pivot": [
-        7,
-        13
+        15,
+        21
       ],
       "restLength": 2.8284271247461903,
       "lengthPolicy": "parent-transform",
@@ -506,8 +506,8 @@
         151
       ],
       "pivot": [
-        12,
-        5
+        20,
+        13
       ],
       "restLength": 86.97700845625815,
       "lengthPolicy": "parent-transform",
@@ -523,8 +523,8 @@
         151
       ],
       "pivot": [
-        12,
-        5
+        20,
+        13
       ],
       "restLength": 86.68333173107735,
       "lengthPolicy": "parent-transform",
@@ -540,8 +540,8 @@
         201
       ],
       "pivot": [
-        11,
-        6
+        19,
+        14
       ],
       "restLength": 33.015148038438355,
       "lengthPolicy": "parent-transform",
@@ -557,8 +557,8 @@
         219
       ],
       "pivot": [
-        15.5,
-        7
+        23.5,
+        15
       ],
       "restLength": 15.03329637837291,
       "lengthPolicy": "parent-transform",
@@ -574,8 +574,8 @@
         181
       ],
       "pivot": [
-        15,
-        5
+        23,
+        13
       ],
       "restLength": 59.03388857258176,
       "lengthPolicy": "parent-transform",
@@ -591,8 +591,8 @@
         181
       ],
       "pivot": [
-        15,
-        5
+        23,
+        13
       ],
       "restLength": 58.60034129593444,
       "lengthPolicy": "parent-transform",
@@ -608,8 +608,8 @@
         438
       ],
       "pivot": [
-        32,
-        18
+        40,
+        26
       ],
       "local": [
         0,
@@ -620,8 +620,8 @@
       "contact": {
         "part": "shoe_left",
         "point": [
-          32,
-          35
+          40,
+          43
         ]
       }
     },
@@ -635,8 +635,8 @@
         438
       ],
       "pivot": [
-        32,
-        18
+        40,
+        26
       ],
       "local": [
         0,
@@ -647,8 +647,8 @@
       "contact": {
         "part": "shoe_right",
         "point": [
-          32,
-          35
+          40,
+          43
         ]
       }
     }

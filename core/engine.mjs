@@ -261,6 +261,10 @@ export function validateRig(rig) {
     if (p.mesh && (!["x", "y"].includes(p.mesh.axis ?? "y") ||
       [p.mesh.columns ?? 4, p.mesh.rows ?? 6].some((n) => !Number.isInteger(n) || n < 1 || n > 64)))
       errors.push(`${p.id}: invalid mesh`);
+    if (p.mesh?.domain && (!["size","offset","pivot"].every(k=>Array.isArray(p.mesh.domain[k]) && p.mesh.domain[k].length===2 && p.mesh.domain[k].every(Number.isFinite)) || p.mesh.domain.size.some(n=>n<=0)))
+      errors.push(`${p.id}: invalid mesh domain`);
+    if (p.sourcePolicy && (!Number.isInteger(p.sourcePolicy.minMarginPx) || p.sourcePolicy.minMarginPx < 1 || p.sourcePolicy.minMarginPx > 128))
+      errors.push(`${p.id}: invalid source margin`);
     if (p.secondary && (!rig.parts.some((x) => x.id === p.secondary.driver) ||
       !["rotation", "x", "y", "bend"].includes(p.secondary.property))) errors.push(`${p.id}: invalid secondary driver`);
     if (!Number.isFinite(p.z)) errors.push(`${p.id}: invalid draw order`);

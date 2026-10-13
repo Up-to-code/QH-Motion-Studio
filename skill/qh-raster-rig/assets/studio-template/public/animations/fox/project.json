@@ -23,15 +23,15 @@
           87
         ],
         "pivot": [
-          104,
-          65
+          112,
+          73
         ],
         "size": [
-          124,
-          125
+          140,
+          141
         ],
         "z": 0,
-        "asset": "/animations/fox/parts/tail.png",
+        "asset": "/animations/fox/parts/tail_complete_v2_0-339c7e5085b6.png",
         "limits": [
           -12,
           12
@@ -47,7 +47,24 @@
         "mesh": {
           "columns": 6,
           "rows": 4,
-          "axis": "x"
+          "axis": "x",
+          "domain": {
+            "size": [
+              124,
+              125
+            ],
+            "pivot": [
+              104,
+              65
+            ],
+            "offset": [
+              8,
+              8
+            ]
+          }
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
         }
       },
       {
@@ -59,15 +76,15 @@
           6
         ],
         "pivot": [
-          20,
-          13
+          28,
+          21
         ],
         "size": [
-          39,
-          76
+          55,
+          92
         ],
         "z": 2,
-        "asset": "/animations/fox/parts/leg_left.png",
+        "asset": "/animations/fox/parts/leg_left_complete_v2_0-514d7ab2a14d.png",
         "limits": [
           -10,
           10
@@ -79,7 +96,15 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "leg_right",
@@ -90,15 +115,15 @@
           6
         ],
         "pivot": [
-          19,
-          13
+          27,
+          21
         ],
         "size": [
-          39,
-          76
+          55,
+          92
         ],
         "z": 2,
-        "asset": "/animations/fox/parts/leg_right.png",
+        "asset": "/animations/fox/parts/leg_right_complete_v2_0-514d7ab2a14d.png",
         "limits": [
           -10,
           10
@@ -110,7 +135,15 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "pelvis",
@@ -121,15 +154,15 @@
           88
         ],
         "pivot": [
-          46.5,
-          25.5
+          54.5,
+          33.5
         ],
         "size": [
-          93,
-          51
+          109,
+          67
         ],
-        "z": 3,
-        "asset": "/animations/fox/parts/pelvis.png",
+        "z": 1.5,
+        "asset": "/animations/fox/parts/pelvis_complete_v2_0-c096c1a9e9e2.png",
         "limits": [
           -25,
           25
@@ -141,7 +174,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "shoe_left",
@@ -152,15 +188,15 @@
           71
         ],
         "pivot": [
-          32,
-          18
+          40,
+          26
         ],
         "size": [
-          65,
-          35
+          81,
+          51
         ],
         "z": 4,
-        "asset": "/animations/fox/parts/shoe_left.png",
+        "asset": "/animations/fox/parts/shoe_left_complete_v2_0-80f9b8d34502.png",
         "limits": [
           -5,
           5
@@ -172,7 +208,15 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "shoe_right",
@@ -183,15 +227,15 @@
           71
         ],
         "pivot": [
-          32,
-          18
+          40,
+          26
         ],
         "size": [
-          65,
-          35
+          81,
+          51
         ],
         "z": 4,
-        "asset": "/animations/fox/parts/shoe_right.png",
+        "asset": "/animations/fox/parts/shoe_right_complete_v2_0-b7c3d33b331b.png",
         "limits": [
           -5,
           5
@@ -203,7 +247,15 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "upper_arm_left",
@@ -214,15 +266,15 @@
           -22
         ],
         "pivot": [
-          22.5,
-          14
+          30.5,
+          22
         ],
         "size": [
-          45,
-          65
+          61,
+          81
         ],
         "z": 7,
-        "asset": "/animations/fox/parts/upper_arm.png",
+        "asset": "/animations/fox/parts/upper_arm_left_complete_v2_0-5f7233bbd115.png",
         "limits": [
           -25,
           135
@@ -235,7 +287,15 @@
           "#49305f",
           "#ffcc27"
         ],
-        "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso"
+        "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso",
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "upper_arm_right",
@@ -246,15 +306,15 @@
           -22
         ],
         "pivot": [
-          22.5,
-          14
+          30.5,
+          22
         ],
         "size": [
-          45,
-          65
+          61,
+          81
         ],
         "z": 7,
-        "asset": "/animations/fox/parts/upper_arm.png",
+        "asset": "/animations/fox/parts/upper_arm_right_complete_v2_0-5f7233bbd115.png",
         "limits": [
           -135,
           25
@@ -267,7 +327,15 @@
           "#49305f",
           "#ffcc27"
         ],
-        "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso"
+        "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso",
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "forearm_left",
@@ -278,15 +346,15 @@
           42
         ],
         "pivot": [
-          19,
-          12
+          27,
+          20
         ],
         "size": [
-          38,
-          54
+          54,
+          70
         ],
         "z": 8,
-        "asset": "/animations/fox/parts/forearm.png",
+        "asset": "/animations/fox/parts/forearm_left_complete_v2_0-5502c0b19ac0.png",
         "limits": [
           -85,
           20
@@ -298,7 +366,15 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "forearm_right",
@@ -309,15 +385,15 @@
           42
         ],
         "pivot": [
-          19,
-          12
+          27,
+          20
         ],
         "size": [
-          38,
-          54
+          54,
+          70
         ],
         "z": 8,
-        "asset": "/animations/fox/parts/forearm.png",
+        "asset": "/animations/fox/parts/forearm_right_complete_v2_0-5502c0b19ac0.png",
         "limits": [
           -85,
           20
@@ -329,7 +405,15 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "hand_left",
@@ -340,15 +424,15 @@
           37
         ],
         "pivot": [
-          17.5,
-          9
+          25.5,
+          17
         ],
         "size": [
-          35,
-          44
+          51,
+          60
         ],
         "z": 9,
-        "asset": "/animations/fox/parts/hand_rest.png",
+        "asset": "/animations/fox/parts/hand_left_complete_v2_0-060c35d45e0d.png",
         "limits": [
           -35,
           35
@@ -360,7 +444,15 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "hand_right",
@@ -371,15 +463,15 @@
           37
         ],
         "pivot": [
-          17.5,
-          9
+          25.5,
+          17
         ],
         "size": [
-          35,
-          44
+          51,
+          60
         ],
-        "z": 9,
-        "asset": "/animations/fox/parts/hand_rest.png",
+        "z": 7.5,
+        "asset": "/animations/fox/parts/hand_right_complete_v2_0-060c35d45e0d.png",
         "limits": [
           -35,
           35
@@ -391,7 +483,18 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "replacementAssets": {
+          "wave": "/animations/fox/parts/hand_right_complete_v2_1-ab3011839485.png"
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "cuff_left",
@@ -402,19 +505,22 @@
           34.31304347826087
         ],
         "pivot": [
-          13,
-          1
+          21,
+          9
         ],
         "size": [
-          26,
-          8.68695652173913
+          42,
+          24.68695652173913
         ],
         "z": 9.2,
-        "asset": "/animations/fox/parts/cuff_left.png",
+        "asset": "/animations/fox/parts/cuff_left_complete_v2_0-68ec09e9950d.png",
         "limits": [
           -5,
           5
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "cuff_right",
@@ -425,19 +531,22 @@
           34.31304347826087
         ],
         "pivot": [
-          13,
-          1
+          21,
+          9
         ],
         "size": [
-          26,
-          8.68695652173913
+          42,
+          24.68695652173913
         ],
         "z": 9.2,
-        "asset": "/animations/fox/parts/cuff_right.png",
+        "asset": "/animations/fox/parts/cuff_right_complete_v2_0-68ec09e9950d.png",
         "limits": [
           -5,
           5
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "hoodie",
@@ -448,15 +557,15 @@
           24
         ],
         "pivot": [
-          72,
-          53
+          80,
+          61
         ],
         "size": [
-          144,
-          120
+          160,
+          136
         ],
         "z": 10,
-        "asset": "/animations/fox/parts/hoodie.png",
+        "asset": "/animations/fox/parts/hoodie_complete_v2_0-e05906bba4c0.png",
         "limits": [
           -6,
           6
@@ -472,9 +581,26 @@
         "mesh": {
           "columns": 6,
           "rows": 7,
-          "axis": "y"
+          "axis": "y",
+          "domain": {
+            "size": [
+              144,
+              120
+            ],
+            "pivot": [
+              72,
+              53
+            ],
+            "offset": [
+              8,
+              8
+            ]
+          }
         },
-        "ownership": "Chest, hood and attached wrinkle texture; excludes arm clothing. Drawstrings, pocket and hem use separate layers."
+        "ownership": "Chest, hood and attached wrinkle texture; excludes arm clothing. Drawstrings, pocket and hem use separate layers.",
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "hem",
@@ -485,20 +611,23 @@
           52.70023419203744
         ],
         "pivot": [
-          51.36842105263156,
-          2
+          59.36842105263156,
+          10
         ],
         "size": [
-          102.73684210526315,
-          15.737704918032787
+          118.73684210526315,
+          31.737704918032787
         ],
         "z": 11,
-        "asset": "/animations/fox/parts/hem.png",
+        "asset": "/animations/fox/parts/hem_complete_v2_0-245028d86c61.png",
         "limits": [
           -20,
           20
         ],
-        "surfaceAttachment": true
+        "surfaceAttachment": true,
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "pocket",
@@ -509,20 +638,23 @@
           18.695550351288034
         ],
         "pivot": [
-          35.92982456140351,
-          2
+          43.92982456140351,
+          10
         ],
         "size": [
-          71.85964912280701,
-          28.10304449648712
+          87.85964912280701,
+          44.103044496487115
         ],
         "z": 13,
-        "asset": "/animations/fox/parts/pocket.png",
+        "asset": "/animations/fox/parts/pocket_complete_v2_0-c68a75e90083.png",
         "limits": [
           -20,
           20
         ],
-        "surfaceAttachment": true
+        "surfaceAttachment": true,
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "drawstring_left",
@@ -533,15 +665,15 @@
           -21.772833723653378
         ],
         "pivot": [
-          4.350877192982466,
-          2
+          12.350877192982466,
+          10
         ],
         "size": [
-          8.701754385964911,
-          32.03747072599531
+          24.70175438596491,
+          48.03747072599531
         ],
         "z": 14,
-        "asset": "/animations/fox/parts/drawstring_left.png",
+        "asset": "/animations/fox/parts/drawstring_left_complete_v2_0-bbdd3d018393.png",
         "limits": [
           -20,
           20
@@ -554,6 +686,9 @@
           "frequencyHz": 2.7,
           "damping": 0.72,
           "maxDegrees": 9
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
         }
       },
       {
@@ -565,15 +700,15 @@
           -21.772833723653378
         ],
         "pivot": [
-          4.350877192982466,
-          2
+          12.350877192982466,
+          10
         ],
         "size": [
-          8.701754385964911,
-          32.03747072599531
+          24.70175438596491,
+          48.03747072599531
         ],
         "z": 14,
-        "asset": "/animations/fox/parts/drawstring_right.png",
+        "asset": "/animations/fox/parts/drawstring_right_complete_v2_0-68e1a80e42b6.png",
         "limits": [
           -20,
           20
@@ -586,6 +721,9 @@
           "frequencyHz": 2.7,
           "damping": 0.72,
           "maxDegrees": 9
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
         }
       },
       {
@@ -597,15 +735,15 @@
           -38
         ],
         "pivot": [
-          18,
-          14
+          26,
+          22
         ],
         "size": [
-          36,
-          40
+          52,
+          56
         ],
         "z": 18,
-        "asset": "/animations/fox/parts/neck.png",
+        "asset": "/animations/fox/parts/neck_complete_v2_0-fccd515974dc.png",
         "limits": [
           0,
           0
@@ -617,7 +755,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "ear_left",
@@ -628,15 +769,15 @@
           -77
         ],
         "pivot": [
-          35,
-          92
+          43,
+          100
         ],
         "size": [
-          68,
-          116
+          84,
+          132
         ],
         "z": 19,
-        "asset": "/animations/fox/parts/ear_left.png",
+        "asset": "/animations/fox/parts/ear_left_complete_v2_0-d752b551a4b6.png",
         "limits": [
           -8,
           8
@@ -648,7 +789,15 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "ear_right",
@@ -659,15 +808,15 @@
           -81
         ],
         "pivot": [
-          35,
-          92
+          43,
+          100
         ],
         "size": [
-          68,
-          116
+          84,
+          132
         ],
         "z": 19,
-        "asset": "/animations/fox/parts/ear_right.png",
+        "asset": "/animations/fox/parts/ear_right_complete_v2_0-dd0f84a7bf38.png",
         "limits": [
           -8,
           8
@@ -679,7 +828,15 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "attachment": {
+          "required": true,
+          "radiusPx": 10,
+          "minOverlap": 1
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "head",
@@ -690,15 +847,15 @@
           -46
         ],
         "pivot": [
-          93.5,
-          130
+          101.5,
+          138
         ],
         "size": [
-          187,
-          147
+          203,
+          163
         ],
         "z": 20,
-        "asset": "/animations/fox/parts/head.png",
+        "asset": "/animations/fox/parts/head_complete_v2_0-9f65c360d253.png",
         "limits": [
           -10,
           10
@@ -710,7 +867,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "eye_left",
@@ -721,15 +881,15 @@
           -54
         ],
         "pivot": [
-          14.5,
-          19.5
+          22.5,
+          27.5
         ],
         "size": [
-          29,
-          39
+          45,
+          55
         ],
         "z": 22,
-        "asset": "/animations/fox/parts/eye_left.png",
+        "asset": "/animations/fox/parts/eye_left_complete_v2_0-cba127774774.png",
         "limits": [
           0,
           0
@@ -741,7 +901,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "eye_right",
@@ -752,15 +915,15 @@
           -54
         ],
         "pivot": [
-          14.5,
-          19.5
+          22.5,
+          27.5
         ],
         "size": [
-          29,
-          39
+          45,
+          55
         ],
         "z": 22,
-        "asset": "/animations/fox/parts/eye_right.png",
+        "asset": "/animations/fox/parts/eye_right_complete_v2_0-e7c0cf42de0e.png",
         "limits": [
           0,
           0
@@ -772,7 +935,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "pupil_left",
@@ -783,15 +949,15 @@
           2
         ],
         "pivot": [
-          7,
-          13
+          15,
+          21
         ],
         "size": [
-          14,
-          26
+          30,
+          42
         ],
         "z": 23,
-        "asset": "/animations/fox/parts/pupil_left.png",
+        "asset": "/animations/fox/parts/pupil_left_complete_v2_0-8ab414a6e405.png",
         "limits": [
           0,
           0
@@ -803,7 +969,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "pupil_right",
@@ -814,15 +983,15 @@
           2
         ],
         "pivot": [
-          7,
-          13
+          15,
+          21
         ],
         "size": [
-          14,
-          26
+          30,
+          42
         ],
         "z": 23,
-        "asset": "/animations/fox/parts/pupil_right.png",
+        "asset": "/animations/fox/parts/pupil_right_complete_v2_0-9b72e33bbe1e.png",
         "limits": [
           0,
           0
@@ -834,7 +1003,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "brow_left",
@@ -845,15 +1017,15 @@
           -83
         ],
         "pivot": [
-          12,
-          5
+          20,
+          13
         ],
         "size": [
-          24,
-          10
+          40,
+          26
         ],
         "z": 24,
-        "asset": "/animations/fox/parts/brow_left.png",
+        "asset": "/animations/fox/parts/brow_left_complete_v2_0-0debf6553089.png",
         "limits": [
           -18,
           18
@@ -865,7 +1037,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "brow_right",
@@ -876,15 +1051,15 @@
           -83
         ],
         "pivot": [
-          12,
-          5
+          20,
+          13
         ],
         "size": [
-          24,
-          10
+          40,
+          26
         ],
         "z": 24,
-        "asset": "/animations/fox/parts/brow_right.png",
+        "asset": "/animations/fox/parts/brow_right_complete_v2_0-f597655cfbce.png",
         "limits": [
           -18,
           18
@@ -896,7 +1071,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "nose",
@@ -907,15 +1085,15 @@
           -33
         ],
         "pivot": [
-          11,
-          6
+          19,
+          14
         ],
         "size": [
-          22,
-          12
+          38,
+          28
         ],
         "z": 24,
-        "asset": "/animations/fox/parts/nose.png",
+        "asset": "/animations/fox/parts/nose_complete_v2_0-fdca9490ad30.png",
         "limits": [
           0,
           0
@@ -927,7 +1105,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "mouth",
@@ -938,15 +1119,15 @@
           -15
         ],
         "pivot": [
-          15.5,
-          7
+          23.5,
+          15
         ],
         "size": [
-          31,
-          14
+          47,
+          30
         ],
         "z": 24,
-        "asset": "/animations/fox/parts/mouth_smile.png",
+        "asset": "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
         "limits": [
           -5,
           5
@@ -958,7 +1139,14 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "replacementAssets": {
+          "concerned": "/animations/fox/parts/mouth_complete_v2_1-33a72ec639ca.png",
+          "happy": "/animations/fox/parts/mouth_complete_v2_2-86dc656cc636.png"
+        },
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "lid_left",
@@ -969,15 +1157,15 @@
           -53
         ],
         "pivot": [
-          15,
-          5
+          23,
+          13
         ],
         "size": [
-          30,
-          10
+          46,
+          26
         ],
         "z": 25,
-        "asset": "/animations/fox/parts/lid_left.png",
+        "asset": "/animations/fox/parts/lid_left_complete_v2_0-a1a45505faf8.png",
         "limits": [
           0,
           0
@@ -989,7 +1177,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       },
       {
         "id": "lid_right",
@@ -1000,15 +1191,15 @@
           -53
         ],
         "pivot": [
-          15,
-          5
+          23,
+          13
         ],
         "size": [
-          30,
-          10
+          46,
+          26
         ],
         "z": 25,
-        "asset": "/animations/fox/parts/lid_right.png",
+        "asset": "/animations/fox/parts/lid_right_complete_v2_0-d142989dff89.png",
         "limits": [
           0,
           0
@@ -1020,7 +1211,10 @@
           "#9364f5",
           "#49305f",
           "#ffcc27"
-        ]
+        ],
+        "sourcePolicy": {
+          "minMarginPx": 8
+        }
       }
     ],
     "assets": [
@@ -1058,21 +1252,58 @@
       "/animations/fox/parts/pocket.png",
       "/animations/fox/parts/hem.png",
       "/animations/fox/parts/cuff_left.png",
-      "/animations/fox/parts/cuff_right.png"
+      "/animations/fox/parts/cuff_right.png",
+      "/animations/fox/parts/hand_wave_registered.png",
+      "/animations/fox/parts/tail_complete_v2_0-339c7e5085b6.png",
+      "/animations/fox/parts/leg_left_complete_v2_0-514d7ab2a14d.png",
+      "/animations/fox/parts/leg_right_complete_v2_0-514d7ab2a14d.png",
+      "/animations/fox/parts/pelvis_complete_v2_0-c096c1a9e9e2.png",
+      "/animations/fox/parts/shoe_left_complete_v2_0-80f9b8d34502.png",
+      "/animations/fox/parts/shoe_right_complete_v2_0-b7c3d33b331b.png",
+      "/animations/fox/parts/upper_arm_left_complete_v2_0-5f7233bbd115.png",
+      "/animations/fox/parts/upper_arm_right_complete_v2_0-5f7233bbd115.png",
+      "/animations/fox/parts/forearm_left_complete_v2_0-5502c0b19ac0.png",
+      "/animations/fox/parts/forearm_right_complete_v2_0-5502c0b19ac0.png",
+      "/animations/fox/parts/hand_left_complete_v2_0-060c35d45e0d.png",
+      "/animations/fox/parts/hand_right_complete_v2_0-060c35d45e0d.png",
+      "/animations/fox/parts/hand_right_complete_v2_1-ab3011839485.png",
+      "/animations/fox/parts/cuff_left_complete_v2_0-68ec09e9950d.png",
+      "/animations/fox/parts/cuff_right_complete_v2_0-68ec09e9950d.png",
+      "/animations/fox/parts/hoodie_complete_v2_0-e05906bba4c0.png",
+      "/animations/fox/parts/hem_complete_v2_0-245028d86c61.png",
+      "/animations/fox/parts/pocket_complete_v2_0-c68a75e90083.png",
+      "/animations/fox/parts/drawstring_left_complete_v2_0-bbdd3d018393.png",
+      "/animations/fox/parts/drawstring_right_complete_v2_0-68e1a80e42b6.png",
+      "/animations/fox/parts/neck_complete_v2_0-fccd515974dc.png",
+      "/animations/fox/parts/ear_left_complete_v2_0-d752b551a4b6.png",
+      "/animations/fox/parts/ear_right_complete_v2_0-dd0f84a7bf38.png",
+      "/animations/fox/parts/head_complete_v2_0-9f65c360d253.png",
+      "/animations/fox/parts/eye_left_complete_v2_0-cba127774774.png",
+      "/animations/fox/parts/eye_right_complete_v2_0-e7c0cf42de0e.png",
+      "/animations/fox/parts/pupil_left_complete_v2_0-8ab414a6e405.png",
+      "/animations/fox/parts/pupil_right_complete_v2_0-9b72e33bbe1e.png",
+      "/animations/fox/parts/brow_left_complete_v2_0-0debf6553089.png",
+      "/animations/fox/parts/brow_right_complete_v2_0-f597655cfbce.png",
+      "/animations/fox/parts/nose_complete_v2_0-fdca9490ad30.png",
+      "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
+      "/animations/fox/parts/mouth_complete_v2_1-33a72ec639ca.png",
+      "/animations/fox/parts/mouth_complete_v2_2-86dc656cc636.png",
+      "/animations/fox/parts/lid_left_complete_v2_0-a1a45505faf8.png",
+      "/animations/fox/parts/lid_right_complete_v2_0-d142989dff89.png"
     ],
     "contacts": [
       {
         "part": "shoe_left",
         "point": [
-          32,
-          35
+          40,
+          43
         ]
       },
       {
         "part": "shoe_right",
         "point": [
-          32,
-          35
+          40,
+          43
         ]
       }
     ],
@@ -1219,17 +1450,17 @@
           "keys": [
             {
               "time": 0,
-              "value": "/animations/fox/parts/hand_rest.png",
+              "value": "/animations/fox/parts/hand_right_complete_v2_0-060c35d45e0d.png",
               "ease": "smooth"
             },
             {
               "time": 0.30000000000000004,
-              "value": "/animations/fox/parts/hand_wave.png",
+              "value": "/animations/fox/parts/hand_right_complete_v2_1-ab3011839485.png",
               "ease": "smooth"
             },
             {
               "time": 2.58,
-              "value": "/animations/fox/parts/hand_rest.png",
+              "value": "/animations/fox/parts/hand_right_complete_v2_0-060c35d45e0d.png",
               "ease": "smooth"
             }
           ]
@@ -1453,7 +1684,110 @@
             }
           ]
         }
-      ]
+      ],
+      "quality": {
+        "score": 100,
+        "accepted": true,
+        "metrics": {
+          "sourceCropRisks": 0,
+          "connectedBodyRatio": 1,
+          "flippedTriangles": 0,
+          "offCanvasSamples": 0,
+          "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 1092,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
+          "loopMatrixError": 0,
+          "jointGapSamples": 0,
+          "edgePixels": 0,
+          "maxJointStepPx": 17.58138534347262,
+          "maxJointVelocityPxPerSecond": 421.95324824334267,
+          "maxAllowedVelocityPxPerSecond": 432,
+          "limitOverrunDeg": 0
+        },
+        "sourceFindings": [],
+        "penalties": {
+          "disconnection": 0,
+          "meshFlips": 0,
+          "offCanvas": 0,
+          "clipping": 0,
+          "contact": 0,
+          "limits": 0,
+          "jointGaps": 0,
+          "loop": 0,
+          "speed": 0,
+          "sourceCrop": 0
+        },
+        "sampled": [
+          {
+            "frame": 0,
+            "time": 0
+          },
+          {
+            "frame": 6,
+            "time": 0.25
+          },
+          {
+            "frame": 12,
+            "time": 0.4583333333333333
+          },
+          {
+            "frame": 18,
+            "time": 0.66
+          },
+          {
+            "frame": 24,
+            "time": 0.7916666666666666
+          },
+          {
+            "frame": 30,
+            "time": 1
+          },
+          {
+            "frame": 36,
+            "time": 1.2083333333333333
+          },
+          {
+            "frame": 42,
+            "time": 1.375
+          },
+          {
+            "frame": 48,
+            "time": 1.5833333333333333
+          },
+          {
+            "frame": 54,
+            "time": 1.7999999999999998
+          },
+          {
+            "frame": 60,
+            "time": 2
+          },
+          {
+            "frame": 66,
+            "time": 2.1666666666666665
+          },
+          {
+            "frame": 72,
+            "time": 2.375
+          },
+          {
+            "frame": 78,
+            "time": 2.5416666666666665
+          },
+          {
+            "frame": 84,
+            "time": 2.75
+          },
+          {
+            "frame": 90,
+            "time": 3
+          }
+        ],
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
+      },
+      "score": 100
     },
     {
       "id": "hello-b",
@@ -1566,17 +1900,17 @@
           "keys": [
             {
               "time": 0,
-              "value": "/animations/fox/parts/hand_rest.png",
+              "value": "/animations/fox/parts/hand_right_complete_v2_0-060c35d45e0d.png",
               "ease": "smooth"
             },
             {
               "time": 0.30000000000000004,
-              "value": "/animations/fox/parts/hand_wave.png",
+              "value": "/animations/fox/parts/hand_right_complete_v2_1-ab3011839485.png",
               "ease": "smooth"
             },
             {
               "time": 2.58,
-              "value": "/animations/fox/parts/hand_rest.png",
+              "value": "/animations/fox/parts/hand_right_complete_v2_0-060c35d45e0d.png",
               "ease": "smooth"
             }
           ]
@@ -1800,7 +2134,110 @@
             }
           ]
         }
-      ]
+      ],
+      "quality": {
+        "score": 99.42,
+        "accepted": true,
+        "metrics": {
+          "sourceCropRisks": 0,
+          "connectedBodyRatio": 1,
+          "flippedTriangles": 0,
+          "offCanvasSamples": 0,
+          "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 1092,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
+          "loopMatrixError": 0,
+          "jointGapSamples": 0,
+          "edgePixels": 0,
+          "maxJointStepPx": 19.4520007390812,
+          "maxJointVelocityPxPerSecond": 466.84801773794857,
+          "maxAllowedVelocityPxPerSecond": 432,
+          "limitOverrunDeg": 0
+        },
+        "sourceFindings": [],
+        "penalties": {
+          "disconnection": 0,
+          "meshFlips": 0,
+          "offCanvas": 0,
+          "clipping": 0,
+          "contact": 0,
+          "limits": 0,
+          "jointGaps": 0,
+          "loop": 0,
+          "speed": 0.5808002956324761,
+          "sourceCrop": 0
+        },
+        "sampled": [
+          {
+            "frame": 0,
+            "time": 0
+          },
+          {
+            "frame": 6,
+            "time": 0.25
+          },
+          {
+            "frame": 12,
+            "time": 0.4583333333333333
+          },
+          {
+            "frame": 18,
+            "time": 0.66
+          },
+          {
+            "frame": 24,
+            "time": 0.7916666666666666
+          },
+          {
+            "frame": 30,
+            "time": 1
+          },
+          {
+            "frame": 36,
+            "time": 1.2083333333333333
+          },
+          {
+            "frame": 42,
+            "time": 1.375
+          },
+          {
+            "frame": 48,
+            "time": 1.5833333333333333
+          },
+          {
+            "frame": 54,
+            "time": 1.7999999999999998
+          },
+          {
+            "frame": 60,
+            "time": 2
+          },
+          {
+            "frame": 66,
+            "time": 2.1666666666666665
+          },
+          {
+            "frame": 72,
+            "time": 2.375
+          },
+          {
+            "frame": 78,
+            "time": 2.5416666666666665
+          },
+          {
+            "frame": 84,
+            "time": 2.75
+          },
+          {
+            "frame": 90,
+            "time": 3
+          }
+        ],
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
+      },
+      "score": 99.42
     },
     {
       "id": "thinking-a",
@@ -1945,17 +2382,17 @@
           "keys": [
             {
               "time": 0,
-              "value": "/animations/fox/parts/mouth_smile.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
               "ease": "smooth"
             },
             {
               "time": 0.48,
-              "value": "/animations/fox/parts/mouth_concerned.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_1-33a72ec639ca.png",
               "ease": "smooth"
             },
             {
               "time": 2.4,
-              "value": "/animations/fox/parts/mouth_smile.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
               "ease": "smooth"
             }
           ]
@@ -2086,7 +2523,114 @@
             }
           ]
         }
-      ]
+      ],
+      "quality": {
+        "score": 100,
+        "accepted": true,
+        "metrics": {
+          "sourceCropRisks": 0,
+          "connectedBodyRatio": 1,
+          "flippedTriangles": 0,
+          "offCanvasSamples": 0,
+          "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 780,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
+          "loopMatrixError": 0,
+          "jointGapSamples": 0,
+          "edgePixels": 0,
+          "maxJointStepPx": 1.3035249418413433,
+          "maxJointVelocityPxPerSecond": 31.501852761165818,
+          "maxAllowedVelocityPxPerSecond": 432,
+          "limitOverrunDeg": 0
+        },
+        "sourceFindings": [],
+        "penalties": {
+          "disconnection": 0,
+          "meshFlips": 0,
+          "offCanvas": 0,
+          "clipping": 0,
+          "contact": 0,
+          "limits": 0,
+          "jointGaps": 0,
+          "loop": 0,
+          "speed": 0,
+          "sourceCrop": 0
+        },
+        "sampled": [
+          {
+            "frame": 0,
+            "time": 0
+          },
+          {
+            "frame": 4,
+            "time": 0.16551724137931034
+          },
+          {
+            "frame": 8,
+            "time": 0.3310344827586207
+          },
+          {
+            "frame": 12,
+            "time": 0.48
+          },
+          {
+            "frame": 16,
+            "time": 0.6
+          },
+          {
+            "frame": 20,
+            "time": 0.72
+          },
+          {
+            "frame": 24,
+            "time": 0.8689655172413793
+          },
+          {
+            "frame": 28,
+            "time": 1.0344827586206897
+          },
+          {
+            "frame": 32,
+            "time": 1.2
+          },
+          {
+            "frame": 36,
+            "time": 1.3655172413793104
+          },
+          {
+            "frame": 40,
+            "time": 1.5310344827586206
+          },
+          {
+            "frame": 44,
+            "time": 1.6965517241379309
+          },
+          {
+            "frame": 48,
+            "time": 1.8206896551724137
+          },
+          {
+            "frame": 52,
+            "time": 1.9448275862068964
+          },
+          {
+            "frame": 56,
+            "time": 2.0689655172413794
+          },
+          {
+            "frame": 60,
+            "time": 2.2344827586206897
+          },
+          {
+            "frame": 64,
+            "time": 2.4
+          }
+        ],
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
+      },
+      "score": 100
     },
     {
       "id": "success-a",
@@ -2153,17 +2697,17 @@
           "keys": [
             {
               "time": 0,
-              "value": "/animations/fox/parts/mouth_smile.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
               "ease": "smooth"
             },
             {
               "time": 0.5920000000000001,
-              "value": "/animations/fox/parts/mouth_happy.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_2-86dc656cc636.png",
               "ease": "smooth"
             },
             {
               "time": 3.33,
-              "value": "/animations/fox/parts/mouth_smile.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
               "ease": "smooth"
             }
           ]
@@ -2330,7 +2874,106 @@
             }
           ]
         }
-      ]
+      ],
+      "quality": {
+        "score": 100,
+        "accepted": true,
+        "metrics": {
+          "sourceCropRisks": 0,
+          "connectedBodyRatio": 1,
+          "flippedTriangles": 0,
+          "offCanvasSamples": 0,
+          "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 1200,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
+          "loopMatrixError": 0,
+          "jointGapSamples": 0,
+          "edgePixels": 0,
+          "maxJointStepPx": 16.56975003073771,
+          "maxJointVelocityPxPerSecond": 398.56966290152843,
+          "maxAllowedVelocityPxPerSecond": 432,
+          "limitOverrunDeg": 0
+        },
+        "sourceFindings": [],
+        "penalties": {
+          "disconnection": 0,
+          "meshFlips": 0,
+          "offCanvas": 0,
+          "clipping": 0,
+          "contact": 0,
+          "limits": 0,
+          "jointGaps": 0,
+          "loop": 0,
+          "speed": 0,
+          "sourceCrop": 0
+        },
+        "sampled": [
+          {
+            "frame": 0,
+            "time": 0
+          },
+          {
+            "frame": 7,
+            "time": 0.2910112359550562
+          },
+          {
+            "frame": 14,
+            "time": 0.5820224719101124
+          },
+          {
+            "frame": 21,
+            "time": 0.7483146067415731
+          },
+          {
+            "frame": 28,
+            "time": 1.0393258426966292
+          },
+          {
+            "frame": 35,
+            "time": 1.3303370786516855
+          },
+          {
+            "frame": 42,
+            "time": 1.5797752808988763
+          },
+          {
+            "frame": 49,
+            "time": 1.8707865168539326
+          },
+          {
+            "frame": 56,
+            "time": 2.161797752808989
+          },
+          {
+            "frame": 63,
+            "time": 2.41123595505618
+          },
+          {
+            "frame": 70,
+            "time": 2.660674157303371
+          },
+          {
+            "frame": 77,
+            "time": 2.9230000000000005
+          },
+          {
+            "frame": 84,
+            "time": 3.1179775280898876
+          },
+          {
+            "frame": 91,
+            "time": 3.3674157303370786
+          },
+          {
+            "frame": 98,
+            "time": 3.658426966292135
+          }
+        ],
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
+      },
+      "score": 100
     },
     {
       "id": "idle-a",
@@ -2517,7 +3160,114 @@
             }
           ]
         }
-      ]
+      ],
+      "quality": {
+        "score": 100,
+        "accepted": true,
+        "metrics": {
+          "sourceCropRisks": 0,
+          "connectedBodyRatio": 1,
+          "flippedTriangles": 0,
+          "offCanvasSamples": 0,
+          "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 780,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
+          "loopMatrixError": 0,
+          "jointGapSamples": 0,
+          "edgePixels": 0,
+          "maxJointStepPx": 0,
+          "maxJointVelocityPxPerSecond": 0,
+          "maxAllowedVelocityPxPerSecond": 432,
+          "limitOverrunDeg": 0
+        },
+        "sourceFindings": [],
+        "penalties": {
+          "disconnection": 0,
+          "meshFlips": 0,
+          "offCanvas": 0,
+          "clipping": 0,
+          "contact": 0,
+          "limits": 0,
+          "jointGaps": 0,
+          "loop": 0,
+          "speed": 0,
+          "sourceCrop": 0
+        },
+        "sampled": [
+          {
+            "frame": 0,
+            "time": 0
+          },
+          {
+            "frame": 4,
+            "time": 0.16551724137931034
+          },
+          {
+            "frame": 8,
+            "time": 0.3310344827586207
+          },
+          {
+            "frame": 12,
+            "time": 0.49655172413793097
+          },
+          {
+            "frame": 16,
+            "time": 0.6620689655172414
+          },
+          {
+            "frame": 20,
+            "time": 0.8275862068965517
+          },
+          {
+            "frame": 24,
+            "time": 0.9517241379310344
+          },
+          {
+            "frame": 28,
+            "time": 1.0758620689655172
+          },
+          {
+            "frame": 32,
+            "time": 1.2413793103448276
+          },
+          {
+            "frame": 36,
+            "time": 1.3655172413793104
+          },
+          {
+            "frame": 40,
+            "time": 1.5310344827586206
+          },
+          {
+            "frame": 44,
+            "time": 1.6965517241379309
+          },
+          {
+            "frame": 48,
+            "time": 1.8206896551724137
+          },
+          {
+            "frame": 52,
+            "time": 1.9448275862068964
+          },
+          {
+            "frame": 56,
+            "time": 2.0689655172413794
+          },
+          {
+            "frame": 60,
+            "time": 2.2344827586206897
+          },
+          {
+            "frame": 64,
+            "time": 2.4
+          }
+        ],
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
+      },
+      "score": 100
     },
     {
       "id": "thinking-mv6fnydr-a",
@@ -2662,17 +3412,17 @@
           "keys": [
             {
               "time": 0,
-              "value": "/animations/fox/parts/mouth_smile.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
               "ease": "smooth"
             },
             {
               "time": 0.48,
-              "value": "/animations/fox/parts/mouth_concerned.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_1-33a72ec639ca.png",
               "ease": "smooth"
             },
             {
               "time": 2.4,
-              "value": "/animations/fox/parts/mouth_smile.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
               "ease": "smooth"
             }
           ]
@@ -2808,17 +3558,24 @@
         "score": 100,
         "accepted": true,
         "metrics": {
+          "sourceCropRisks": 0,
           "connectedBodyRatio": 1,
           "flippedTriangles": 0,
           "offCanvasSamples": 0,
           "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 780,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
           "loopMatrixError": 0,
           "jointGapSamples": 0,
           "edgePixels": 0,
-          "maxJointStepPx": 1.3220564613418893,
-          "maxJointVelocityPxPerSecond": 31.398840956869872,
+          "maxJointStepPx": 1.3035249418413433,
+          "maxJointVelocityPxPerSecond": 31.501852761165818,
+          "maxAllowedVelocityPxPerSecond": 432,
           "limitOverrunDeg": 0
         },
+        "sourceFindings": [],
         "penalties": {
           "disconnection": 0,
           "meshFlips": 0,
@@ -2828,7 +3585,8 @@
           "limits": 0,
           "jointGaps": 0,
           "loop": 0,
-          "speed": 0
+          "speed": 0,
+          "sourceCrop": 0
         },
         "sampled": [
           {
@@ -2837,62 +3595,70 @@
           },
           {
             "frame": 4,
-            "time": 0.16842105263157894
+            "time": 0.16551724137931034
           },
           {
             "frame": 8,
-            "time": 0.3368421052631579
+            "time": 0.3310344827586207
           },
           {
             "frame": 12,
-            "time": 0.5052631578947367
+            "time": 0.48
           },
           {
             "frame": 16,
-            "time": 0.6736842105263158
+            "time": 0.6
           },
           {
             "frame": 20,
-            "time": 0.8421052631578947
+            "time": 0.72
           },
           {
             "frame": 24,
-            "time": 1.0105263157894735
+            "time": 0.8689655172413793
           },
           {
             "frame": 28,
-            "time": 1.1789473684210525
+            "time": 1.0344827586206897
           },
           {
             "frame": 32,
-            "time": 1.3473684210526315
+            "time": 1.2
           },
           {
             "frame": 36,
-            "time": 1.5157894736842104
+            "time": 1.3655172413793104
           },
           {
             "frame": 40,
-            "time": 1.6842105263157894
+            "time": 1.5310344827586206
           },
           {
             "frame": 44,
-            "time": 1.8526315789473682
+            "time": 1.6965517241379309
           },
           {
             "frame": 48,
-            "time": 2.021052631578947
+            "time": 1.8206896551724137
           },
           {
             "frame": 52,
-            "time": 2.189473684210526
+            "time": 1.9448275862068964
           },
           {
             "frame": 56,
-            "time": 2.357894736842105
+            "time": 2.0689655172413794
+          },
+          {
+            "frame": 60,
+            "time": 2.2344827586206897
+          },
+          {
+            "frame": 64,
+            "time": 2.4
           }
         ],
-        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
       },
       "score": 100
     },
@@ -3039,17 +3805,17 @@
           "keys": [
             {
               "time": 0,
-              "value": "/animations/fox/parts/mouth_smile.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
               "ease": "smooth"
             },
             {
               "time": 0.48,
-              "value": "/animations/fox/parts/mouth_concerned.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_1-33a72ec639ca.png",
               "ease": "smooth"
             },
             {
               "time": 2.4,
-              "value": "/animations/fox/parts/mouth_smile.png",
+              "value": "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
               "ease": "smooth"
             }
           ]
@@ -3185,17 +3951,24 @@
         "score": 100,
         "accepted": true,
         "metrics": {
+          "sourceCropRisks": 0,
           "connectedBodyRatio": 1,
           "flippedTriangles": 0,
           "offCanvasSamples": 0,
           "contactDriftPx": 0,
+          "contactViolationPx": 0,
+          "checkedAttachmentSamples": 780,
+          "clippingInconclusiveSamples": 0,
+          "outsideAlphaPixels": 0,
           "loopMatrixError": 0,
           "jointGapSamples": 0,
           "edgePixels": 0,
-          "maxJointStepPx": 1.3220564613418893,
-          "maxJointVelocityPxPerSecond": 31.398840956869872,
+          "maxJointStepPx": 1.3035249418413433,
+          "maxJointVelocityPxPerSecond": 31.501852761165818,
+          "maxAllowedVelocityPxPerSecond": 432,
           "limitOverrunDeg": 0
         },
+        "sourceFindings": [],
         "penalties": {
           "disconnection": 0,
           "meshFlips": 0,
@@ -3205,7 +3978,8 @@
           "limits": 0,
           "jointGaps": 0,
           "loop": 0,
-          "speed": 0
+          "speed": 0,
+          "sourceCrop": 0
         },
         "sampled": [
           {
@@ -3214,66 +3988,74 @@
           },
           {
             "frame": 4,
-            "time": 0.16842105263157894
+            "time": 0.16551724137931034
           },
           {
             "frame": 8,
-            "time": 0.3368421052631579
+            "time": 0.3310344827586207
           },
           {
             "frame": 12,
-            "time": 0.5052631578947367
+            "time": 0.48
           },
           {
             "frame": 16,
-            "time": 0.6736842105263158
+            "time": 0.6
           },
           {
             "frame": 20,
-            "time": 0.8421052631578947
+            "time": 0.72
           },
           {
             "frame": 24,
-            "time": 1.0105263157894735
+            "time": 0.8689655172413793
           },
           {
             "frame": 28,
-            "time": 1.1789473684210525
+            "time": 1.0344827586206897
           },
           {
             "frame": 32,
-            "time": 1.3473684210526315
+            "time": 1.2
           },
           {
             "frame": 36,
-            "time": 1.5157894736842104
+            "time": 1.3655172413793104
           },
           {
             "frame": 40,
-            "time": 1.6842105263157894
+            "time": 1.5310344827586206
           },
           {
             "frame": 44,
-            "time": 1.8526315789473682
+            "time": 1.6965517241379309
           },
           {
             "frame": 48,
-            "time": 2.021052631578947
+            "time": 1.8206896551724137
           },
           {
             "frame": 52,
-            "time": 2.189473684210526
+            "time": 1.9448275862068964
           },
           {
             "frame": 56,
-            "time": 2.357894736842105
+            "time": 2.0689655172413794
+          },
+          {
+            "frame": 60,
+            "time": 2.2344827586206897
+          },
+          {
+            "frame": 64,
+            "time": 2.4
           }
         ],
-        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+        "scope": "Actual alpha clipping on padded canvases, declared pair-overlap attachments and active contact intervals, mesh/limits/speed/loop. Global connected-body ratio is a heuristic unless connectivity.required=false; undeclared attachment intent, artistic naturalness and identity are not proven. Extreme padded extents fail closed as inconclusive."
       },
       "score": 100
     }
   ],
   "selected": "hello-a",
-  "revision": 8
+  "revision": 22
 }

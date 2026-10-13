@@ -108,3 +108,9 @@ test('detailed mesh texture is independent of diagonal subdivisions',async()=>{
   assert.deepEqual(render(1),render(9),'Cross-axis triangles must not imprint seams on textured pixels');
  }
 });
+test('transparent padding preserves deformed material, child joints and contact coordinates',async()=>{
+ const {padPartCoordinates}=await import('../core/edit.mjs');const {materialPoint}=await import('../core/engine.mjs');
+ const r=rig(),c=clip();r.parts[0].mesh={axis:'y',rows:6,columns:4};r.parts[1].surfaceAttachment=true;r.contacts=[{part:'root',point:[40,70]}];c.contacts=[{part:'root',point:[40,70]}];c.tracks=[{part:'root',property:'bend',keys:[{time:0,value:12},{time:2,value:12}]}];
+ const before=stateAt(r,c,1),anchor=materialPoint(before.find(p=>p.id==='root'),[40,70]);padPartCoordinates(r,'root',8,[c]);const after=stateAt(r,c,1);
+ pair(materialPoint(after.find(p=>p.id==='root'),[48,78]),anchor);pair(after.find(p=>p.id==='child').joint,before.find(p=>p.id==='child').joint);assert.deepEqual(r.contacts[0].point,[48,78]);assert.deepEqual(c.contacts[0].point,[48,78]);
+});

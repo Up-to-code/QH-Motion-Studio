@@ -11,6 +11,7 @@ export function resizePart(rig, id, size, clips = []) {
   const associated = Array.isArray(clips) ? clips : [clips];
   if (associated.some((c) => !c || !Array.isArray(c.tracks))) throw Error("Invalid associated clip");
   if(associated.some(c=>c.contacts!==undefined&&(!Array.isArray(c.contacts)||c.contacts.some(n=>!Array.isArray(n.point)||n.point.length!==2||n.point.some(v=>!Number.isFinite(v))))))throw Error("Invalid associated clip contacts");
+  if(p.mesh?.domain)for(const key of ["size","offset","pivot"])p.mesh.domain[key]=p.mesh.domain[key].map((n,i)=>n*ratio[i]);
   p.pivot = p.pivot.map((n, i) => n * ratio[i]);
   for (const child of children) child.position = child.position.map((n, i) => n * ratio[i]);
   for (const c of rig.contacts || [])
@@ -23,4 +24,13 @@ export function resizePart(rig, id, size, clips = []) {
     if (factor !== 1) for (const key of track.keys) key.value *= factor;
   }
   p.size = [...size];
+}
+// Add transparent image-space padding without resizing anatomy or child offsets.
+export function padPartCoordinates(rig,id,padding,clips=[]) {
+ const p=rig.parts.find(p=>p.id===id);
+ if(!p||!Number.isFinite(padding)||padding<=0||padding>128)throw Error('Invalid padding');
+ const oldSize=[...p.size],oldPivot=[...p.pivot];
+ if(p.mesh){const domain=p.mesh.domain??{size:oldSize,pivot:oldPivot,offset:[0,0]};p.mesh.domain={...domain,offset:domain.offset.map(v=>v+padding)};}
+ p.pivot=p.pivot.map(v=>v+padding);p.size=p.size.map(v=>v+2*padding);
+ for(const c of [...(rig.contacts??[]),...clips.flatMap(c=>c.contacts??[])])if(c.part===id)c.point=c.point.map(v=>v+padding);
 }

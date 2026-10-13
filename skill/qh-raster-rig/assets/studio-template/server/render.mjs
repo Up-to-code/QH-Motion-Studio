@@ -1,3 +1,4 @@
+import { sourceMargins } from "../core/source-integrity.mjs";
 import { zipDirectory } from "./zip.mjs";
 import { exportAnalysis } from "./analysis-export.mjs";
 import { connectedCoverage } from "../core/analysis.mjs";
@@ -96,6 +97,11 @@ export async function assess(rig, clip) {
   if (!errors.length) errors.push(...contractErrors(rig, clip));
   if (errors.length) return { score: 0, accepted: false, errors };
   const images = await loadAssets(rig);
+  const sourceFindings=[];
+  for(const part of rig.parts.filter(p=>p.sourcePolicy)) {
+    const assets=new Set([part.asset,...clip.tracks.filter(t=>t.part===part.id&&t.property==='asset').flatMap(t=>t.keys.map(k=>k.value))]);
+    for(const asset of assets){const img=images[asset],c=createCanvas(img.width,img.height),cx=c.getContext('2d');cx.drawImage(img,0,0);const report=sourceMargins(cx.getImageData(0,0,img.width,img.height).data,img.width,img.height);if(report.empty||report.margins.some(n=>n<part.sourcePolicy.minMarginPx))sourceFindings.push({part:part.id,asset,...report});}
+  }
   const canvas = createCanvas(...rig.canvas),
     ctx = canvas.getContext("2d");
   const count = Math.max(2, Math.ceil(clip.duration * clip.fps) + 1);
@@ -204,6 +210,7 @@ export async function assess(rig, clip) {
       Math.min(15, (maxVelocity - maxAllowedVelocity) / (maxAllowedVelocity / 7.2)),
     ),
   };
+  penalties.sourceCrop = Math.min(100, sourceFindings.length * 20);
   const score = Number(
     Math.max(
       0,
@@ -213,7 +220,7 @@ export async function assess(rig, clip) {
   return {
     score,
     accepted:
-      score >= 95 &&
+      score >= 95 && sourceFindings.length === 0 &&
       maxGap === 0 &&
       contactViolations === 0 &&
       clipped === 0 &&
@@ -223,6 +230,7 @@ export async function assess(rig, clip) {
       flips === 0 &&
       offCanvas === 0,
     metrics: {
+      sourceCropRisks: sourceFindings.length,
       connectedBodyRatio: minConnected,
       flippedTriangles: flips,
       offCanvasSamples: offCanvas,
@@ -239,6 +247,7 @@ export async function assess(rig, clip) {
       maxAllowedVelocityPxPerSecond:maxAllowedVelocity,
       limitOverrunDeg: limit,
     },
+    sourceFindings,
     penalties,
     sampled,
     scope:

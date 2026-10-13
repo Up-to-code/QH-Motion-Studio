@@ -27,3 +27,5 @@ Secondary response solves theta'' + 2*zeta*omega*theta' + omega^2*theta = -gain*
 `resizePart` scales local pivots, immediate child attachment offsets and contact markers in saved image units. Viewport resizing does not call it. The resize/restore test protects reversibility. Renderer compositing uses an oversampled mesh surface with overlap at adjacent triangle clips to avoid internal antialias seams.
 
 Replacement images must register their anatomical anchor before use. Fox wave art has a wrist near source (124,214); `scripts/register-wave-hand.mjs` maps it to (17.5,9) using a 180-degree rotation and uniform 0.155 scale. It preserves the source and keeps the joint hierarchy unchanged.
+
+Transparent margin m shifts asset pivots and material/contact points by (+m,+m), and adds 2m to dimensions. It does not scale bones. Mesh.domain retains the original size/pivot and adds m to its coordinate offset, so padding does not change the displacement field or child surface tangents. See complete-parts.md and padPartCoordinates.

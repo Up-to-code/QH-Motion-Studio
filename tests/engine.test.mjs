@@ -196,5 +196,5 @@ test('wave replacement art covers the registered wrist and points along the hand
  const c=createCanvas(35,44),ctx=c.getContext('2d');ctx.drawImage(image,0,0);
  assert.ok(ctx.getImageData(17,9,1,1).data[3]>200,'Wrist anchor lies on opaque art');
  assert.ok(ctx.getImageData(17,35,1,1).data[3]>200,'Fingers extend outward from wrist');
- const clip=makeMotion(rig,'hello');assert.equal(clip.tracks.find(t=>t.part==='hand_right'&&t.property==='asset').keys[1].value,'/animations/fox/parts/hand_wave_registered.png');
+ const clip=makeMotion(rig,'hello');assert.equal(clip.tracks.find(t=>t.part==='hand_right'&&t.property==='asset').keys[1].value,rig.parts.find(p=>p.id==='hand_right').replacementAssets?.wave??'/animations/fox/parts/hand_wave_registered.png');
 });
