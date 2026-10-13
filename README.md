@@ -68,3 +68,5 @@ See [skeleton mathematics and regional workflow](docs/skeleton-and-regional-work
 ## Version 0.3
 
 Hero 1 opens with a right-facing generated run pose sequence. The timeline is movable and resizable; sidebar visibility and agent tools are in settings. Fox has registered complete feet and a corrected smaller mouth; its older presets are archived. See [the revision and mathematical registration notes](docs/run-hero1.md). The run contains eight original drawings sampled at 24 FPS, not a 3D rig. Reprocessing the saved source sheets with `scripts/register-run-v3.py` requires Pillow, NumPy and SciPy; these are not required for playback.
+
+The jump-like v0.3 run is superseded by the [grounded gait correction](docs/run-gait-fix.md), with a separate foot-contact and body-bounce gate.

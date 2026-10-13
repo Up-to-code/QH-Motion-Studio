@@ -17,14 +17,14 @@
     256
   ],
   "assets": [
-    "/animations/hero1/parts/run-01.png",
-    "/animations/hero1/parts/run-02.png",
-    "/animations/hero1/parts/run-03.png",
-    "/animations/hero1/parts/run-04.png",
-    "/animations/hero1/parts/run-05.png",
-    "/animations/hero1/parts/run-06.png",
-    "/animations/hero1/parts/run-07.png",
-    "/animations/hero1/parts/run-08.png"
+    "/animations/hero1/parts/run-grounded-01.png",
+    "/animations/hero1/parts/run-grounded-02.png",
+    "/animations/hero1/parts/run-grounded-03.png",
+    "/animations/hero1/parts/run-grounded-04.png",
+    "/animations/hero1/parts/run-grounded-05.png",
+    "/animations/hero1/parts/run-grounded-06.png",
+    "/animations/hero1/parts/run-grounded-07.png",
+    "/animations/hero1/parts/run-grounded-08.png"
   ],
   "parts": [
     {
@@ -44,7 +44,7 @@
         512
       ],
       "z": 0,
-      "asset": "/animations/hero1/parts/run-01.png",
+      "asset": "/animations/hero1/parts/run-grounded-01.png",
       "limits": [
         0,
         0
@@ -53,50 +53,51 @@
   ],
   "motionTemplates": {
     "run": {
+      "id": "run-grounded-a",
       "name": "Run Hero 1",
-      "duration": 1,
-      "loop": true,
       "fps": 24,
+      "duration": 0.5,
+      "loop": true,
       "tracks": [
         {
           "part": "body",
           "property": "asset",
           "keys": [
             {
-              "time": 0.0,
-              "value": "/animations/hero1/parts/run-01.png"
+              "time": 0,
+              "value": "/animations/hero1/parts/run-grounded-01.png"
             },
             {
-              "time": 0.125,
-              "value": "/animations/hero1/parts/run-02.png"
+              "time": 0.08333333333333333,
+              "value": "/animations/hero1/parts/run-grounded-02.png"
+            },
+            {
+              "time": 0.16666666666666666,
+              "value": "/animations/hero1/parts/run-grounded-03.png"
+            },
+            {
+              "time": 0.20833333333333334,
+              "value": "/animations/hero1/parts/run-grounded-04.png"
             },
             {
               "time": 0.25,
-              "value": "/animations/hero1/parts/run-03.png"
+              "value": "/animations/hero1/parts/run-grounded-05.png"
             },
             {
-              "time": 0.375,
-              "value": "/animations/hero1/parts/run-04.png"
+              "time": 0.3333333333333333,
+              "value": "/animations/hero1/parts/run-grounded-06.png"
+            },
+            {
+              "time": 0.4166666666666667,
+              "value": "/animations/hero1/parts/run-grounded-07.png"
+            },
+            {
+              "time": 0.4583333333333333,
+              "value": "/animations/hero1/parts/run-grounded-08.png"
             },
             {
               "time": 0.5,
-              "value": "/animations/hero1/parts/run-05.png"
-            },
-            {
-              "time": 0.625,
-              "value": "/animations/hero1/parts/run-06.png"
-            },
-            {
-              "time": 0.75,
-              "value": "/animations/hero1/parts/run-07.png"
-            },
-            {
-              "time": 0.875,
-              "value": "/animations/hero1/parts/run-08.png"
-            },
-            {
-              "time": 1,
-              "value": "/animations/hero1/parts/run-01.png"
+              "value": "/animations/hero1/parts/run-grounded-01.png"
             }
           ]
         }
@@ -110,12 +111,32 @@
     "camera": "right-side 2D with near/far limb shading",
     "authoredPoses": 8,
     "samplingFPS": 24,
-    "holdsPerPose": 3,
-    "status": "reviewed draft",
+    "holdsPerPose": [
+      2,
+      2,
+      1,
+      1,
+      2,
+      2,
+      1,
+      1
+    ],
+    "status": "contact-validated draft",
     "limitations": [
       "Whole-character generated drawings, not a side-view layered skeleton.",
       "Perspective depth is drawn, not a 3D model.",
       "No claim of automatic gait or emotion recognition."
+    ],
+    "gaitFindings": {
+      "passed": true,
+      "issues": [],
+      "headTravel": 10,
+      "flightFraction": 0.25,
+      "scope": "Measured floor contact, flight clearance and head travel. Alternating leg identity, counter-swing, knee articulation and perceived running still require visual review."
+    },
+    "notes": [
+      "Replaces jump-like v0.3 cycle. Short flight; fixed floor, modest body travel.",
+      "Measured hoodie hem is a registration landmark, not an inferred anatomical hip."
     ]
   }
 }

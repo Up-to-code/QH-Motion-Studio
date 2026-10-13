@@ -1,0 +1,234 @@
+[
+  {
+    "frame": 0,
+    "asset": "/animations/hero1/parts/run-grounded-01.png",
+    "sourceSheet": "contacts",
+    "sourceCell": 0,
+    "sourceHip": [
+      392.0,
+      415.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      13,
+      47
+    ],
+    "registeredHip": [
+      256.03999999999996,
+      304.3
+    ],
+    "lowestFootY": 420.24,
+    "headY": 71,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      69,
+      71,
+      353,
+      421
+    ]
+  },
+  {
+    "frame": 1,
+    "asset": "/animations/hero1/parts/run-grounded-02.png",
+    "sourceSheet": "contacts",
+    "sourceCell": 1,
+    "sourceHip": [
+      337.0,
+      408.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      47,
+      46
+    ],
+    "registeredHip": [
+      255.94,
+      298.96000000000004
+    ],
+    "lowestFootY": 419.86,
+    "headY": 71,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      85,
+      71,
+      347,
+      421
+    ]
+  },
+  {
+    "frame": 2,
+    "asset": "/animations/hero1/parts/run-grounded-03.png",
+    "sourceSheet": "transitions",
+    "sourceCell": 0,
+    "sourceHip": [
+      396.0,
+      415.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      10,
+      47
+    ],
+    "registeredHip": [
+      255.52,
+      304.3
+    ],
+    "lowestFootY": 420.24,
+    "headY": 71,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      64,
+      71,
+      351,
+      421
+    ]
+  },
+  {
+    "frame": 3,
+    "asset": "/animations/hero1/parts/run-grounded-04.png",
+    "sourceSheet": "transitions",
+    "sourceCell": 1,
+    "sourceHip": [
+      339.0,
+      412.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      46,
+      41
+    ],
+    "registeredHip": [
+      256.18,
+      296.44
+    ],
+    "lowestFootY": 414.24,
+    "headY": 65,
+    "phase": "flight",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      83,
+      65,
+      350,
+      415
+    ]
+  },
+  {
+    "frame": 4,
+    "asset": "/animations/hero1/parts/run-grounded-05.png",
+    "sourceSheet": "contacts",
+    "sourceCell": 2,
+    "sourceHip": [
+      399.0,
+      375.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      9,
+      65
+    ],
+    "registeredHip": [
+      256.38,
+      297.5
+    ],
+    "lowestFootY": 420.26,
+    "headY": 73,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      65,
+      73,
+      347,
+      421
+    ]
+  },
+  {
+    "frame": 5,
+    "asset": "/animations/hero1/parts/run-grounded-06.png",
+    "sourceSheet": "contacts",
+    "sourceCell": 3,
+    "sourceHip": [
+      347.0,
+      377.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      41,
+      64
+    ],
+    "registeredHip": [
+      256.14,
+      297.74
+    ],
+    "lowestFootY": 420.5,
+    "headY": 75,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      80,
+      75,
+      342,
+      422
+    ]
+  },
+  {
+    "frame": 6,
+    "asset": "/animations/hero1/parts/run-grounded-07.png",
+    "sourceSheet": "transitions",
+    "sourceCell": 2,
+    "sourceHip": [
+      389.0,
+      376.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      15,
+      67
+    ],
+    "registeredHip": [
+      256.18,
+      300.12
+    ],
+    "lowestFootY": 420.4,
+    "headY": 75,
+    "phase": "contact",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      69,
+      75,
+      363,
+      421
+    ]
+  },
+  {
+    "frame": 7,
+    "asset": "/animations/hero1/parts/run-grounded-08.png",
+    "sourceSheet": "transitions",
+    "sourceCell": 3,
+    "sourceHip": [
+      340.0,
+      383.0
+    ],
+    "uniformScale": 0.62,
+    "translation": [
+      45,
+      65
+    ],
+    "registeredHip": [
+      255.8,
+      302.46000000000004
+    ],
+    "lowestFootY": 414.06,
+    "headY": 75,
+    "phase": "flight",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      82,
+      75,
+      355,
+      415
+    ]
+  }
+]

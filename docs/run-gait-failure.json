@@ -1,0 +1,1 @@
+{"character":"hero1","revision":"v0.3.0","userFinding":"feet read as jumping, not running","floorY":418,"lowestFeetY":[401,406,393,361,412,418,408,360],"headTopY":[65,70,60,46,63,67,61,39],"interpretation":"Hip alignment passed but stance and flight geometry failed. Whole-image translation cannot repair a horizontal airborne leg pose."}

@@ -1,0 +1,179 @@
+{
+  "rig": {
+    "id": "hero1",
+    "name": "Hero 1",
+    "version": 1,
+    "mode": "poses",
+    "posePart": "body",
+    "motionProfile": "hero1-right",
+    "allowedActions": [
+      "run"
+    ],
+    "canvas": [
+      512,
+      512
+    ],
+    "origin": [
+      256,
+      256
+    ],
+    "assets": [
+      "/animations/hero1/parts/run-01.png",
+      "/animations/hero1/parts/run-02.png",
+      "/animations/hero1/parts/run-03.png",
+      "/animations/hero1/parts/run-04.png",
+      "/animations/hero1/parts/run-05.png",
+      "/animations/hero1/parts/run-06.png",
+      "/animations/hero1/parts/run-07.png",
+      "/animations/hero1/parts/run-08.png"
+    ],
+    "parts": [
+      {
+        "id": "body",
+        "name": "Right-side run pose",
+        "parent": null,
+        "position": [
+          0,
+          0
+        ],
+        "pivot": [
+          256,
+          256
+        ],
+        "size": [
+          512,
+          512
+        ],
+        "z": 0,
+        "asset": "/animations/hero1/parts/run-01.png",
+        "limits": [
+          0,
+          0
+        ]
+      }
+    ],
+    "motionTemplates": {
+      "run": {
+        "name": "Run Hero 1",
+        "duration": 1,
+        "loop": true,
+        "fps": 24,
+        "tracks": [
+          {
+            "part": "body",
+            "property": "asset",
+            "keys": [
+              {
+                "time": 0,
+                "value": "/animations/hero1/parts/run-01.png"
+              },
+              {
+                "time": 0.125,
+                "value": "/animations/hero1/parts/run-02.png"
+              },
+              {
+                "time": 0.25,
+                "value": "/animations/hero1/parts/run-03.png"
+              },
+              {
+                "time": 0.375,
+                "value": "/animations/hero1/parts/run-04.png"
+              },
+              {
+                "time": 0.5,
+                "value": "/animations/hero1/parts/run-05.png"
+              },
+              {
+                "time": 0.625,
+                "value": "/animations/hero1/parts/run-06.png"
+              },
+              {
+                "time": 0.75,
+                "value": "/animations/hero1/parts/run-07.png"
+              },
+              {
+                "time": 0.875,
+                "value": "/animations/hero1/parts/run-08.png"
+              },
+              {
+                "time": 1,
+                "value": "/animations/hero1/parts/run-01.png"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "sourcePolicy": {
+      "minMarginPx": 8
+    },
+    "semanticReview": {
+      "camera": "right-side 2D with near/far limb shading",
+      "authoredPoses": 8,
+      "samplingFPS": 24,
+      "holdsPerPose": 3,
+      "status": "reviewed draft",
+      "limitations": [
+        "Whole-character generated drawings, not a side-view layered skeleton.",
+        "Perspective depth is drawn, not a 3D model.",
+        "No claim of automatic gait or emotion recognition."
+      ]
+    }
+  },
+  "clips": [
+    {
+      "name": "Run Hero 1",
+      "duration": 1,
+      "loop": true,
+      "fps": 24,
+      "tracks": [
+        {
+          "part": "body",
+          "property": "asset",
+          "keys": [
+            {
+              "time": 0,
+              "value": "/animations/hero1/parts/run-01.png"
+            },
+            {
+              "time": 0.125,
+              "value": "/animations/hero1/parts/run-02.png"
+            },
+            {
+              "time": 0.25,
+              "value": "/animations/hero1/parts/run-03.png"
+            },
+            {
+              "time": 0.375,
+              "value": "/animations/hero1/parts/run-04.png"
+            },
+            {
+              "time": 0.5,
+              "value": "/animations/hero1/parts/run-05.png"
+            },
+            {
+              "time": 0.625,
+              "value": "/animations/hero1/parts/run-06.png"
+            },
+            {
+              "time": 0.75,
+              "value": "/animations/hero1/parts/run-07.png"
+            },
+            {
+              "time": 0.875,
+              "value": "/animations/hero1/parts/run-08.png"
+            },
+            {
+              "time": 1,
+              "value": "/animations/hero1/parts/run-01.png"
+            }
+          ]
+        }
+      ],
+      "id": "run-a",
+      "candidate": "a"
+    }
+  ],
+  "selected": "run-a",
+  "revision": 1
+}

@@ -1,5 +1,7 @@
 # Hero 1 right-side run revision
 
+Archived v0.3 notes: the user identified this cycle as jump-like. It is superseded by the grounded gait correction; see running-gait.md in the skill or docs/run-gait-fix.md in the studio.
+
 The active Fox front rig now has a smaller mouth centered below the nose and one complete ankle-and-shoe assembly, uniformly scaled and mirrored for the other foot. The old motion set is archived at `public/animations/fox/source/regenerated-v3/previous-project.json`, in local history, and in release v0.2.0. The neutral Ready pose does not claim to depict thinking. Old concerned-mouth gestures are no longer offered by the active action selector.
 
 Hero 1 uses eight generated whole-character drawings, sampled at 24 FPS with three samples per drawing. It is a pose library, not eight independent layered skeletons or 24 unique drawings. Depth is represented by side-view artwork and limb occlusion, not a 3D model. The run is a reviewed draft: gait and acting remain visual judgments. Technical score 100 is not 100% animation quality.

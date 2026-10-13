@@ -1,3 +1,4 @@
+"""ARCHIVED v0.3 reproduction; use register-gait-v4.py for the active grounded run."""
 from pathlib import Path
 from PIL import Image
 import numpy as np
