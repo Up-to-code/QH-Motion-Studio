@@ -17,7 +17,7 @@ import { triangleMatrix, meshMetrics } from "../core/mesh.mjs";
 import { signedDistance, connectedCoverage } from "../core/analysis.mjs";
 const rig = JSON.parse(
   fs.readFileSync(
-    new URL("../public/animations/fox/rig.json", import.meta.url),
+    new URL("./fixtures/fox-v2.json", import.meta.url),
   ),
 );
 test("hierarchical hand attachment follows parent rather than image pivot", () => {

@@ -1241,3 +1241,15 @@ textarea:focus-visible,summary:focus-visible { outline:2px solid #8b5cf6; outlin
 }
 .export-menu { position:static; z-index:100; }
 @media(max-width:700px){.main-view-controls button[aria-label="Draw motion path"]{display:none}}
+.editor { position:relative; }
+.preview-pane,.compare .preview-pane { width:min(100%,calc(100dvh - 150px)); }
+.player-dock { position:absolute; z-index:15; left:50%; bottom:18px; transform:translateX(-50%); width:min(680px,calc(100% - 24px)); height:140px; min-height:86px; border:1px solid #e0e3ea; border-radius:10px; background:#ffffffed; box-shadow:0 4px 18px #2026360c; overflow:hidden; }
+.player-dock .timeline { border:0; height:100%; padding:20px 12px 8px; display:flex; flex-direction:column; }
+.player-dock .track-scroll { max-height:none; min-height:0; flex:1; }
+.dock-grip { position:absolute; top:1px; left:50%; transform:translateX(-50%); border:0; background:transparent; color:#818896; height:18px; padding:0 16px; cursor:move; touch-action:none; z-index:1; }
+.dock-resize { position:absolute; bottom:1px; right:1px; border:0; background:white; color:#818896; padding:2px; cursor:nwse-resize; touch-action:none; }
+.view-toggle { display:flex!important; flex-direction:row; align-items:center; gap:8px!important; }
+.configuration-fields .view-toggle input { width:16px; height:16px; }
+.connection-settings { width:100%; }
+.connection-settings .context-panel,.connection-settings .regional-panel,.connection-settings .skeleton-panel,.connection-settings .quality-panel { width:100%; }
+@media(max-width:700px){.preview-pane{width:min(100%,calc(100dvh - 140px))}.player-dock{bottom:10px;height:128px}.player-dock .timeline{height:100%}}

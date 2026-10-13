@@ -62,7 +62,7 @@ export function project(id = "fox") {
   const filename = path.join(PUBLIC, "animations", id, "rig.json");
   if (!fs.existsSync(filename)) throw Error("Character not found");
   const rig = JSON.parse(fs.readFileSync(filename));
-  const actions=rig.id === "fox" ? ["hello","thinking","success","idle"] : ["nia","orbit"].includes(rig.id) && rig.mode === "poses" ? ["idle","thinking","success"] : ["idle",...Object.keys(rig.motionTemplates || {}).filter(n=>n!=="idle")];
+  const actions=rig.allowedActions ?? (rig.id === "fox" ? ["hello","thinking","success","idle"] : ["nia","orbit"].includes(rig.id) && rig.mode === "poses" ? ["idle","thinking","success"] : ["idle",...Object.keys(rig.motionTemplates || {}).filter(n=>n!=="idle")]);
   const clips = actions.flatMap((name) =>
     name === "hello"
       ? [makeMotion(rig, name, 24, "a"), makeMotion(rig, name, 24, "b")]

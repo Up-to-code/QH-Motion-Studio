@@ -1,4 +1,5 @@
 export function makeMotion(rig, name = "hello", fps = 24, candidate = "a") {
+  if(rig.allowedActions && !rig.allowedActions.includes(name)) throw Error("This action is not approved for this character; author and review a new motion first");
   const profile=rig.motionProfile??rig.id;
   if (profile !== "fox" && !["nia","orbit"].includes(profile)) {
     const template=rig.motionTemplates?.[name];

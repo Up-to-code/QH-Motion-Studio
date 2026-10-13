@@ -15,7 +15,7 @@ import {
 } from "./service.mjs";
 import {readSkeleton,saveSkeleton,checkSkeleton} from "./skeleton.mjs";
 import {readContext,saveContext,beginWorkflow,readWorkflow,regionalPacket,evaluatePatch,recordReview,repairWorkflow,readCandidate,claimRegion,submitRegion} from "./workflow.mjs";
-const server = new McpServer({ name: "qh-motion-studio", version: "0.2.0" });
+const server = new McpServer({ name: "qh-motion-studio", version: "0.3.0" });
 const text = (data) => ({
   content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
 });

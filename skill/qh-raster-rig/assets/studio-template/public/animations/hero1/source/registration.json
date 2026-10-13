@@ -1,0 +1,282 @@
+[
+  {
+    "frame": 0,
+    "asset": "/animations/hero1/parts/run-01.png",
+    "sourceCell": [
+      0,
+      0
+    ],
+    "sourceFile": "run-half-1.png",
+    "sourceHip": [
+      393,
+      426
+    ],
+    "scale": 0.62,
+    "translation": [
+      12,
+      36
+    ],
+    "intentionalRootOffset": [
+      0,
+      0
+    ],
+    "registeredRoot": [
+      255.66,
+      300.12
+    ],
+    "camera": "right",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      78,
+      65,
+      373,
+      401
+    ],
+    "sha256": "22b81dadafcbbd7c8e785bae6877596cc1f0600148697c34d1966439e527d914"
+  },
+  {
+    "frame": 1,
+    "asset": "/animations/hero1/parts/run-02.png",
+    "sourceCell": [
+      1,
+      0
+    ],
+    "sourceFile": "run-half-1.png",
+    "sourceHip": [
+      350,
+      431
+    ],
+    "scale": 0.62,
+    "translation": [
+      39,
+      41
+    ],
+    "intentionalRootOffset": [
+      0,
+      8
+    ],
+    "registeredRoot": [
+      256.0,
+      308.21999999999997
+    ],
+    "camera": "right",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      85,
+      70,
+      364,
+      406
+    ],
+    "sha256": "32738318a8ddb99e643aa6fc7f3ce81b883360b520e39857b105dc3293e48add"
+  },
+  {
+    "frame": 2,
+    "asset": "/animations/hero1/parts/run-03.png",
+    "sourceCell": [
+      0,
+      1
+    ],
+    "sourceFile": "run-half-1.png",
+    "sourceHip": [
+      390,
+      418
+    ],
+    "scale": 0.62,
+    "translation": [
+      14,
+      39
+    ],
+    "intentionalRootOffset": [
+      0,
+      -2
+    ],
+    "registeredRoot": [
+      255.8,
+      298.16
+    ],
+    "camera": "right",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      77,
+      60,
+      371,
+      393
+    ],
+    "sha256": "8267b933ed6e3539658fe6db28403046a84b85a27fdba651c49e1d5171969905"
+  },
+  {
+    "frame": 3,
+    "asset": "/animations/hero1/parts/run-04.png",
+    "sourceCell": [
+      1,
+      1
+    ],
+    "sourceFile": "run-half-1.png",
+    "sourceHip": [
+      356,
+      423
+    ],
+    "scale": 0.62,
+    "translation": [
+      35,
+      26
+    ],
+    "intentionalRootOffset": [
+      0,
+      -12
+    ],
+    "registeredRoot": [
+      255.72,
+      288.26
+    ],
+    "camera": "right",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      68,
+      46,
+      379,
+      361
+    ],
+    "sha256": "996ee0380a86676c9e5bdd8a72e234c60e500167a0375a720dcccd3cb12d1245"
+  },
+  {
+    "frame": 4,
+    "asset": "/animations/hero1/parts/run-05.png",
+    "sourceCell": [
+      0,
+      0
+    ],
+    "sourceFile": "run-half-2.png",
+    "sourceHip": [
+      397,
+      423
+    ],
+    "scale": 0.62,
+    "translation": [
+      10,
+      38
+    ],
+    "intentionalRootOffset": [
+      0,
+      0
+    ],
+    "registeredRoot": [
+      256.14,
+      300.26
+    ],
+    "camera": "right",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      68,
+      63,
+      371,
+      412
+    ],
+    "sha256": "109ba5d74e725238a98e941d9c00de4a8249f3afbb69f0f1436a46bab1ae7c84"
+  },
+  {
+    "frame": 5,
+    "asset": "/animations/hero1/parts/run-06.png",
+    "sourceCell": [
+      1,
+      0
+    ],
+    "sourceFile": "run-half-2.png",
+    "sourceHip": [
+      355,
+      432
+    ],
+    "scale": 0.62,
+    "translation": [
+      36,
+      40
+    ],
+    "intentionalRootOffset": [
+      0,
+      8
+    ],
+    "registeredRoot": [
+      256.1,
+      307.84
+    ],
+    "camera": "right",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      67,
+      67,
+      337,
+      418
+    ],
+    "sha256": "7376ecf63d90db925f3f06f033ef1a8bb609f2d6ab2fdba16265e5924184e087"
+  },
+  {
+    "frame": 6,
+    "asset": "/animations/hero1/parts/run-07.png",
+    "sourceCell": [
+      0,
+      1
+    ],
+    "sourceFile": "run-half-2.png",
+    "sourceHip": [
+      392,
+      410
+    ],
+    "scale": 0.62,
+    "translation": [
+      13,
+      44
+    ],
+    "intentionalRootOffset": [
+      0,
+      -2
+    ],
+    "registeredRoot": [
+      256.03999999999996,
+      298.2
+    ],
+    "camera": "right",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      71,
+      61,
+      371,
+      408
+    ],
+    "sha256": "93c0558a0ccf2246fbdccde812469d82d0756c9d45f9227eaf7adb5b3dc4d09f"
+  },
+  {
+    "frame": 7,
+    "asset": "/animations/hero1/parts/run-08.png",
+    "sourceCell": [
+      1,
+      1
+    ],
+    "sourceFile": "run-half-2.png",
+    "sourceHip": [
+      351,
+      432
+    ],
+    "scale": 0.62,
+    "translation": [
+      38,
+      20
+    ],
+    "intentionalRootOffset": [
+      0,
+      -12
+    ],
+    "registeredRoot": [
+      255.62,
+      287.84
+    ],
+    "camera": "right",
+    "sourceTouchesEdge": false,
+    "alphaBounds": [
+      68,
+      39,
+      394,
+      360
+    ],
+    "sha256": "0c6064a79b23650440c5b434da16e55a834d380eafd60cd4075d492acd2e1ceb"
+  }
+]

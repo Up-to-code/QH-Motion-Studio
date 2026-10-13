@@ -79,7 +79,7 @@ test("analysis export preserves numeric fields in a self-contained ZIP", async (
 });
 
 test("invalid generated templates cannot corrupt the saved project",async()=>{
- const p=structuredClone(project("fox"));p.rig.id="template-probe";p.rig.motionTemplates={broken:{duration:1,tracks:[{part:"missing",property:"rotation",keys:[{time:0,value:0}]}]}};
+ const p=structuredClone(project("fox"));p.rig.id="template-probe";p.rig.allowedActions=["broken"];p.rig.motionTemplates={broken:{duration:1,tracks:[{part:"missing",property:"rotation",keys:[{time:0,value:0}]}]}};
  put("project","template-probe",p);
  await assert.rejects(()=>generate("template-probe","broken",24,1,95),/unknown part/i);
  assert.equal(project("template-probe").clips.length,p.clips.length);

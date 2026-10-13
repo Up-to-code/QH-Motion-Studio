@@ -1,0 +1,1339 @@
+{
+  "version": 1,
+  "id": "fox",
+  "name": "Fox",
+  "mode": "layered",
+  "canvas": [
+    512,
+    512
+  ],
+  "origin": [
+    256,
+    256
+  ],
+  "ground": 438.5,
+  "parts": [
+    {
+      "id": "tail",
+      "name": "Tail",
+      "parent": null,
+      "position": [
+        -43,
+        87
+      ],
+      "pivot": [
+        112,
+        73
+      ],
+      "size": [
+        140,
+        141
+      ],
+      "z": 0,
+      "asset": "/animations/fox/parts/tail_complete_v2_0-339c7e5085b6.png",
+      "limits": [
+        -12,
+        12
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "mesh": {
+        "columns": 6,
+        "rows": 4,
+        "axis": "x",
+        "domain": {
+          "size": [
+            124,
+            125
+          ],
+          "pivot": [
+            104,
+            65
+          ],
+          "offset": [
+            8,
+            8
+          ]
+        }
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "leg_left",
+      "name": "Leg Left",
+      "parent": "pelvis",
+      "position": [
+        -23,
+        6
+      ],
+      "pivot": [
+        28,
+        21
+      ],
+      "size": [
+        55,
+        92
+      ],
+      "z": 2,
+      "asset": "/animations/fox/parts/leg_left_complete_v2_0-514d7ab2a14d.png",
+      "limits": [
+        -10,
+        10
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "leg_right",
+      "name": "Leg Right",
+      "parent": "pelvis",
+      "position": [
+        24,
+        6
+      ],
+      "pivot": [
+        27,
+        21
+      ],
+      "size": [
+        55,
+        92
+      ],
+      "z": 2,
+      "asset": "/animations/fox/parts/leg_right_complete_v2_0-514d7ab2a14d.png",
+      "limits": [
+        -10,
+        10
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "pelvis",
+      "name": "Pelvis",
+      "parent": null,
+      "position": [
+        0,
+        88
+      ],
+      "pivot": [
+        54.5,
+        33.5
+      ],
+      "size": [
+        109,
+        67
+      ],
+      "z": 1.5,
+      "asset": "/animations/fox/parts/pelvis_complete_v2_0-c096c1a9e9e2.png",
+      "limits": [
+        -25,
+        25
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "shoe_left",
+      "name": "Shoe Left",
+      "parent": "leg_left",
+      "position": [
+        -8,
+        71
+      ],
+      "pivot": [
+        40,
+        26
+      ],
+      "size": [
+        81,
+        51
+      ],
+      "z": 4,
+      "asset": "/animations/fox/parts/shoe_left_complete_v2_0-80f9b8d34502.png",
+      "limits": [
+        -5,
+        5
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "shoe_right",
+      "name": "Shoe Right",
+      "parent": "leg_right",
+      "position": [
+        6,
+        71
+      ],
+      "pivot": [
+        40,
+        26
+      ],
+      "size": [
+        81,
+        51
+      ],
+      "z": 4,
+      "asset": "/animations/fox/parts/shoe_right_complete_v2_0-b7c3d33b331b.png",
+      "limits": [
+        -5,
+        5
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "upper_arm_left",
+      "name": "Left Shoulder Sleeve",
+      "parent": "hoodie",
+      "position": [
+        -46,
+        -22
+      ],
+      "pivot": [
+        30.5,
+        22
+      ],
+      "size": [
+        61,
+        81
+      ],
+      "z": 7,
+      "asset": "/animations/fox/parts/upper_arm_left_complete_v2_0-5f7233bbd115.png",
+      "limits": [
+        -25,
+        135
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso",
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "upper_arm_right",
+      "name": "Right Shoulder Sleeve",
+      "parent": "hoodie",
+      "position": [
+        46,
+        -22
+      ],
+      "pivot": [
+        30.5,
+        22
+      ],
+      "size": [
+        61,
+        81
+      ],
+      "z": 7,
+      "asset": "/animations/fox/parts/upper_arm_right_complete_v2_0-5f7233bbd115.png",
+      "limits": [
+        -135,
+        25
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "ownership": "Shoulder sleeve and upper-arm fabric; no sleeve pixels in torso",
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "forearm_left",
+      "name": "Forearm Left",
+      "parent": "upper_arm_left",
+      "position": [
+        0,
+        42
+      ],
+      "pivot": [
+        27,
+        20
+      ],
+      "size": [
+        54,
+        70
+      ],
+      "z": 8,
+      "asset": "/animations/fox/parts/forearm_left_complete_v2_0-5502c0b19ac0.png",
+      "limits": [
+        -85,
+        20
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "forearm_right",
+      "name": "Forearm Right",
+      "parent": "upper_arm_right",
+      "position": [
+        0,
+        42
+      ],
+      "pivot": [
+        27,
+        20
+      ],
+      "size": [
+        54,
+        70
+      ],
+      "z": 8,
+      "asset": "/animations/fox/parts/forearm_right_complete_v2_0-5502c0b19ac0.png",
+      "limits": [
+        -85,
+        20
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "hand_left",
+      "name": "Hand Left",
+      "parent": "forearm_left",
+      "position": [
+        0,
+        37
+      ],
+      "pivot": [
+        25.5,
+        17
+      ],
+      "size": [
+        51,
+        60
+      ],
+      "z": 9,
+      "asset": "/animations/fox/parts/hand_left_complete_v2_0-060c35d45e0d.png",
+      "limits": [
+        -35,
+        35
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "hand_right",
+      "name": "Hand Right",
+      "parent": "forearm_right",
+      "position": [
+        0,
+        37
+      ],
+      "pivot": [
+        25.5,
+        17
+      ],
+      "size": [
+        51,
+        60
+      ],
+      "z": 7.5,
+      "asset": "/animations/fox/parts/hand_right_complete_v2_0-060c35d45e0d.png",
+      "limits": [
+        -35,
+        35
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "replacementAssets": {
+        "wave": "/animations/fox/parts/hand_right_complete_v2_1-ab3011839485.png"
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "cuff_left",
+      "name": "Left Cuff",
+      "parent": "forearm_left",
+      "position": [
+        1.6666666666666679,
+        34.31304347826087
+      ],
+      "pivot": [
+        21,
+        9
+      ],
+      "size": [
+        42,
+        24.68695652173913
+      ],
+      "z": 9.2,
+      "asset": "/animations/fox/parts/cuff_left_complete_v2_0-68ec09e9950d.png",
+      "limits": [
+        -5,
+        5
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "cuff_right",
+      "name": "Right Cuff",
+      "parent": "forearm_right",
+      "position": [
+        1.6666666666666679,
+        34.31304347826087
+      ],
+      "pivot": [
+        21,
+        9
+      ],
+      "size": [
+        42,
+        24.68695652173913
+      ],
+      "z": 9.2,
+      "asset": "/animations/fox/parts/cuff_right_complete_v2_0-68ec09e9950d.png",
+      "limits": [
+        -5,
+        5
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "hoodie",
+      "name": "Hoodie",
+      "parent": null,
+      "position": [
+        0,
+        24
+      ],
+      "pivot": [
+        80,
+        61
+      ],
+      "size": [
+        160,
+        136
+      ],
+      "z": 10,
+      "asset": "/animations/fox/parts/hoodie_complete_v2_0-e05906bba4c0.png",
+      "limits": [
+        -6,
+        6
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "mesh": {
+        "columns": 6,
+        "rows": 7,
+        "axis": "y",
+        "domain": {
+          "size": [
+            144,
+            120
+          ],
+          "pivot": [
+            72,
+            53
+          ],
+          "offset": [
+            8,
+            8
+          ]
+        }
+      },
+      "ownership": "Chest, hood and attached wrinkle texture; excludes arm clothing. Drawstrings, pocket and hem use separate layers.",
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "hem",
+      "name": "Hem",
+      "parent": "hoodie",
+      "position": [
+        -0.14035087719298645,
+        52.70023419203744
+      ],
+      "pivot": [
+        59.36842105263156,
+        10
+      ],
+      "size": [
+        118.73684210526315,
+        31.737704918032787
+      ],
+      "z": 11,
+      "asset": "/animations/fox/parts/hem_complete_v2_0-245028d86c61.png",
+      "limits": [
+        -20,
+        20
+      ],
+      "surfaceAttachment": true,
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "pocket",
+      "name": "Pocket",
+      "parent": "hoodie",
+      "position": [
+        0.42105263157895934,
+        18.695550351288034
+      ],
+      "pivot": [
+        43.92982456140351,
+        10
+      ],
+      "size": [
+        87.85964912280701,
+        44.103044496487115
+      ],
+      "z": 13,
+      "asset": "/animations/fox/parts/pocket_complete_v2_0-c68a75e90083.png",
+      "limits": [
+        -20,
+        20
+      ],
+      "surfaceAttachment": true,
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "drawstring_left",
+      "name": "Drawstring Left",
+      "parent": "hoodie",
+      "position": [
+        -16,
+        -21.772833723653378
+      ],
+      "pivot": [
+        12.350877192982466,
+        10
+      ],
+      "size": [
+        24.70175438596491,
+        48.03747072599531
+      ],
+      "z": 14,
+      "asset": "/animations/fox/parts/drawstring_left_complete_v2_0-bbdd3d018393.png",
+      "limits": [
+        -20,
+        20
+      ],
+      "surfaceAttachment": true,
+      "secondary": {
+        "driver": "upper_arm_right",
+        "property": "rotation",
+        "gain": 0.04,
+        "frequencyHz": 2.7,
+        "damping": 0.72,
+        "maxDegrees": 9
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "drawstring_right",
+      "name": "Drawstring Right",
+      "parent": "hoodie",
+      "position": [
+        15.719298245614027,
+        -21.772833723653378
+      ],
+      "pivot": [
+        12.350877192982466,
+        10
+      ],
+      "size": [
+        24.70175438596491,
+        48.03747072599531
+      ],
+      "z": 14,
+      "asset": "/animations/fox/parts/drawstring_right_complete_v2_0-68e1a80e42b6.png",
+      "limits": [
+        -20,
+        20
+      ],
+      "surfaceAttachment": true,
+      "secondary": {
+        "driver": "upper_arm_right",
+        "property": "rotation",
+        "gain": 0.055,
+        "frequencyHz": 2.7,
+        "damping": 0.72,
+        "maxDegrees": 9
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "neck",
+      "name": "Neck",
+      "parent": "hoodie",
+      "position": [
+        0,
+        -38
+      ],
+      "pivot": [
+        26,
+        22
+      ],
+      "size": [
+        52,
+        56
+      ],
+      "z": 18,
+      "asset": "/animations/fox/parts/neck_complete_v2_0-fccd515974dc.png",
+      "limits": [
+        0,
+        0
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "ear_left",
+      "name": "Ear Left",
+      "parent": "head",
+      "position": [
+        -53,
+        -77
+      ],
+      "pivot": [
+        43,
+        100
+      ],
+      "size": [
+        84,
+        132
+      ],
+      "z": 19,
+      "asset": "/animations/fox/parts/ear_left_complete_v2_0-d752b551a4b6.png",
+      "limits": [
+        -8,
+        8
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "ear_right",
+      "name": "Ear Right",
+      "parent": "head",
+      "position": [
+        53,
+        -81
+      ],
+      "pivot": [
+        43,
+        100
+      ],
+      "size": [
+        84,
+        132
+      ],
+      "z": 19,
+      "asset": "/animations/fox/parts/ear_right_complete_v2_0-dd0f84a7bf38.png",
+      "limits": [
+        -8,
+        8
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "attachment": {
+        "required": true,
+        "radiusPx": 10,
+        "minOverlap": 1
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "head",
+      "name": "Head",
+      "parent": "hoodie",
+      "position": [
+        0,
+        -46
+      ],
+      "pivot": [
+        101.5,
+        138
+      ],
+      "size": [
+        203,
+        163
+      ],
+      "z": 20,
+      "asset": "/animations/fox/parts/head_complete_v2_0-9f65c360d253.png",
+      "limits": [
+        -10,
+        10
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "eye_left",
+      "name": "Eye Left",
+      "parent": "head",
+      "position": [
+        -26,
+        -54
+      ],
+      "pivot": [
+        22.5,
+        27.5
+      ],
+      "size": [
+        45,
+        55
+      ],
+      "z": 22,
+      "asset": "/animations/fox/parts/eye_left_complete_v2_0-cba127774774.png",
+      "limits": [
+        0,
+        0
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "eye_right",
+      "name": "Eye Right",
+      "parent": "head",
+      "position": [
+        25,
+        -54
+      ],
+      "pivot": [
+        22.5,
+        27.5
+      ],
+      "size": [
+        45,
+        55
+      ],
+      "z": 22,
+      "asset": "/animations/fox/parts/eye_right_complete_v2_0-e7c0cf42de0e.png",
+      "limits": [
+        0,
+        0
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "pupil_left",
+      "name": "Pupil Left",
+      "parent": "eye_left",
+      "position": [
+        2,
+        2
+      ],
+      "pivot": [
+        15,
+        21
+      ],
+      "size": [
+        30,
+        42
+      ],
+      "z": 23,
+      "asset": "/animations/fox/parts/pupil_left_complete_v2_0-8ab414a6e405.png",
+      "limits": [
+        0,
+        0
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "pupil_right",
+      "name": "Pupil Right",
+      "parent": "eye_right",
+      "position": [
+        2,
+        2
+      ],
+      "pivot": [
+        15,
+        21
+      ],
+      "size": [
+        30,
+        42
+      ],
+      "z": 23,
+      "asset": "/animations/fox/parts/pupil_right_complete_v2_0-9b72e33bbe1e.png",
+      "limits": [
+        0,
+        0
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "brow_left",
+      "name": "Brow Left",
+      "parent": "head",
+      "position": [
+        -26,
+        -83
+      ],
+      "pivot": [
+        20,
+        13
+      ],
+      "size": [
+        40,
+        26
+      ],
+      "z": 24,
+      "asset": "/animations/fox/parts/brow_left_complete_v2_0-0debf6553089.png",
+      "limits": [
+        -18,
+        18
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "brow_right",
+      "name": "Brow Right",
+      "parent": "head",
+      "position": [
+        25,
+        -83
+      ],
+      "pivot": [
+        20,
+        13
+      ],
+      "size": [
+        40,
+        26
+      ],
+      "z": 24,
+      "asset": "/animations/fox/parts/brow_right_complete_v2_0-f597655cfbce.png",
+      "limits": [
+        -18,
+        18
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "nose",
+      "name": "Nose",
+      "parent": "head",
+      "position": [
+        -1,
+        -33
+      ],
+      "pivot": [
+        19,
+        14
+      ],
+      "size": [
+        38,
+        28
+      ],
+      "z": 24,
+      "asset": "/animations/fox/parts/nose_complete_v2_0-fdca9490ad30.png",
+      "limits": [
+        0,
+        0
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "mouth",
+      "name": "Mouth",
+      "parent": "head",
+      "position": [
+        -1,
+        -15
+      ],
+      "pivot": [
+        23.5,
+        15
+      ],
+      "size": [
+        47,
+        30
+      ],
+      "z": 24,
+      "asset": "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
+      "limits": [
+        -5,
+        5
+      ],
+      "visible": true,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "replacementAssets": {
+        "concerned": "/animations/fox/parts/mouth_complete_v2_1-33a72ec639ca.png",
+        "happy": "/animations/fox/parts/mouth_complete_v2_2-86dc656cc636.png"
+      },
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "lid_left",
+      "name": "Lid Left",
+      "parent": "head",
+      "position": [
+        -26,
+        -53
+      ],
+      "pivot": [
+        23,
+        13
+      ],
+      "size": [
+        46,
+        26
+      ],
+      "z": 25,
+      "asset": "/animations/fox/parts/lid_left_complete_v2_0-a1a45505faf8.png",
+      "limits": [
+        0,
+        0
+      ],
+      "visible": false,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    },
+    {
+      "id": "lid_right",
+      "name": "Lid Right",
+      "parent": "head",
+      "position": [
+        25,
+        -53
+      ],
+      "pivot": [
+        23,
+        13
+      ],
+      "size": [
+        46,
+        26
+      ],
+      "z": 25,
+      "asset": "/animations/fox/parts/lid_right_complete_v2_0-d142989dff89.png",
+      "limits": [
+        0,
+        0
+      ],
+      "visible": false,
+      "palette": [
+        "#ff7b21",
+        "#ffe2ab",
+        "#9364f5",
+        "#49305f",
+        "#ffcc27"
+      ],
+      "sourcePolicy": {
+        "minMarginPx": 8
+      }
+    }
+  ],
+  "assets": [
+    "/animations/fox/parts/head.png",
+    "/animations/fox/parts/ear_left.png",
+    "/animations/fox/parts/ear_right.png",
+    "/animations/fox/parts/tail.png",
+    "/animations/fox/parts/hoodie.png",
+    "/animations/fox/parts/pelvis.png",
+    "/animations/fox/parts/leg_left.png",
+    "/animations/fox/parts/leg_right.png",
+    "/animations/fox/parts/shoe_left.png",
+    "/animations/fox/parts/shoe_right.png",
+    "/animations/fox/parts/upper_arm.png",
+    "/animations/fox/parts/forearm.png",
+    "/animations/fox/parts/hand_rest.png",
+    "/animations/fox/parts/hand_wave.png",
+    "/animations/fox/parts/neck.png",
+    "/animations/fox/parts/pupil_left.png",
+    "/animations/fox/parts/eye_left.png",
+    "/animations/fox/parts/eye_full_left.png",
+    "/animations/fox/parts/pupil_right.png",
+    "/animations/fox/parts/eye_right.png",
+    "/animations/fox/parts/eye_full_right.png",
+    "/animations/fox/parts/brow_left.png",
+    "/animations/fox/parts/brow_right.png",
+    "/animations/fox/parts/nose.png",
+    "/animations/fox/parts/mouth_smile.png",
+    "/animations/fox/parts/mouth_happy.png",
+    "/animations/fox/parts/mouth_concerned.png",
+    "/animations/fox/parts/lid_left.png",
+    "/animations/fox/parts/lid_right.png",
+    "/animations/fox/parts/drawstring_left.png",
+    "/animations/fox/parts/drawstring_right.png",
+    "/animations/fox/parts/pocket.png",
+    "/animations/fox/parts/hem.png",
+    "/animations/fox/parts/cuff_left.png",
+    "/animations/fox/parts/cuff_right.png",
+    "/animations/fox/parts/hand_wave_registered.png",
+    "/animations/fox/parts/tail_complete_v2_0-339c7e5085b6.png",
+    "/animations/fox/parts/leg_left_complete_v2_0-514d7ab2a14d.png",
+    "/animations/fox/parts/leg_right_complete_v2_0-514d7ab2a14d.png",
+    "/animations/fox/parts/pelvis_complete_v2_0-c096c1a9e9e2.png",
+    "/animations/fox/parts/shoe_left_complete_v2_0-80f9b8d34502.png",
+    "/animations/fox/parts/shoe_right_complete_v2_0-b7c3d33b331b.png",
+    "/animations/fox/parts/upper_arm_left_complete_v2_0-5f7233bbd115.png",
+    "/animations/fox/parts/upper_arm_right_complete_v2_0-5f7233bbd115.png",
+    "/animations/fox/parts/forearm_left_complete_v2_0-5502c0b19ac0.png",
+    "/animations/fox/parts/forearm_right_complete_v2_0-5502c0b19ac0.png",
+    "/animations/fox/parts/hand_left_complete_v2_0-060c35d45e0d.png",
+    "/animations/fox/parts/hand_right_complete_v2_0-060c35d45e0d.png",
+    "/animations/fox/parts/hand_right_complete_v2_1-ab3011839485.png",
+    "/animations/fox/parts/cuff_left_complete_v2_0-68ec09e9950d.png",
+    "/animations/fox/parts/cuff_right_complete_v2_0-68ec09e9950d.png",
+    "/animations/fox/parts/hoodie_complete_v2_0-e05906bba4c0.png",
+    "/animations/fox/parts/hem_complete_v2_0-245028d86c61.png",
+    "/animations/fox/parts/pocket_complete_v2_0-c68a75e90083.png",
+    "/animations/fox/parts/drawstring_left_complete_v2_0-bbdd3d018393.png",
+    "/animations/fox/parts/drawstring_right_complete_v2_0-68e1a80e42b6.png",
+    "/animations/fox/parts/neck_complete_v2_0-fccd515974dc.png",
+    "/animations/fox/parts/ear_left_complete_v2_0-d752b551a4b6.png",
+    "/animations/fox/parts/ear_right_complete_v2_0-dd0f84a7bf38.png",
+    "/animations/fox/parts/head_complete_v2_0-9f65c360d253.png",
+    "/animations/fox/parts/eye_left_complete_v2_0-cba127774774.png",
+    "/animations/fox/parts/eye_right_complete_v2_0-e7c0cf42de0e.png",
+    "/animations/fox/parts/pupil_left_complete_v2_0-8ab414a6e405.png",
+    "/animations/fox/parts/pupil_right_complete_v2_0-9b72e33bbe1e.png",
+    "/animations/fox/parts/brow_left_complete_v2_0-0debf6553089.png",
+    "/animations/fox/parts/brow_right_complete_v2_0-f597655cfbce.png",
+    "/animations/fox/parts/nose_complete_v2_0-fdca9490ad30.png",
+    "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
+    "/animations/fox/parts/mouth_complete_v2_1-33a72ec639ca.png",
+    "/animations/fox/parts/mouth_complete_v2_2-86dc656cc636.png",
+    "/animations/fox/parts/lid_left_complete_v2_0-a1a45505faf8.png",
+    "/animations/fox/parts/lid_right_complete_v2_0-d142989dff89.png"
+  ],
+  "contacts": [
+    {
+      "part": "shoe_left",
+      "point": [
+        40,
+        43
+      ]
+    },
+    {
+      "part": "shoe_right",
+      "point": [
+        40,
+        43
+      ]
+    }
+  ],
+  "attachments": {
+    "hat": {
+      "parent": "head",
+      "position": [
+        0,
+        -135
+      ],
+      "asset": null
+    }
+  },
+  "provenance": {
+    "provider": "built-in image_gen",
+    "source": "source/parts-atlas.png",
+    "processing": "Connected-component cleanup, alpha-safe crop, numeric bind pose; original source retained."
+  },
+  "garmentOwnership": {
+    "torsoExcludesSleeves": true,
+    "arms": [
+      "shoulder sleeve",
+      "forearm sleeve",
+      "cuff",
+      "hand"
+    ],
+    "secondaryDetails": [
+      "drawstring_left",
+      "drawstring_right"
+    ],
+    "wrinkles": "Warp with torso texture, not independent floating overlays",
+    "sourceMasks": "source/wardrobe-masks.npz"
+  }
+}

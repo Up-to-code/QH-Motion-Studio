@@ -180,22 +180,22 @@
     },
     {
       "id": "shoe_left",
-      "name": "Shoe Left",
+      "name": "Left foot",
       "parent": "leg_left",
       "position": [
         -8,
         71
       ],
       "pivot": [
-        40,
-        26
+        54.99445983379501,
+        32
       ],
       "size": [
         81,
-        51
+        57
       ],
       "z": 4,
-      "asset": "/animations/fox/parts/shoe_left_complete_v2_0-80f9b8d34502.png",
+      "asset": "/animations/fox/parts/foot_left_v3.png",
       "limits": [
         -5,
         5
@@ -215,26 +215,33 @@
       },
       "sourcePolicy": {
         "minMarginPx": 8
+      },
+      "anatomy": {
+        "includes": [
+          "ankle",
+          "shoe"
+        ],
+        "mirrorOf": null
       }
     },
     {
       "id": "shoe_right",
-      "name": "Shoe Right",
+      "name": "Right foot",
       "parent": "leg_right",
       "position": [
         6,
         71
       ],
       "pivot": [
-        40,
-        26
+        26.005540166204987,
+        32
       ],
       "size": [
         81,
-        51
+        57
       ],
       "z": 4,
-      "asset": "/animations/fox/parts/shoe_right_complete_v2_0-b7c3d33b331b.png",
+      "asset": "/animations/fox/parts/foot_right_v3.png",
       "limits": [
         -5,
         5
@@ -254,6 +261,13 @@
       },
       "sourcePolicy": {
         "minMarginPx": 8
+      },
+      "anatomy": {
+        "includes": [
+          "ankle",
+          "shoe"
+        ],
+        "mirrorOf": "shoe_left"
       }
     },
     {
@@ -1115,15 +1129,15 @@
       "parent": "head",
       "position": [
         -1,
-        -15
+        -11
       ],
       "pivot": [
-        23.5,
-        15
+        16.45,
+        10.5
       ],
       "size": [
-        47,
-        30
+        32.9,
+        21
       ],
       "z": 24,
       "asset": "/animations/fox/parts/mouth_complete_v2_0-222ee7e1eab7.png",
@@ -1288,21 +1302,23 @@
     "/animations/fox/parts/mouth_complete_v2_1-33a72ec639ca.png",
     "/animations/fox/parts/mouth_complete_v2_2-86dc656cc636.png",
     "/animations/fox/parts/lid_left_complete_v2_0-a1a45505faf8.png",
-    "/animations/fox/parts/lid_right_complete_v2_0-d142989dff89.png"
+    "/animations/fox/parts/lid_right_complete_v2_0-d142989dff89.png",
+    "/animations/fox/parts/foot_left_v3.png",
+    "/animations/fox/parts/foot_right_v3.png"
   ],
   "contacts": [
     {
       "part": "shoe_left",
       "point": [
-        40,
-        43
+        54.99445983379501,
+        49
       ]
     },
     {
       "part": "shoe_right",
       "point": [
-        40,
-        43
+        26.005540166204987,
+        49
       ]
     }
   ],
@@ -1335,5 +1351,28 @@
     ],
     "wrinkles": "Warp with torso texture, not independent floating overlays",
     "sourceMasks": "source/wardrobe-masks.npz"
+  },
+  "motionProfile": "fox-front-v3",
+  "allowedActions": [
+    "ready"
+  ],
+  "motionTemplates": {
+    "ready": {
+      "name": "Ready",
+      "duration": 2.4,
+      "loop": true,
+      "fps": 24,
+      "tracks": []
+    }
+  },
+  "semanticReview": {
+    "version": 1,
+    "camera": "front",
+    "notes": [
+      "Old presets archived: concerned mouth was mislabeled thinking.",
+      "Complete foot mirrored as one ankle and shoe assembly.",
+      "Mouth centered below nose; smaller visible ink."
+    ],
+    "emotion": "friendly neutral; no cognitive-state claim"
   }
 }

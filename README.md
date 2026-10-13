@@ -64,3 +64,7 @@ See [skeleton mathematics and regional workflow](docs/skeleton-and-regional-work
 ## Project links
 
 [Source](https://github.com/Up-to-code/QH-Motion-Studio) · [Issues](https://github.com/Up-to-code/QH-Motion-Studio/issues) · [Public project directory](https://github.com/qentrah/.github/blob/main/profile/PROJECTS.md)
+
+## Version 0.3
+
+Hero 1 opens with a right-facing generated run pose sequence. The timeline is movable and resizable; sidebar visibility and agent tools are in settings. Fox has registered complete feet and a corrected smaller mouth; its older presets are archived. See [the revision and mathematical registration notes](docs/run-hero1.md). The run contains eight original drawings sampled at 24 FPS, not a 3D rig. Reprocessing the saved source sheets with `scripts/register-run-v3.py` requires Pillow, NumPy and SciPy; these are not required for playback.

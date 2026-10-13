@@ -30,13 +30,13 @@ import {
   MoreHorizontal,
   Maximize,
   Minimize,
-  Bot,
   Search,
   Pencil,
 } from "lucide-react";
 import Selector from "./components/Selector";
 import { Dialog,Popover } from "radix-ui";
 import { Button } from "./components/ui/button";
+import FloatingPlayer from "./components/FloatingPlayer";
 import Stage from "./components/Stage";
 import type { Project, Clip, Part } from "./types";
 async function api(url: string, method = "GET", body?: unknown) {
@@ -61,7 +61,7 @@ export default function App() {
     [characters, setCharacters] = useState<
       { id: string; name: string; mode: string }[]
     >([]),
-    [character, setCharacter] = useState("fox"),
+    [character, setCharacter] = useState("hero1"),
     [sidebar, setSidebar] = useState(()=>window.innerWidth>=700),
     [tab, setTab] = useState("motions"),
     [selected, setSelected] = useState<string | null>(null),
@@ -400,7 +400,7 @@ export default function App() {
         <p>{message || "Opening your local animation workspace…"}</p>
       </main>
     );
-  const motionChoices=(project.rig as any).motionProfile==="fox"||project.rig.id==="fox"?["hello","thinking","success","idle"]:project.rig.mode==="poses"?["thinking","success","idle"]:["idle",...Object.keys((project.rig as any).motionTemplates??{})];
+  const motionChoices=(project.rig as any).allowedActions??((project.rig as any).motionProfile==="fox"||project.rig.id==="fox"?["hello","thinking","success","idle"]:project.rig.mode==="poses"?["thinking","success","idle"]:["idle",...Object.keys((project.rig as any).motionTemplates??{})]);
   const activeKey = keySelection
     ? current.tracks[keySelection.track]?.keys[keySelection.key]
     : undefined;
@@ -414,7 +414,7 @@ export default function App() {
           <span className="status-dot" title={dirty?"Unsaved changes":"Saved"}/>
         </div>
         <nav className="main-view-controls" aria-label="Workspace view">
-          <Button variant="ghost" size="icon" aria-label={sidebar ? "Close library" : "Open library"} aria-expanded={sidebar} onClick={() => setSidebar(!sidebar)}>{sidebar ? <PanelLeftClose size={17}/> : <PanelLeftOpen size={17}/>}</Button>
+
           <Selector label="Preview representation" value={mode} options={modes.map(([value,label])=>({value,label}))} onChange={v=>{setMode(v);if(v==="distance")setPlaying(false);}}/>
           <Button variant={drawMode?"secondary":"ghost"} size="icon" aria-label="Draw motion path" aria-pressed={drawMode} disabled={!!busy||!part||(part as any).surfaceAttachment} onClick={()=>{setDrawMode(!drawMode);setPlaying(false);setTime(0);setInspectorOpen(false);}}><Pencil size={17}/></Button>
           <Button variant={grid ? "secondary" : "ghost"} size="icon" aria-label="Toggle pixel grid and origin axes" aria-pressed={grid} onClick={() => setGrid(!grid)}><Grid2X2 size={17}/></Button>
@@ -461,7 +461,7 @@ export default function App() {
       <div className={`workspace ${sidebar ? "" : "sidebar-closed"}`}>
         {sidebar && (
           <aside className="library">
-            <div className="sidebar-heading"><span/><Button variant="ghost" size="icon" aria-label="Agent tools" onClick={()=>{setInspectorOpen(true);setSelected(null);}}><Bot size={17}/></Button></div>
+            <div className="sidebar-heading"><span/><Button variant="ghost" size="icon" aria-label="Sidebar settings" onClick={()=>setSettingsOpen(true)}><MoreHorizontal size={17}/></Button></div>
             <label className="library-search"><Search size={15}/><input aria-label="Search library" placeholder="Search" value={search} onChange={e=>setSearch(e.target.value)}/></label>
             <div
               className="library-tabs"
@@ -607,7 +607,7 @@ export default function App() {
               </div>
             )}
           </div>
-          <section className="timeline" aria-label="Animation timeline">
+          <FloatingPlayer><section className="timeline" aria-label="Animation timeline">
             <div className="timeline-toolbar">
               <div className="transport">
                 <Button
@@ -704,7 +704,7 @@ export default function App() {
                 </div>
               ))}
             </div>
-          </section>
+          </section></FloatingPlayer>
         </main>
         {inspectorOpen && !focusMode && <aside className="inspector">
           <div className="inspector-heading">
@@ -876,7 +876,27 @@ export default function App() {
               </Button>
             </section>
           )}
-          <section className="context-panel" aria-label="Character context">
+        </aside>}
+      </div>
+      <footer className="app-status" role="status">
+        <span>
+          {busy ? (
+            <>
+              <LoaderCircle size={13} className="spin" />
+              {busy}…
+            </>
+          ) : (
+            message ||
+            `${dirty ? "Unsaved" : "Saved"}`
+          )}
+        </span>
+        <span>
+          {Math.round(time * current.fps)} /{" "}
+          {Math.round(current.duration * current.fps)} frames
+          {reduced ? " · reduced motion preference" : ""}
+        </span>
+      </footer>
+      <Dialog.Root open={settingsOpen} onOpenChange={setSettingsOpen}><Dialog.Portal><Dialog.Overlay className="dialog-overlay"/><Dialog.Content className="configuration-dialog" onCloseAutoFocus={e=>{e.preventDefault();settingsButton.current?.focus();}}><div className="configuration-nav"><Dialog.Title>Workspace</Dialog.Title>{["workspace","agents","files"].map(t=><button key={t} aria-pressed={settingsTab===t} onClick={()=>setSettingsTab(t)}>{t==="agents"?"Agents & MCP":t==="files"?"Import & export":"Configuration"}</button>)}<Button variant="outline" disabled={!!busy||!dirty} onClick={save}><Save size={15}/>Save</Button></div><div className="configuration-body"><Dialog.Description className="sr-only">Workspace configuration, local agent connection, and portable motion files.</Dialog.Description>{settingsTab==="workspace"?<div className="configuration-fields"><label className="view-toggle"><input type="checkbox" aria-label="Show sidebar" checked={sidebar} onChange={e=>setSidebar(e.target.checked)}/>Sidebar</label><label>Name<input aria-label="Workspace name" disabled={!!busy} value={project.rig.name} onChange={e=>change(p=>{p.rig.name=e.target.value;})}/></label><label>Frame rate<Selector label="Output frames per second" value={String(current.fps)} options={[24,30,60].map(n=>({value:String(n),label:`${n} FPS`}))} onChange={v=>change(p=>{p.clips.find(c=>c.id===p.selected)!.fps=Number(v)as 24|30|60;})}/></label><label>Duration<input type="number" aria-label="Duration in seconds" min="0.5" max="30" step="0.1" value={current.duration} onChange={e=>{const n=Number(e.target.value);if(n<.5||n>30)return;change(p=>{const c=p.clips.find(c=>c.id===p.selected)!;const factor=n/c.duration;c.duration=n;for(const t of c.tracks)for(const k of t.keys)k.time*=factor;for(const contact of (c as any).contacts??[]){if(contact.referenceTime!==undefined)contact.referenceTime*=factor;if(contact.activeIntervals)contact.activeIntervals=contact.activeIntervals.map((r:number[])=>r.map(v=>v*factor));}});setTime(0);setPlaying(false);}}/></label></div>:settingsTab==="agents"?<div className="connection-settings"><h2>Local MCP</h2><pre>{JSON.stringify(mcpConfig??{command:"node",args:["server/mcp.mjs"]},null,2)}</pre><p>{storage}</p><Button variant="outline" onClick={async()=>{try{await navigator.clipboard.writeText(JSON.stringify(mcpConfig,null,2));setMessage("MCP configuration copied");}catch{setMessage("Clipboard unavailable");}}}>Copy connection</Button>          <section className="context-panel" aria-label="Character context">
             <details><summary>Character context {memoryDirty ? "· edited" : ""}</summary>
               {memory ? <><div className="context-fields">{[["appearance","Appearance"],["motionIntent","Motion intent"],["plan","Plan"]].map(([key,label])=><label key={key}>{label}<textarea aria-label={label} rows={2} value={memory[key] || ""} onChange={e=>{setMemory({...memory,[key]:e.target.value});setMemoryDirty(true);}}/></label>)}</div>
               <Button variant="outline" size="sm" disabled={!!busy||!memoryDirty} onClick={saveMemory}><Save size={14}/>Save context</Button>
@@ -954,27 +974,7 @@ export default function App() {
               </p>
             </section>
           )}
-        </aside>}
-      </div>
-      <footer className="app-status" role="status">
-        <span>
-          {busy ? (
-            <>
-              <LoaderCircle size={13} className="spin" />
-              {busy}…
-            </>
-          ) : (
-            message ||
-            `${dirty ? "Unsaved" : "Saved"}`
-          )}
-        </span>
-        <span>
-          {Math.round(time * current.fps)} /{" "}
-          {Math.round(current.duration * current.fps)} frames
-          {reduced ? " · reduced motion preference" : ""}
-        </span>
-      </footer>
-      <Dialog.Root open={settingsOpen} onOpenChange={setSettingsOpen}><Dialog.Portal><Dialog.Overlay className="dialog-overlay"/><Dialog.Content className="configuration-dialog" onCloseAutoFocus={e=>{e.preventDefault();settingsButton.current?.focus();}}><div className="configuration-nav"><Dialog.Title>Workspace</Dialog.Title>{["workspace","agents","files"].map(t=><button key={t} aria-pressed={settingsTab===t} onClick={()=>setSettingsTab(t)}>{t==="agents"?"Agents & MCP":t==="files"?"Import & export":"Configuration"}</button>)}<Button variant="outline" disabled={!!busy||!dirty} onClick={save}><Save size={15}/>Save</Button></div><div className="configuration-body"><Dialog.Description className="sr-only">Workspace configuration, local agent connection, and portable motion files.</Dialog.Description>{settingsTab==="workspace"?<div className="configuration-fields"><label>Name<input aria-label="Workspace name" disabled={!!busy} value={project.rig.name} onChange={e=>change(p=>{p.rig.name=e.target.value;})}/></label><label>Frame rate<Selector label="Output frames per second" value={String(current.fps)} options={[24,30,60].map(n=>({value:String(n),label:`${n} FPS`}))} onChange={v=>change(p=>{p.clips.find(c=>c.id===p.selected)!.fps=Number(v)as 24|30|60;})}/></label><label>Duration<input type="number" aria-label="Duration in seconds" min="0.5" max="30" step="0.1" value={current.duration} onChange={e=>{const n=Number(e.target.value);if(n<.5||n>30)return;change(p=>{const c=p.clips.find(c=>c.id===p.selected)!;const factor=n/c.duration;c.duration=n;for(const t of c.tracks)for(const k of t.keys)k.time*=factor;for(const contact of (c as any).contacts??[]){if(contact.referenceTime!==undefined)contact.referenceTime*=factor;if(contact.activeIntervals)contact.activeIntervals=contact.activeIntervals.map((r:number[])=>r.map(v=>v*factor));}});setTime(0);setPlaying(false);}}/></label></div>:settingsTab==="agents"?<div className="connection-settings"><h2>Local MCP</h2><pre>{JSON.stringify(mcpConfig??{command:"node",args:["server/mcp.mjs"]},null,2)}</pre><p>{storage}</p><Button variant="outline" onClick={async()=>{try{await navigator.clipboard.writeText(JSON.stringify(mcpConfig,null,2));setMessage("MCP configuration copied");}catch{setMessage("Clipboard unavailable");}}}>Copy connection</Button><Button variant="outline" onClick={()=>{setSettingsOpen(false);setInspectorOpen(true);setSelected(null);}}>Open agent tools</Button></div>:<div className="file-settings"><h2>QH Motion</h2><p>Rig, motions, frame data and PNG assets in one portable file.</p><Button disabled={!!busy} onClick={()=>exportFile("bundle")}><Download size={15}/>Export bundle</Button><Button variant="outline" disabled={!!busy} onClick={()=>upload.current?.click()}><Upload size={15}/>Import bundle or JSON</Button><Button variant="ghost" disabled={!!busy} onClick={check}><Check size={15}/>Check current motion</Button></div>}</div><Dialog.Close asChild><Button variant="ghost" size="icon" className="dialog-close" aria-label="Close settings"><X size={18}/></Button></Dialog.Close></Dialog.Content></Dialog.Portal></Dialog.Root>
+</div>:<div className="file-settings"><h2>QH Motion</h2><p>Rig, motions, frame data and PNG assets in one portable file.</p><Button disabled={!!busy} onClick={()=>exportFile("bundle")}><Download size={15}/>Export bundle</Button><Button variant="outline" disabled={!!busy} onClick={()=>upload.current?.click()}><Upload size={15}/>Import bundle or JSON</Button><Button variant="ghost" disabled={!!busy} onClick={check}><Check size={15}/>Check current motion</Button></div>}</div><Dialog.Close asChild><Button variant="ghost" size="icon" className="dialog-close" aria-label="Close settings"><X size={18}/></Button></Dialog.Close></Dialog.Content></Dialog.Portal></Dialog.Root>
       <Dialog.Root open={generation} onOpenChange={setGeneration}>
         <Dialog.Portal>
           <Dialog.Overlay className="dialog-overlay" />
@@ -992,7 +992,7 @@ export default function App() {
             </Dialog.Description>
             <label className="dialog-field">
               Motion
-              <Selector label="New motion action" value={action} options={motionChoices.map(n=>({value:n,label:n[0].toUpperCase()+n.slice(1)}))} onChange={setAction}/>
+              <Selector label="New motion action" value={action} options={motionChoices.map((n:string)=>({value:n,label:n[0].toUpperCase()+n.slice(1)}))} onChange={setAction}/>
 
             </label>
             <div className="dialog-pair">

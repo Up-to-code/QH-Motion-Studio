@@ -39,7 +39,7 @@ test("MCP host can inspect, prepare images, generate two candidates and export",
           name: "generate_motion",
           arguments: {
             character: "fox",
-            motion: "hello",
+            motion: "ready",
             fps: 30,
             candidates: 2,
             target: 100,
@@ -48,8 +48,8 @@ test("MCP host can inspect, prepare images, generate two candidates and export",
       ).content[0].text,
     );
     assert.equal(gen.job.results.length, 2);
-    assert.equal(gen.project.clips.length, 7);
-    assert.notEqual(gen.project.selected, "hello-a");
+    assert.equal(gen.project.clips.length, 3);
+    assert.notEqual(gen.project.selected, "ready-a");
     const exp = JSON.parse(
       (
         await client.callTool({

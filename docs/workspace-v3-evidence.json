@@ -1,0 +1,13 @@
+{
+  "settingsOnlyAgents": true,
+  "settingsSidebarToggle": true,
+  "move": 12,
+  "resize": 24,
+  "mobileDock": {
+    "x": 8,
+    "y": 672,
+    "width": 374,
+    "height": 140
+  },
+  "pageErrors": []
+}

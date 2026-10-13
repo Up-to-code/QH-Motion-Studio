@@ -59,7 +59,7 @@ export const server = http.createServer(async (req, res) => {
     if (parts[0] === "api") {
       if(parts[1]==="bundle"&&req.method==="POST") {const b=await body(req);if(parts[2]==="import")return json(res,await importBundle(b.bundle,b.character));const file=await createBundle(b.character);return json(res,{url:"/api/download?file="+encodeURIComponent(path.relative(LOCAL,file)),filename:path.basename(file)});}
       if (parts[1] === "characters" && req.method === "GET") {
-        for (const id of ["fox", "nia", "orbit"]) project(id);
+        for (const id of ["fox", "hero1", "nia", "orbit"]) project(id);
         return json(res, {
           characters: list("project").map((p) => ({
             id: p.rig.id,

@@ -1,0 +1,30 @@
+{
+  "sourceBBox": [
+    278,
+    465,
+    1000,
+    918
+  ],
+  "uniformScale": 0.09002770083102493,
+  "size": [
+    81,
+    57
+  ],
+  "leftPivot": [
+    54.99445983379501,
+    32
+  ],
+  "rightPivot": [
+    26.005540166204987,
+    32
+  ],
+  "contactLeft": [
+    54.99445983379501,
+    49
+  ],
+  "contactRight": [
+    26.005540166204987,
+    49
+  ],
+  "sourceAnchorReview": "ankle center x=800 source pixels; contact remains 17 rig units below ankle; mirrored complete foot"
+}

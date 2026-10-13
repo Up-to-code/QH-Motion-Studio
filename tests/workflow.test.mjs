@@ -37,7 +37,7 @@ test('patch cannot hide a new local defect inside an improved category total',as
 test('bounded repair records candidates and leaves the original motion unchanged',async()=>{
  const {repairWorkflow}=await import('../server/workflow.mjs');
  const p=project('fox');p.rig=JSON.parse(await fs.readFile('public/animations/fox/rig.json','utf8'));
- const c=p.clips[0];const t=c.tracks.find(t=>t.part==='hand_right'&&t.property==='rotation');t.keys=[{time:0,value:0},{time:c.duration/2,value:80},{time:c.duration,value:0}];put('project','fox',p);
+ const c=p.clips[0];if(!c.tracks.some(t=>t.part==='hand_right'&&t.property==='rotation'))c.tracks.push({part:'hand_right',property:'rotation',keys:[]});const t=c.tracks.find(t=>t.part==='hand_right'&&t.property==='rotation');t.keys=[{time:0,value:0},{time:c.duration/2,value:80},{time:c.duration,value:0}];put('project','fox',p);
  const w=await beginWorkflow('fox',c.id,{samples:2,tileSize:64,halo:4});assert(w.findings.some(f=>f.category==='technical-limits'));
  const repaired=await repairWorkflow(w.id,1);assert.equal(repaired.iterations.length,1);assert(repaired.repairHistory.length<=2);
  assert.equal(project('fox').clips[0].tracks.find(t=>t.part==='hand_right'&&t.property==='rotation').keys[1].value,80);
