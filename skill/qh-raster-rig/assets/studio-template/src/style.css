@@ -1086,3 +1086,26 @@ p {
     scroll-behavior: auto !important;
   }
 }
+/* Keep small metadata readable on the light studio surfaces. */
+.brand-label,
+.sidebar-heading,
+.field-label,
+.library-tabs span,
+.motion-item em,
+.candidate-label,
+.pane-caption,
+.preview-footnote,
+.timeline-options label,
+.ruler,
+.track-name,
+.inspector-meta,
+.inspector-heading h2,
+.xy-field > span,
+.scalar-field,
+.hint,
+.quality-panel > div,
+.app-status,
+.library-footer,
+.dialog-content > p {
+  color: #657085;
+}

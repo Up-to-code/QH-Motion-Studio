@@ -167,6 +167,10 @@ export function makeMotion(rig, name = "hello", fps = 24, candidate = "a") {
     throw new Error(
       "Supported motions: hello, thinking, success, idle. Import custom tracks for other actions.",
     );
+  if (candidate === "b" && name !== "hello")
+    for (const track of tracks)
+      if (track.property === "rotation" || track.property === "bend")
+        for (const key of track.keys) key.value *= strength;
   for (const side of ["left", "right"]) {
     add("eye_" + side, "visible", [
       [0, true],

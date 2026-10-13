@@ -76,6 +76,7 @@ export default function App() {
     [exportOpen, setExportOpen] = useState(false),
     [storage, setStorage] = useState(""),
     [analysis, setAnalysis] = useState<any>(null);
+  const newMotionButton = useRef<HTMLButtonElement>(null);
   const upload = useRef<HTMLInputElement>(null);
   const current = project?.clips.find((c) => c.id === project.selected),
     part = project?.rig.parts.find((p) => p.id === selected),
@@ -477,6 +478,7 @@ export default function App() {
                 <Button
                   variant="outline"
                   className="new-motion"
+                  ref={newMotionButton}
                   onClick={() => setGeneration(true)}
                 >
                   <Plus size={15} />
@@ -1057,7 +1059,13 @@ export default function App() {
       <Dialog.Root open={generation} onOpenChange={setGeneration}>
         <Dialog.Portal>
           <Dialog.Overlay className="dialog-overlay" />
-          <Dialog.Content className="dialog-content">
+          <Dialog.Content
+            className="dialog-content"
+            onCloseAutoFocus={(e) => {
+              e.preventDefault();
+              newMotionButton.current?.focus();
+            }}
+          >
             <Dialog.Title>New motion</Dialog.Title>
             <Dialog.Description>
               Generate two candidates from the local character rig. New artwork
