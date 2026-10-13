@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-13",
+  "provider": "built-in image_gen",
+  "reference": "accepted-reference.png",
+  "partsPrompt": "Use case: identity-preserve. Create a production raster cutout rig parts atlas based EXACTLY on the supplied orange Fox in purple hoodie, dark purple pants and yellow sneakers. Transparent background. Single 4 columns by 4 rows perfectly regular grid of 16 equal cells, no borders or labels or assembled character. Each cell has ONLY the specified isolated part centered with large transparent padding. Preserve flat clean 2D style, orange/cream fur, purple hoodie, dark pants, yellow shoes; no redesign, no hat. Row1: (1) clean front head face plate with cream muzzle but NO eyes eyebrows nose mouth and NO ears; (2) viewer-left ear orange with cream inner; (3) viewer-right ear orange cream inner; (4) full orange cream-tipped tail pointing left. Row2: (1) purple hoodie torso alone, including hood drawstrings and pocket, NO arms, broad rounded shoulder overlap caps; (2) dark purple pants pelvis alone with rounded overlap at hips, no legs; (3) viewer-left dark purple trouser leg with rounded hidden hip top; (4) viewer-right dark purple trouser leg rounded hidden top. Row3: (1) yellow sneaker pointing viewer-left; (2) yellow sneaker pointing viewer-right; (3) purple upper arm sleeve pointing vertically down, rounded overlapping shoulder at top and elbow at bottom; (4) purple forearm sleeve pointing vertically down with rounded hidden elbow top and cuff at bottom. Row4: (1) orange relaxed fist hand with short wrist stem projecting upward; (2) orange open waving palm fingers with short wrist stem upward; (3) pair of matching white oval eyes with brown pupils, no faceplate; (4) facial feature collection: two dark eyebrows, small brown nose, friendly closed smile, happy open mouth, concerned mouth, two closed eyelids, all separated with clear transparent gaps. One atlas, 16 cells. All pieces fully opaque within artwork, hidden overlap artwork included, large clean smooth rounded attachment surfaces prevent holes when connected. No white background. All anatomy from reference. This is editable sprite production artwork.",
+  "cleanPlatesPrompt": "Identity-preserve horizontal 3-cell transparent atlas: complete isolated Fox head faceplate without ears or facial features, rounded furry neck, and isolated purple hoodie torso with hidden shoulder overlap. Same accepted reference, generous padding, no labels/background. The generated hoodie included sleeves; source-pixel wardrobe masks subsequently corrected ownership.",
+  "technicalProcessing": [
+    "Alpha-safe component cleanup and crop",
+    "Authored bind-pose placement and pivot registration",
+    "Separate shoulder, forearm, cuff and hand ownership",
+    "Hidden-surface inpainting beneath moving details",
+    "Local texture mesh and deterministic damped drawstrings"
+  ],
+  "limits": "No inferred depth or learned semantic/shading model is bundled."
+}

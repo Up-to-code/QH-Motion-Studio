@@ -1,0 +1,46 @@
+{
+  "id": "orbit",
+  "name": "Orbit",
+  "version": 1,
+  "mode": "poses",
+  "canvas": [
+    512,
+    512
+  ],
+  "origin": [
+    256,
+    256
+  ],
+  "ground": 436,
+  "assets": [
+    "/animations/orbit/parts/idle.png",
+    "/animations/orbit/parts/thinking.png",
+    "/animations/orbit/parts/success.png",
+    "/animations/orbit/parts/retry.png"
+  ],
+  "parts": [
+    {
+      "id": "body",
+      "name": "Registered pose",
+      "parent": null,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        256,
+        256
+      ],
+      "size": [
+        512,
+        512
+      ],
+      "z": 0,
+      "asset": "/animations/orbit/parts/idle.png",
+      "limits": [
+        0,
+        0
+      ]
+    }
+  ]
+}

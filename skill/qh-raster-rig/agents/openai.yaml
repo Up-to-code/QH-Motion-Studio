@@ -1,0 +1,4 @@
+interface:
+  display_name: "QH Raster Rig"
+  short_description: "Layered raster rigs, timelines and motion exports"
+  default_prompt: "Use $qh-raster-rig to prepare a layered character and edit its motion in the local QH studio."

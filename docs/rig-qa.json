@@ -1,0 +1,1577 @@
+{
+  "date": "2026-10-13",
+  "parts": 33,
+  "cases": [
+    {
+      "action": "hello",
+      "status": "accepted",
+      "quality": {
+        "score": 100,
+        "accepted": true,
+        "metrics": {
+          "connectedBodyRatio": 1,
+          "flippedTriangles": 0,
+          "offCanvasSamples": 0,
+          "contactDriftPx": 0,
+          "loopMatrixError": 0,
+          "jointGapSamples": 0,
+          "edgePixels": 0,
+          "maxJointStepPx": 17.796052655561738,
+          "maxJointVelocityPxPerSecond": 421.1732461816278,
+          "limitOverrunDeg": 0
+        },
+        "penalties": {
+          "disconnection": 0,
+          "meshFlips": 0,
+          "offCanvas": 0,
+          "clipping": 0,
+          "contact": 0,
+          "limits": 0,
+          "jointGaps": 0,
+          "loop": 0,
+          "speed": 0
+        },
+        "sampled": [
+          {
+            "frame": 0,
+            "time": 0
+          },
+          {
+            "frame": 6,
+            "time": 0.2535211267605634
+          },
+          {
+            "frame": 12,
+            "time": 0.5070422535211268
+          },
+          {
+            "frame": 18,
+            "time": 0.7605633802816901
+          },
+          {
+            "frame": 24,
+            "time": 1.0140845070422535
+          },
+          {
+            "frame": 30,
+            "time": 1.267605633802817
+          },
+          {
+            "frame": 36,
+            "time": 1.5211267605633803
+          },
+          {
+            "frame": 42,
+            "time": 1.7746478873239435
+          },
+          {
+            "frame": 48,
+            "time": 2.028169014084507
+          },
+          {
+            "frame": 54,
+            "time": 2.2816901408450705
+          },
+          {
+            "frame": 60,
+            "time": 2.535211267605634
+          },
+          {
+            "frame": 66,
+            "time": 2.788732394366197
+          }
+        ],
+        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+      },
+      "history": [
+        {
+          "attempt": 0,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "action": "thinking",
+      "status": "accepted",
+      "quality": {
+        "score": 100,
+        "accepted": true,
+        "metrics": {
+          "connectedBodyRatio": 1,
+          "flippedTriangles": 0,
+          "offCanvasSamples": 0,
+          "contactDriftPx": 0,
+          "loopMatrixError": 0,
+          "jointGapSamples": 0,
+          "edgePixels": 0,
+          "maxJointStepPx": 1.3220564613418893,
+          "maxJointVelocityPxPerSecond": 31.398840956869872,
+          "limitOverrunDeg": 0
+        },
+        "penalties": {
+          "disconnection": 0,
+          "meshFlips": 0,
+          "offCanvas": 0,
+          "clipping": 0,
+          "contact": 0,
+          "limits": 0,
+          "jointGaps": 0,
+          "loop": 0,
+          "speed": 0
+        },
+        "sampled": [
+          {
+            "frame": 0,
+            "time": 0
+          },
+          {
+            "frame": 4,
+            "time": 0.16842105263157894
+          },
+          {
+            "frame": 8,
+            "time": 0.3368421052631579
+          },
+          {
+            "frame": 12,
+            "time": 0.5052631578947367
+          },
+          {
+            "frame": 16,
+            "time": 0.6736842105263158
+          },
+          {
+            "frame": 20,
+            "time": 0.8421052631578947
+          },
+          {
+            "frame": 24,
+            "time": 1.0105263157894735
+          },
+          {
+            "frame": 28,
+            "time": 1.1789473684210525
+          },
+          {
+            "frame": 32,
+            "time": 1.3473684210526315
+          },
+          {
+            "frame": 36,
+            "time": 1.5157894736842104
+          },
+          {
+            "frame": 40,
+            "time": 1.6842105263157894
+          },
+          {
+            "frame": 44,
+            "time": 1.8526315789473682
+          },
+          {
+            "frame": 48,
+            "time": 2.021052631578947
+          },
+          {
+            "frame": 52,
+            "time": 2.189473684210526
+          },
+          {
+            "frame": 56,
+            "time": 2.357894736842105
+          }
+        ],
+        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+      },
+      "history": [
+        {
+          "attempt": 0,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "action": "success",
+      "status": "accepted",
+      "quality": {
+        "score": 100,
+        "accepted": true,
+        "metrics": {
+          "connectedBodyRatio": 1,
+          "flippedTriangles": 0,
+          "offCanvasSamples": 0,
+          "contactDriftPx": 0,
+          "loopMatrixError": 0,
+          "jointGapSamples": 0,
+          "edgePixels": 0,
+          "maxJointStepPx": 16.785212606613246,
+          "maxJointVelocityPxPerSecond": 399.21586740053124,
+          "limitOverrunDeg": 0
+        },
+        "penalties": {
+          "disconnection": 0,
+          "meshFlips": 0,
+          "offCanvas": 0,
+          "clipping": 0,
+          "contact": 0,
+          "limits": 0,
+          "jointGaps": 0,
+          "loop": 0,
+          "speed": 0
+        },
+        "sampled": [
+          {
+            "frame": 0,
+            "time": 0
+          },
+          {
+            "frame": 7,
+            "time": 0.2943181818181818
+          },
+          {
+            "frame": 14,
+            "time": 0.5886363636363636
+          },
+          {
+            "frame": 21,
+            "time": 0.8829545454545455
+          },
+          {
+            "frame": 28,
+            "time": 1.1772727272727272
+          },
+          {
+            "frame": 35,
+            "time": 1.4715909090909092
+          },
+          {
+            "frame": 42,
+            "time": 1.765909090909091
+          },
+          {
+            "frame": 49,
+            "time": 2.0602272727272726
+          },
+          {
+            "frame": 56,
+            "time": 2.3545454545454545
+          },
+          {
+            "frame": 63,
+            "time": 2.6488636363636364
+          },
+          {
+            "frame": 70,
+            "time": 2.9431818181818183
+          },
+          {
+            "frame": 77,
+            "time": 3.2375000000000003
+          },
+          {
+            "frame": 84,
+            "time": 3.531818181818182
+          }
+        ],
+        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+      },
+      "history": [
+        {
+          "attempt": 0,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "action": "idle",
+      "status": "accepted",
+      "quality": {
+        "score": 100,
+        "accepted": true,
+        "metrics": {
+          "connectedBodyRatio": 1,
+          "flippedTriangles": 0,
+          "offCanvasSamples": 0,
+          "contactDriftPx": 0,
+          "loopMatrixError": 0,
+          "jointGapSamples": 0,
+          "edgePixels": 0,
+          "maxJointStepPx": 0,
+          "maxJointVelocityPxPerSecond": 0,
+          "limitOverrunDeg": 0
+        },
+        "penalties": {
+          "disconnection": 0,
+          "meshFlips": 0,
+          "offCanvas": 0,
+          "clipping": 0,
+          "contact": 0,
+          "limits": 0,
+          "jointGaps": 0,
+          "loop": 0,
+          "speed": 0
+        },
+        "sampled": [
+          {
+            "frame": 0,
+            "time": 0
+          },
+          {
+            "frame": 4,
+            "time": 0.16842105263157894
+          },
+          {
+            "frame": 8,
+            "time": 0.3368421052631579
+          },
+          {
+            "frame": 12,
+            "time": 0.5052631578947367
+          },
+          {
+            "frame": 16,
+            "time": 0.6736842105263158
+          },
+          {
+            "frame": 20,
+            "time": 0.8421052631578947
+          },
+          {
+            "frame": 24,
+            "time": 1.0105263157894735
+          },
+          {
+            "frame": 28,
+            "time": 1.1789473684210525
+          },
+          {
+            "frame": 32,
+            "time": 1.3473684210526315
+          },
+          {
+            "frame": 36,
+            "time": 1.5157894736842104
+          },
+          {
+            "frame": 40,
+            "time": 1.6842105263157894
+          },
+          {
+            "frame": 44,
+            "time": 1.8526315789473682
+          },
+          {
+            "frame": 48,
+            "time": 2.021052631578947
+          },
+          {
+            "frame": 52,
+            "time": 2.189473684210526
+          },
+          {
+            "frame": 56,
+            "time": 2.357894736842105
+          }
+        ],
+        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+      },
+      "history": [
+        {
+          "attempt": 0,
+          "score": 100
+        }
+      ]
+    },
+    {
+      "action": "joint-extremes",
+      "quality": {
+        "score": 100,
+        "accepted": true,
+        "metrics": {
+          "connectedBodyRatio": 1,
+          "flippedTriangles": 0,
+          "offCanvasSamples": 0,
+          "contactDriftPx": 0,
+          "loopMatrixError": 0,
+          "jointGapSamples": 0,
+          "edgePixels": 0,
+          "maxJointStepPx": 4.935931877719759,
+          "maxJointVelocityPxPerSecond": 116.81705443936762,
+          "limitOverrunDeg": 0
+        },
+        "penalties": {
+          "disconnection": 0,
+          "meshFlips": 0,
+          "offCanvas": 0,
+          "clipping": 0,
+          "contact": 0,
+          "limits": 0,
+          "jointGaps": 0,
+          "loop": 0,
+          "speed": 0
+        },
+        "sampled": [
+          {
+            "frame": 0,
+            "time": 0
+          },
+          {
+            "frame": 6,
+            "time": 0.2535211267605634
+          },
+          {
+            "frame": 12,
+            "time": 0.5070422535211268
+          },
+          {
+            "frame": 18,
+            "time": 0.7605633802816901
+          },
+          {
+            "frame": 24,
+            "time": 1.0140845070422535
+          },
+          {
+            "frame": 30,
+            "time": 1.267605633802817
+          },
+          {
+            "frame": 36,
+            "time": 1.5211267605633803
+          },
+          {
+            "frame": 42,
+            "time": 1.7746478873239435
+          },
+          {
+            "frame": 48,
+            "time": 2.028169014084507
+          },
+          {
+            "frame": 54,
+            "time": 2.2816901408450705
+          },
+          {
+            "frame": 60,
+            "time": 2.535211267605634
+          },
+          {
+            "frame": 66,
+            "time": 2.788732394366197
+          }
+        ],
+        "scope": "Numeric bounds, attachment coverage, contact, limits, speed and loop. Artistic naturalness and identity require visual review."
+      }
+    }
+  ],
+  "invariants": {
+    "fps": [
+      {
+        "fps": 24,
+        "atOneSecond": [
+          {
+            "id": "tail",
+            "matrix": [
+              0.9997591317134841,
+              0.021947176481279154,
+              -0.021947176481279154,
+              0.9997591317134841,
+              110.4516167730808,
+              275.7331500845705
+            ]
+          },
+          {
+            "id": "leg_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              213,
+              337
+            ]
+          },
+          {
+            "id": "leg_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              261,
+              337
+            ]
+          },
+          {
+            "id": "pelvis",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              209.5,
+              318.5
+            ]
+          },
+          {
+            "id": "shoe_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              193,
+              403
+            ]
+          },
+          {
+            "id": "shoe_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              254,
+              403
+            ]
+          },
+          {
+            "id": "upper_arm_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              187.5,
+              244
+            ]
+          },
+          {
+            "id": "upper_arm_right",
+            "matrix": [
+              -0.42261826174069933,
+              -0.90630778703665,
+              0.90630778703665,
+              -0.42261826174069933,
+              298.82060187065264,
+              284.3085808726944
+            ]
+          },
+          {
+            "id": "forearm_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              191,
+              288
+            ]
+          },
+          {
+            "id": "forearm_right",
+            "matrix": [
+              -0.8191520442889917,
+              -0.5735764363510463,
+              0.5735764363510463,
+              -0.8191520442889917,
+              348.7458986608176,
+              260.9778098290284
+            ]
+          },
+          {
+            "id": "hand_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              192.5,
+              328
+            ]
+          },
+          {
+            "id": "hand_right",
+            "matrix": [
+              -0.6114133667109926,
+              -0.7913113767709455,
+              0.7913113767709455,
+              -0.6114133667109926,
+              364.86518672703187,
+              229.2920767620884
+            ]
+          },
+          {
+            "id": "cuff_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              198.66666666666666,
+              333.31304347826085
+            ]
+          },
+          {
+            "id": "cuff_right",
+            "matrix": [
+              -0.8191520442889917,
+              -0.5735764363510463,
+              0.5735764363510463,
+              -0.8191520442889917,
+              368.45622698641625,
+              219.462118285497
+            ]
+          },
+          {
+            "id": "hoodie",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              184,
+              227
+            ]
+          },
+          {
+            "id": "hem",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              204.49122807017545,
+              330.70023419203744
+            ]
+          },
+          {
+            "id": "pocket",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              220.49122807017545,
+              296.69555035128803
+            ]
+          },
+          {
+            "id": "drawstring_left",
+            "matrix": [
+              0.9999999975190654,
+              0.00007044053550338302,
+              -0.00007044053550338302,
+              0.9999999975190654,
+              235.64926369888278,
+              256.2268598031891
+            ]
+          },
+          {
+            "id": "drawstring_right",
+            "matrix": [
+              0.9999999953094831,
+              0.00009685573624581484,
+              -0.00009685573624581484,
+              0.9999999953094831,
+              267.3686147845119,
+              256.2267448783138
+            ]
+          },
+          {
+            "id": "neck",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              238,
+              228
+            ]
+          },
+          {
+            "id": "ear_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              168,
+              65
+            ]
+          },
+          {
+            "id": "ear_right",
+            "matrix": [
+              0.9998678528390215,
+              0.016256594326148722,
+              -0.016256594326148722,
+              0.9998678528390215,
+              275.5002318286399,
+              60.44317673739482
+            ]
+          },
+          {
+            "id": "head",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              162.5,
+              104
+            ]
+          },
+          {
+            "id": "eye_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              215.5,
+              160.5
+            ]
+          },
+          {
+            "id": "eye_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              266.5,
+              160.5
+            ]
+          },
+          {
+            "id": "pupil_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              225,
+              169
+            ]
+          },
+          {
+            "id": "pupil_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              276,
+              169
+            ]
+          },
+          {
+            "id": "brow_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              218,
+              146
+            ]
+          },
+          {
+            "id": "brow_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              269,
+              146
+            ]
+          },
+          {
+            "id": "nose",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              244,
+              195
+            ]
+          },
+          {
+            "id": "mouth",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              239.5,
+              212
+            ]
+          },
+          {
+            "id": "lid_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              215,
+              176
+            ]
+          },
+          {
+            "id": "lid_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              266,
+              176
+            ]
+          }
+        ]
+      },
+      {
+        "fps": 30,
+        "atOneSecond": [
+          {
+            "id": "tail",
+            "matrix": [
+              0.9997591317134841,
+              0.021947176481279154,
+              -0.021947176481279154,
+              0.9997591317134841,
+              110.4516167730808,
+              275.7331500845705
+            ]
+          },
+          {
+            "id": "leg_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              213,
+              337
+            ]
+          },
+          {
+            "id": "leg_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              261,
+              337
+            ]
+          },
+          {
+            "id": "pelvis",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              209.5,
+              318.5
+            ]
+          },
+          {
+            "id": "shoe_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              193,
+              403
+            ]
+          },
+          {
+            "id": "shoe_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              254,
+              403
+            ]
+          },
+          {
+            "id": "upper_arm_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              187.5,
+              244
+            ]
+          },
+          {
+            "id": "upper_arm_right",
+            "matrix": [
+              -0.42261826174069933,
+              -0.90630778703665,
+              0.90630778703665,
+              -0.42261826174069933,
+              298.82060187065264,
+              284.3085808726944
+            ]
+          },
+          {
+            "id": "forearm_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              191,
+              288
+            ]
+          },
+          {
+            "id": "forearm_right",
+            "matrix": [
+              -0.8191520442889917,
+              -0.5735764363510463,
+              0.5735764363510463,
+              -0.8191520442889917,
+              348.7458986608176,
+              260.9778098290284
+            ]
+          },
+          {
+            "id": "hand_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              192.5,
+              328
+            ]
+          },
+          {
+            "id": "hand_right",
+            "matrix": [
+              -0.6114133667109926,
+              -0.7913113767709455,
+              0.7913113767709455,
+              -0.6114133667109926,
+              364.86518672703187,
+              229.2920767620884
+            ]
+          },
+          {
+            "id": "cuff_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              198.66666666666666,
+              333.31304347826085
+            ]
+          },
+          {
+            "id": "cuff_right",
+            "matrix": [
+              -0.8191520442889917,
+              -0.5735764363510463,
+              0.5735764363510463,
+              -0.8191520442889917,
+              368.45622698641625,
+              219.462118285497
+            ]
+          },
+          {
+            "id": "hoodie",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              184,
+              227
+            ]
+          },
+          {
+            "id": "hem",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              204.49122807017545,
+              330.70023419203744
+            ]
+          },
+          {
+            "id": "pocket",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              220.49122807017545,
+              296.69555035128803
+            ]
+          },
+          {
+            "id": "drawstring_left",
+            "matrix": [
+              0.9999999975190654,
+              0.00007044053550338302,
+              -0.00007044053550338302,
+              0.9999999975190654,
+              235.64926369888278,
+              256.2268598031891
+            ]
+          },
+          {
+            "id": "drawstring_right",
+            "matrix": [
+              0.9999999953094831,
+              0.00009685573624581484,
+              -0.00009685573624581484,
+              0.9999999953094831,
+              267.3686147845119,
+              256.2267448783138
+            ]
+          },
+          {
+            "id": "neck",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              238,
+              228
+            ]
+          },
+          {
+            "id": "ear_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              168,
+              65
+            ]
+          },
+          {
+            "id": "ear_right",
+            "matrix": [
+              0.9998678528390215,
+              0.016256594326148722,
+              -0.016256594326148722,
+              0.9998678528390215,
+              275.5002318286399,
+              60.44317673739482
+            ]
+          },
+          {
+            "id": "head",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              162.5,
+              104
+            ]
+          },
+          {
+            "id": "eye_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              215.5,
+              160.5
+            ]
+          },
+          {
+            "id": "eye_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              266.5,
+              160.5
+            ]
+          },
+          {
+            "id": "pupil_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              225,
+              169
+            ]
+          },
+          {
+            "id": "pupil_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              276,
+              169
+            ]
+          },
+          {
+            "id": "brow_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              218,
+              146
+            ]
+          },
+          {
+            "id": "brow_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              269,
+              146
+            ]
+          },
+          {
+            "id": "nose",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              244,
+              195
+            ]
+          },
+          {
+            "id": "mouth",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              239.5,
+              212
+            ]
+          },
+          {
+            "id": "lid_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              215,
+              176
+            ]
+          },
+          {
+            "id": "lid_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              266,
+              176
+            ]
+          }
+        ]
+      },
+      {
+        "fps": 60,
+        "atOneSecond": [
+          {
+            "id": "tail",
+            "matrix": [
+              0.9997591317134841,
+              0.021947176481279154,
+              -0.021947176481279154,
+              0.9997591317134841,
+              110.4516167730808,
+              275.7331500845705
+            ]
+          },
+          {
+            "id": "leg_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              213,
+              337
+            ]
+          },
+          {
+            "id": "leg_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              261,
+              337
+            ]
+          },
+          {
+            "id": "pelvis",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              209.5,
+              318.5
+            ]
+          },
+          {
+            "id": "shoe_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              193,
+              403
+            ]
+          },
+          {
+            "id": "shoe_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              254,
+              403
+            ]
+          },
+          {
+            "id": "upper_arm_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              187.5,
+              244
+            ]
+          },
+          {
+            "id": "upper_arm_right",
+            "matrix": [
+              -0.42261826174069933,
+              -0.90630778703665,
+              0.90630778703665,
+              -0.42261826174069933,
+              298.82060187065264,
+              284.3085808726944
+            ]
+          },
+          {
+            "id": "forearm_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              191,
+              288
+            ]
+          },
+          {
+            "id": "forearm_right",
+            "matrix": [
+              -0.8191520442889917,
+              -0.5735764363510463,
+              0.5735764363510463,
+              -0.8191520442889917,
+              348.7458986608176,
+              260.9778098290284
+            ]
+          },
+          {
+            "id": "hand_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              192.5,
+              328
+            ]
+          },
+          {
+            "id": "hand_right",
+            "matrix": [
+              -0.6114133667109926,
+              -0.7913113767709455,
+              0.7913113767709455,
+              -0.6114133667109926,
+              364.86518672703187,
+              229.2920767620884
+            ]
+          },
+          {
+            "id": "cuff_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              198.66666666666666,
+              333.31304347826085
+            ]
+          },
+          {
+            "id": "cuff_right",
+            "matrix": [
+              -0.8191520442889917,
+              -0.5735764363510463,
+              0.5735764363510463,
+              -0.8191520442889917,
+              368.45622698641625,
+              219.462118285497
+            ]
+          },
+          {
+            "id": "hoodie",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              184,
+              227
+            ]
+          },
+          {
+            "id": "hem",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              204.49122807017545,
+              330.70023419203744
+            ]
+          },
+          {
+            "id": "pocket",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              220.49122807017545,
+              296.69555035128803
+            ]
+          },
+          {
+            "id": "drawstring_left",
+            "matrix": [
+              0.9999999975190654,
+              0.00007044053550338302,
+              -0.00007044053550338302,
+              0.9999999975190654,
+              235.64926369888278,
+              256.2268598031891
+            ]
+          },
+          {
+            "id": "drawstring_right",
+            "matrix": [
+              0.9999999953094831,
+              0.00009685573624581484,
+              -0.00009685573624581484,
+              0.9999999953094831,
+              267.3686147845119,
+              256.2267448783138
+            ]
+          },
+          {
+            "id": "neck",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              238,
+              228
+            ]
+          },
+          {
+            "id": "ear_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              168,
+              65
+            ]
+          },
+          {
+            "id": "ear_right",
+            "matrix": [
+              0.9998678528390215,
+              0.016256594326148722,
+              -0.016256594326148722,
+              0.9998678528390215,
+              275.5002318286399,
+              60.44317673739482
+            ]
+          },
+          {
+            "id": "head",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              162.5,
+              104
+            ]
+          },
+          {
+            "id": "eye_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              215.5,
+              160.5
+            ]
+          },
+          {
+            "id": "eye_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              266.5,
+              160.5
+            ]
+          },
+          {
+            "id": "pupil_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              225,
+              169
+            ]
+          },
+          {
+            "id": "pupil_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              276,
+              169
+            ]
+          },
+          {
+            "id": "brow_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              218,
+              146
+            ]
+          },
+          {
+            "id": "brow_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              269,
+              146
+            ]
+          },
+          {
+            "id": "nose",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              244,
+              195
+            ]
+          },
+          {
+            "id": "mouth",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              239.5,
+              212
+            ]
+          },
+          {
+            "id": "lid_left",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              215,
+              176
+            ]
+          },
+          {
+            "id": "lid_right",
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              266,
+              176
+            ]
+          }
+        ]
+      }
+    ],
+    "equal": true
+  },
+  "scope": "Technical checks plus manual frame inspection; no calibrated emotion accuracy or physical garment simulation claim."
+}

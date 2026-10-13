@@ -1,0 +1,46 @@
+{
+  "id": "nia",
+  "name": "Nia",
+  "version": 1,
+  "mode": "poses",
+  "canvas": [
+    512,
+    512
+  ],
+  "origin": [
+    256,
+    256
+  ],
+  "ground": 436,
+  "assets": [
+    "/animations/nia/parts/idle.png",
+    "/animations/nia/parts/thinking.png",
+    "/animations/nia/parts/success.png",
+    "/animations/nia/parts/retry.png"
+  ],
+  "parts": [
+    {
+      "id": "body",
+      "name": "Registered pose",
+      "parent": null,
+      "position": [
+        0,
+        0
+      ],
+      "pivot": [
+        256,
+        256
+      ],
+      "size": [
+        512,
+        512
+      ],
+      "z": 0,
+      "asset": "/animations/nia/parts/idle.png",
+      "limits": [
+        0,
+        0
+      ]
+    }
+  ]
+}

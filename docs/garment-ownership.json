@@ -1,0 +1,22 @@
+{
+  "sourcePixelsRemainingOnTorsoInArmMasks": {
+    "arm_left": 0,
+    "arm_right": 0
+  },
+  "partCount": 33,
+  "ownership": {
+    "torsoExcludesSleeves": true,
+    "arms": [
+      "shoulder sleeve",
+      "forearm sleeve",
+      "cuff",
+      "hand"
+    ],
+    "secondaryDetails": [
+      "drawstring_left",
+      "drawstring_right"
+    ],
+    "wrinkles": "Warp with torso texture, not independent floating overlays",
+    "sourceMasks": "source/wardrobe-masks.npz"
+  }
+}
